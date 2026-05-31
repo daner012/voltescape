@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VOLT ESCAPE — Real Deal Search</title>
+<style>
+:root{
+  --bg:#05080d;--ink:#f4f8fb;--muted:#9baaba;--ice:#8fcdf6;--line:rgba(235,245,255,.11);
+  --panel:rgba(255,255,255,.055);--panel2:rgba(255,255,255,.09);--good:#b9ffd5;--warn:#f3d59a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+  background:radial-gradient(circle at 15% 0%,rgba(143,205,246,.24),transparent 34%),
+  radial-gradient(circle at 90% 8%,rgba(255,255,255,.09),transparent 26%),
+  linear-gradient(180deg,#05080d,#08111b 52%,#0b1118);
+  min-height:100vh
+}
+button,input,select{font:inherit}button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1220px,90vw);margin:auto}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.brand{letter-spacing:.28em;font-weight:850}
+.nav span{border:1px solid var(--line);border-radius:999px;padding:9px 13px;background:rgba(255,255,255,.04);color:#dce8f3}
+.hero{display:grid;grid-template-columns:1fr .9fr;gap:38px;align-items:center;padding:54px 0 24px}
+.kicker{color:#a7d5ef;text-transform:uppercase;letter-spacing:.22em;font-size:12px;margin-bottom:16px}
+h1{font-size:clamp(44px,7vw,84px);line-height:.9;letter-spacing:-.07em;margin-bottom:24px}
+.lead{color:#adbac7;font-size:19px;line-height:1.7;max-width:690px}
+.btns{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn{border:0;border-radius:16px;padding:14px 17px;font-weight:750;transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.primary{background:linear-gradient(135deg,#f6f9fc,#9fb8cc);color:#081019;box-shadow:0 18px 46px rgba(143,205,246,.19)}
+.ghost{background:rgba(255,255,255,.055);border:1px solid var(--line);color:#e7eff7}
+.panel{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.035));border-radius:30px;box-shadow:0 25px 70px rgba(0,0,0,.34);backdrop-filter:blur(20px)}
+.livebox{padding:24px}
+.top{display:flex;justify-content:space-between;color:#9cc9e7;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.big{font-size:56px;font-weight:850;letter-spacing:-.05em;margin:20px 0 8px}
+.livebox p{color:#aab8c5;line-height:1.55}
+.searchApp{padding:18px;margin-top:18px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+.tab{border:1px solid var(--line);background:rgba(255,255,255,.04);color:#b6c5d2;border-radius:999px;padding:10px 13px;font-size:13px}
+.tab.active{background:rgba(143,205,246,.13);color:#e2f5ff;border-color:rgba(143,205,246,.28)}
+.search{display:grid;grid-template-columns:1fr 1fr .78fr .78fr .72fr .72fr;gap:10px;align-items:end}
+.field label{display:block;color:#8fa1b3;font-size:11px;letter-spacing:.13em;text-transform:uppercase;margin:0 0 7px 5px}
+input,select{width:100%;border:1px solid var(--line);background:rgba(8,16,25,.82);color:var(--ink);padding:13px;border-radius:14px;outline:0}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:13px}
+.chip{border:1px solid var(--line);background:rgba(255,255,255,.035);color:#b7c6d4;border-radius:999px;padding:9px 12px;font-size:13px;user-select:none}
+.chip.on{background:rgba(143,205,246,.13);border-color:rgba(143,205,246,.32);color:#d8f1ff}
+.engineBtns{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+.engineBtns .btn{width:100%}
+.section{padding:34px 0}
+.head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:18px}
+h2{font-size:36px;letter-spacing:-.04em}.head p{color:var(--muted);line-height:1.55;margin-top:6px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.card{grid-column:span 4;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.032));border-radius:26px;padding:19px;transition:.2s}
+.card:hover{transform:translateY(-4px);border-color:rgba(143,205,246,.28)}
+.card.large{grid-column:span 6}
+.cardtop{display:flex;justify-content:space-between;color:#9cc9e7;font-size:13px;margin-bottom:18px}
+.card h3{font-size:29px;margin-bottom:8px}.card p{color:#aab8c5;line-height:1.48;min-height:42px}
+.price{display:flex;justify-content:space-between;align-items:end;margin-top:18px;gap:12px}.price b{font-size:34px}.price span{color:#8fa1b3;font-size:13px;text-align:right}
+.meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.meta small{border:1px solid var(--line);border-radius:999px;color:#b8c7d3;padding:7px 9px;background:rgba(255,255,255,.03)}
+.actions{display:flex;gap:8px;margin-top:14px}.actions .btn{font-size:13px;padding:10px 12px;flex:1}
+.dash{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.stat{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:17px;padding:15px}.stat b{display:block;font-size:22px}.stat span{color:var(--muted);font-size:12px}
+.table{overflow:auto;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.032)}
+table{width:100%;border-collapse:collapse;min-width:760px}th,td{padding:15px;text-align:left;border-bottom:1px solid var(--line)}th{color:#8fa1b3;font-size:11px;text-transform:uppercase;letter-spacing:.14em}td{color:#e3edf4}
+.drawer{position:fixed;right:18px;bottom:18px;width:min(460px,calc(100vw - 36px));max-height:72vh;overflow:auto;background:#08111a;border:1px solid var(--line);border-radius:25px;padding:18px;box-shadow:0 25px 80px rgba(0,0,0,.55);display:none;z-index:99}.drawer.open{display:block}.drawer-item{border-top:1px solid var(--line);padding:12px 0}.drawer small{display:block;color:var(--muted);line-height:1.45;margin-top:4px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#e6eef5;color:#081019;padding:12px 16px;border-radius:999px;font-weight:750;display:none;z-index:130}
+.note{border:1px solid rgba(185,255,213,.25);background:rgba(185,255,213,.07);color:#dfffea;border-radius:20px;padding:16px;line-height:1.55}
+.footer{padding:36px 0 50px;color:#8798a8;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:35px}
+@media(max-width:1050px){.hero{grid-template-columns:1fr}.search{grid-template-columns:1fr 1fr 1fr}.card,.card.large{grid-column:span 6}.dash,.engineBtns{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.nav span{display:none}.search,.engineBtns{grid-template-columns:1fr}.head{display:block}.card,.card.large{grid-column:span 12}.big{font-size:44px}.dash{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="nav"><div class="brand">VOLT ESCAPE</div><span>real deal search build</span></header>
+
+<section class="hero">
+  <div>
+    <div class="kicker">Private flight society · live search launcher</div>
+    <h1>Search real flight deals, not demo cards.</h1>
+    <p class="lead">This version behaves like a real deal-search engine: enter route, dates and style, then open the same search in live engines like Google Flights, Skyscanner, Kiwi and Momondo. It also builds deal cards, saves searches and stores recent routes locally.</p>
+    <div class="btns"><button class="btn primary" onclick="document.querySelector('#search').scrollIntoView()">Start real search</button><button class="btn ghost" onclick="openDrawer()">Recent searches</button></div>
+  </div>
+  <aside class="panel livebox">
+    <div class="top"><span>Reality check</span><span>no fake scraping</span></div>
+    <div class="big">Live prices need a live source.</div>
+    <p>A static HTML file cannot legally and reliably scrape airline prices by itself. So this build launches real searches on live flight engines and keeps VOLT as the premium discovery layer.</p>
+  </aside>
+</section>
+
+<section class="panel searchApp" id="search">
+  <div class="tabs">
+    <button class="tab active" data-trip="roundtrip">Round trip</button>
+    <button class="tab" data-trip="oneway">One way</button>
+    <button class="tab" data-trip="everywhere">Everywhere</button>
+    <button class="tab" data-trip="weekend">Weekend mode</button>
+  </div>
+
+  <div class="search">
+    <div class="field"><label>from</label><select id="from"><option value="TLV">Tel Aviv (TLV)</option><option value="ATH">Athens (ATH)</option><option value="BER">Berlin (BER)</option><option value="MXP">Milan (MXP)</option><option value="CDG">Paris (CDG)</option><option value="LHR">London (LHR)</option></select></div>
+    <div class="field"><label>to</label><select id="to"><option value="everywhere">Everywhere</option><option value="ATH">Athens</option><option value="BER">Berlin</option><option value="BUD">Budapest</option><option value="RHO">Rhodes</option><option value="MXP">Milan</option><option value="VIE">Vienna</option><option value="PRG">Prague</option><option value="FCO">Rome</option><option value="BCN">Barcelona</option><option value="CDG">Paris</option><option value="AMS">Amsterdam</option><option value="LON">London</option></select></div>
+    <div class="field"><label>depart</label><input id="depart" type="date"></div>
+    <div class="field"><label>return</label><input id="return" type="date"></div>
+    <div class="field"><label>budget</label><select id="budget"><option value="500">Under ₪500</option><option value="750">Under ₪750</option><option value="1000">Under ₪1000</option><option value="9999">Any price</option></select></div>
+    <div class="field"><label>mood</label><select id="mood"><option>Any mood</option><option>Vintage</option><option>Beach</option><option>Fashion</option><option>Nightlife</option><option>Elegant</option></select></div>
+  </div>
+
+  <div class="row">
+    <span class="chip on" data-filter="direct">Direct preferred</span>
+    <span class="chip on" data-filter="cheap">Cheapest first</span>
+    <span class="chip" data-filter="weekend">Weekend dates</span>
+    <span class="chip" data-filter="carry">Carry-on friendly</span>
+    <span class="chip" data-filter="avoidEarly">No 6AM flights</span>
+  </div>
+
+  <div class="engineBtns">
+    <button class="btn primary" onclick="openEngine('google')">Open Google Flights</button>
+    <button class="btn ghost" onclick="openEngine('skyscanner')">Open Skyscanner</button>
+    <button class="btn ghost" onclick="openEngine('kiwi')">Open Kiwi</button>
+    <button class="btn ghost" onclick="openEngine('momondo')">Open Momondo</button>
+  </div>
+</section>
+
+<section class="dash">
+  <div class="stat"><b id="routeLabel">TLV → Anywhere</b><span>current search</span></div>
+  <div class="stat"><b id="dateLabel">Flexible</b><span>dates</span></div>
+  <div class="stat"><b id="budgetLabel">₪500</b><span>budget</span></div>
+  <div class="stat"><b id="savedCount">0</b><span>recent searches</span></div>
+</section>
+
+<section class="section">
+  <div class="note">
+    <b>How this becomes “real”:</b> VOLT now acts as the premium search layer and opens actual live search engines with your route and dates. For true in-app live prices without opening another site, you would connect a paid flight API/backend later.
+  </div>
+</section>
+
+<section class="section" id="deals">
+  <div class="head">
+    <div><h2>Suggested deal targets</h2><p>These cards are discovery suggestions. Click “Search live” to open real results for that destination.</p></div>
+    <div class="row"><input id="q" placeholder="Search destination/mood"><select id="sort"><option value="score">Best signal</option><option value="price">Lowest target</option><option value="duration">Shortest flight</option></select></div>
+  </div>
+  <div class="grid" id="cards"></div>
+</section>
+
+<section class="section">
+  <div class="head"><div><h2>Live-search comparison</h2><p>Every row can launch a real search in a flight engine.</p></div></div>
+  <div class="table"><table><thead><tr><th>Route</th><th>City</th><th>Target</th><th>Flight</th><th>Mood</th><th>Live search</th></tr></thead><tbody id="rows"></tbody></table></div>
+</section>
+
+<footer class="footer"><span>© 2026 VOLT ESCAPE</span><span>Private flight society · real search launcher</span></footer>
+</div>
+
+<div class="drawer" id="drawer"><h3>Recent searches</h3><div id="drawerContent"></div><button class="btn ghost" style="width:100%;margin-top:10px" onclick="closeDrawer()">Close</button></div>
+<div class="toast" id="toast">Saved</div>
+
+<script>
+const cityMap={
+  ATH:{name:"Athens",mood:"Weekend",target:289,duration:130,text:"rooftops, old streets, short escape"},
+  BER:{name:"Berlin",mood:"Vintage",target:420,duration:260,text:"vintage rails, cafés and street-style weekends"},
+  BUD:{name:"Budapest",mood:"Nightlife",target:310,duration:205,text:"thermal baths, vintage stores and cheap nights"},
+  RHO:{name:"Rhodes",mood:"Beach",target:350,duration:95,text:"sea air, old town and last-minute timing"},
+  MXP:{name:"Milan",mood:"Fashion",target:399,duration:235,text:"espresso, design windows and fashion energy"},
+  VIE:{name:"Vienna",mood:"Elegant",target:459,duration:225,text:"clean streets, museums and coat weather"},
+  PRG:{name:"Prague",mood:"Weekend",target:490,duration:240,text:"bridges, cold air and cinematic evenings"},
+  FCO:{name:"Rome",mood:"Weekend",target:520,duration:220,text:"pasta, ruins and golden evenings"},
+  BCN:{name:"Barcelona",mood:"Beach",target:610,duration:285,text:"beach, design and late dinners"},
+  CDG:{name:"Paris",mood:"Fashion",target:690,duration:295,text:"cafés, museums and fashion streets"},
+  AMS:{name:"Amsterdam",mood:"Vintage",target:740,duration:305,text:"canals, galleries and second-hand treasure"},
+  LON:{name:"London",mood:"Fashion",target:790,duration:320,text:"shopping, theatre and big-city energy"}
+};
+let trip="roundtrip";
+let filters={direct:true,cheap:true,weekend:false,carry:false,avoidEarly:false};
+let recent=JSON.parse(localStorage.getItem("voltRecent")||"[]");
+
+function getSearch(){
+  return {
+    from:document.getElementById("from").value,
+    to:document.getElementById("to").value,
+    depart:document.getElementById("depart").value,
+    ret:document.getElementById("return").value,
+    budget:document.getElementById("budget").value,
+    mood:document.getElementById("mood").value,
+    trip
+  };
+}
+function airportName(code){return code==="everywhere"?"Anywhere":(cityMap[code]?.name||code)}
+function formatDate(d){return d?d:"Flexible"}
+function buildQuery(cityCode){
+  const s=getSearch();
+  const to=cityCode||s.to;
+  let q=`${s.from} to ${to==="everywhere"?"anywhere":to} flights`;
+  if(s.depart) q+=` ${s.depart}`;
+  if(s.ret && s.trip!=="oneway") q+=` return ${s.ret}`;
+  if(filters.direct) q+=" direct";
+  if(s.budget!=="9999") q+=` under ${s.budget} ILS`;
+  return encodeURIComponent(q);
+}
+function engineUrl(engine, cityCode){
+  const s=getSearch();
+  const to=cityCode||s.to;
+  const q=buildQuery(to);
+  if(engine==="google") return `https://www.google.com/travel/flights?q=${q}`;
+  if(engine==="skyscanner") return `https://www.skyscanner.net/transport/flights/${s.from.toLowerCase()}/${to==="everywhere"?"everywhere":to.toLowerCase()}/?adultsv2=1&cabinclass=economy&childrenv2=&inboundaltsenabled=false&outboundaltsenabled=false&preferdirects=${filters.direct?"true":"false"}&rtn=${s.trip==="oneway"?"0":"1"}`;
+  if(engine==="kiwi") return `https://www.kiwi.com/en/search/results/${s.from.toLowerCase()}/${to==="everywhere"?"anywhere":to.toLowerCase()}/${s.depart||"anytime"}/${s.ret||"anytime"}`;
+  if(engine==="momondo") return `https://www.momondo.com/flight-search/${s.from}-${to==="everywhere"?"anywhere":to}/${s.depart||""}/${s.ret||""}?sort=bestflight_a`;
+}
+function openEngine(engine, cityCode){
+  saveRecent(engine, cityCode);
+  window.open(engineUrl(engine, cityCode), "_blank");
+}
+function saveRecent(engine, cityCode){
+  const s=getSearch(), to=cityCode||s.to;
+  recent.unshift({engine,from:s.from,to,depart:s.depart,ret:s.ret,time:new Date().toLocaleString()});
+  recent=recent.slice(0,8);
+  localStorage.setItem("voltRecent",JSON.stringify(recent));
+  toast("Real search opened + saved");
+  render();
+}
+function suggested(){
+  const q=(document.getElementById("q").value||"").toLowerCase();
+  const mood=document.getElementById("mood").value;
+  const budget=Number(document.getElementById("budget").value);
+  let arr=Object.entries(cityMap).map(([code,d])=>({code,...d}));
+  if(mood!=="Any mood") arr=arr.filter(d=>d.mood===mood);
+  if(budget!==9999) arr=arr.filter(d=>d.target<=budget);
+  if(q) arr=arr.filter(d=>d.name.toLowerCase().includes(q)||d.mood.toLowerCase().includes(q)||d.text.toLowerCase().includes(q));
+  const sort=document.getElementById("sort").value;
+  arr.sort((a,b)=>sort==="price"?a.target-b.target:sort==="duration"?a.duration-b.duration:b.target-a.target);
+  return arr;
+}
+function render(){
+  const s=getSearch();
+  document.getElementById("routeLabel").textContent=s.from+" → "+airportName(s.to);
+  document.getElementById("dateLabel").textContent=formatDate(s.depart);
+  document.getElementById("budgetLabel").textContent=s.budget==="9999"?"Any":"₪"+s.budget;
+  document.getElementById("savedCount").textContent=recent.length;
+  const list=suggested();
+  document.getElementById("cards").innerHTML=list.map((d,i)=>`
+    <article class="card ${i<2?'large':''}">
+      <div class="cardtop"><span>${d.mood} · target fare</span><span>${d.code}</span></div>
+      <h3>${d.name}</h3>
+      <p>${d.text}</p>
+      <div class="price"><b>₪${d.target}</b><span>${s.from} → ${d.code}<br>${Math.floor(d.duration/60)}h ${String(d.duration%60).padStart(2,"0")}m · live search</span></div>
+      <div class="meta"><small>${d.mood}</small><small>${d.target<=500?'under ₪500':'premium'}</small><small>${filters.direct?'direct preferred':'all routes'}</small></div>
+      <div class="actions"><button class="btn primary" onclick="openEngine('google','${d.code}')">Google</button><button class="btn ghost" onclick="openEngine('skyscanner','${d.code}')">Skyscanner</button></div>
+    </article>`).join("");
+  document.getElementById("rows").innerHTML=list.map(d=>`
+    <tr><td>${s.from} → ${d.code}</td><td>${d.name}</td><td>₪${d.target}</td><td>${Math.floor(d.duration/60)}h ${String(d.duration%60).padStart(2,"0")}m</td><td>${d.mood}</td>
+    <td><button class="btn ghost" onclick="openEngine('google','${d.code}')">Open live</button></td></tr>`).join("");
+  renderDrawer();
+}
+function openDrawer(){document.getElementById("drawer").classList.add("open");renderDrawer()}
+function closeDrawer(){document.getElementById("drawer").classList.remove("open")}
+function renderDrawer(){
+  document.getElementById("drawerContent").innerHTML=recent.length?recent.map(r=>`<div class="drawer-item"><b>${r.from} → ${r.to} · ${r.engine}</b><small>${r.depart||"flexible"} ${r.ret?("→ "+r.ret):""}<br>${r.time}</small></div>`).join(""):"<p style='color:#9baaba;line-height:1.5'>No recent searches yet. Open any live engine search.</p>";
+}
+function toast(text){const t=document.getElementById("toast");t.textContent=text;t.style.display="block";setTimeout(()=>t.style.display="none",1800)}
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));t.classList.add("active");trip=t.dataset.trip;toast(t.textContent+" selected");render()});
+document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{filters[c.dataset.filter]=!filters[c.dataset.filter];c.classList.toggle("on");render()});
+["from","to","depart","return","budget","mood","q","sort"].forEach(id=>document.getElementById(id).addEventListener("input",render));
+render();
+</script>
+</body>
+</html>
