@@ -1,42 +1,723 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Voltescape | Real Flight Deal Search from Israel</title>
-  <meta name="description" content="Voltescape is a premium flight-deal discovery layer for travelers from Israel. Search live engines, discover smart routes, save searches and explore curated weekend escapes." />
-  <link rel="canonical" href="https://voltescape.com/" />
+  <title>Voltescape — Deals by Destination</title>
+  <meta name="description" content="Voltescape מציג דילים לפי יעד: טיסות, מלונות, אטרקציות, eSIM והסעות במקום אחד." />
   <style>
-    :root{--bg:#030712;--panel:rgba(255,255,255,.07);--panel2:rgba(255,255,255,.11);--line:rgba(255,255,255,.14);--text:#f8fbff;--muted:rgba(248,251,255,.68);--soft:rgba(248,251,255,.42);--cyan:#bff6ff;--blue:#77b7ff;--shadow:0 34px 95px rgba(0,0,0,.42);--radius:34px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);background:radial-gradient(circle at 10% -5%,rgba(119,183,255,.24),transparent 34%),radial-gradient(circle at 88% 8%,rgba(191,246,255,.14),transparent 32%),radial-gradient(circle at 50% 110%,rgba(167,139,250,.13),transparent 33%),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:58px 58px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.55),transparent 70%)}a{color:inherit;text-decoration:none}button,input,select{font:inherit}button{cursor:pointer}.container{width:min(1200px,calc(100% - 42px));margin:0 auto}.glass{background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(20px);box-shadow:var(--shadow)}.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:rgba(255,255,255,.075);color:var(--muted);border-radius:999px;padding:8px 13px;font-size:13px;font-weight:800}.shine{background:linear-gradient(110deg,#fff,#c8f6ff,#7bbcff,#fff);-webkit-background-clip:text;background-clip:text;color:transparent}.nav{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line);background:rgba(3,7,18,.72);backdrop-filter:blur(22px)}.nav-inner{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:13px}.brand-mark{width:46px;height:46px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(255,255,255,.18),rgba(255,255,255,.045));border:1px solid rgba(255,255,255,.16);box-shadow:0 0 40px rgba(119,183,255,.18)}.brand-title{font-weight:950;font-size:20px;letter-spacing:-.03em}.brand-sub{font-size:11px;color:var(--soft);letter-spacing:.22em;text-transform:uppercase}.nav-links{display:flex;gap:22px;color:var(--muted);font-weight:750;font-size:14px}.nav-links a:hover{color:white}.nav-actions{display:flex;gap:10px;align-items:center}.btn{border:0;border-radius:999px;background:white;color:#06101f;font-weight:950;padding:12px 17px;display:inline-flex;align-items:center;gap:9px;transition:.25s ease}.btn:hover{transform:translateY(-2px)}.btn.ghost{background:rgba(255,255,255,.06);color:white;border:1px solid var(--line)}.btn.dark{background:#08101f;color:#fff;border:1px solid var(--line)}.mobile-menu{display:none;border:1px solid var(--line);background:rgba(255,255,255,.06);color:white;border-radius:16px;padding:11px}.hero{padding:82px 0 42px}.hero-grid{display:grid;grid-template-columns:1.03fr .97fr;gap:42px;align-items:center}.hero h1{font-size:clamp(46px,7vw,88px);line-height:.89;letter-spacing:-.075em;margin:20px 0 22px}.hero p{font-size:19px;line-height:1.75;color:var(--muted);max-width:720px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.hero-card{position:relative;overflow:hidden;border-radius:42px;padding:18px;min-height:570px;background:linear-gradient(140deg,rgba(255,255,255,.11),rgba(255,255,255,.035));border:1px solid var(--line);box-shadow:var(--shadow)}.hero-photo{position:absolute;inset:18px;border-radius:30px;overflow:hidden;background:linear-gradient(to bottom,transparent,rgba(3,7,18,.82)),url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1500&q=80") center/cover}.floating-panel{position:absolute;left:36px;right:36px;bottom:36px;border-radius:28px;padding:22px;background:rgba(2,6,18,.58);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(22px)}.panel-row{display:flex;justify-content:space-between;gap:20px;align-items:end}.big-route{font-size:31px;font-weight:950;letter-spacing:-.045em}.price-tag{border-radius:21px;background:white;color:#06101f;padding:13px 15px;text-align:right;font-weight:950}.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}.mini-metric{border-radius:18px;background:rgba(255,255,255,.105);padding:12px;color:rgba(255,255,255,.72);font-size:12px}.mini-metric strong{display:block;color:white;font-size:16px}.search-shell{margin-top:34px;border-radius:36px;padding:16px}.tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:13px}.tab{border:1px solid var(--line);background:rgba(255,255,255,.055);color:var(--muted);border-radius:999px;padding:10px 14px;font-weight:850}.tab.active{background:white;color:#06101f}.form-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.field{border:1px solid rgba(255,255,255,.10);background:rgba(2,6,18,.60);border-radius:24px;padding:14px}.field label{display:block;color:var(--soft);text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:900;margin-bottom:7px}.field input,.field select{width:100%;border:0;outline:0;background:transparent;color:white;font-weight:850;font-size:16px}select option{color:#06101f}.search-btn{border-radius:24px;font-weight:950}.filters{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}.check{display:flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.045);border-radius:18px;padding:12px;color:var(--muted);font-size:13px;font-weight:750}.check input{accent-color:#bff6ff}.search-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:15px}.summary-card{border-radius:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);padding:15px}.summary-card span{display:block;color:var(--soft);font-size:12px}.summary-card strong{display:block;margin-top:4px;font-size:18px}section{padding:68px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:22px;margin-bottom:24px}.section-head h2{font-size:clamp(32px,5vw,56px);line-height:.98;letter-spacing:-.055em;margin:14px 0 0}.section-text{color:var(--muted);max-width:650px;line-height:1.7}.deal-tools{display:flex;gap:10px;flex-wrap:wrap}.tool-input,.tool-select{border:1px solid var(--line);background:rgba(255,255,255,.06);color:white;border-radius:999px;padding:12px 15px;outline:0}.deal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.deal-card{position:relative;overflow:hidden;border-radius:32px;background:var(--panel);border:1px solid var(--line);box-shadow:0 24px 70px rgba(0,0,0,.26)}.deal-image{height:200px;background-size:cover;background-position:center;position:relative}.deal-image:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(3,7,18,.92),transparent 70%)}.deal-code{position:absolute;left:16px;bottom:14px;z-index:1;font-size:34px;font-weight:950}.deal-score{position:absolute;right:14px;top:14px;z-index:1;border-radius:999px;background:rgba(2,6,18,.55);border:1px solid rgba(255,255,255,.16);padding:8px 10px;font-size:12px;font-weight:950}.deal-body{padding:20px}.deal-top{display:flex;justify-content:space-between;gap:16px}.deal-body h3{font-size:24px;margin:0}.deal-body p{color:var(--muted);margin:8px 0 16px}.target{font-size:26px;font-weight:950}.chips{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}.chip{border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.055);border-radius:999px;padding:7px 10px;color:var(--muted);font-size:12px;font-weight:750}.deal-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.small-btn{border:1px solid var(--line);background:rgba(255,255,255,.065);color:white;border-radius:17px;padding:11px;font-weight:900}.small-btn.primary{background:white;color:#06101f}.route-library-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.route-link-card{display:flex;align-items:center;justify-content:space-between;gap:18px;border:1px solid var(--line);background:rgba(255,255,255,.055);border-radius:24px;padding:20px;transition:.25s ease}.route-link-card:hover{transform:translateY(-2px);background:rgba(255,255,255,.09);border-color:rgba(191,246,255,.38)}.route-link-card strong{display:block;font-size:17px}.route-link-card span{display:block;margin-top:4px;color:var(--muted);font-size:13px}.route-arrow{width:38px;height:38px;border-radius:999px;display:grid;place-items:center;background:white;color:#06101f;font-weight:950;flex:0 0 auto}.compare{overflow:auto;border-radius:28px;border:1px solid var(--line);background:rgba(255,255,255,.055)}table{width:100%;border-collapse:collapse;min-width:760px}th,td{padding:18px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left}th{color:var(--soft);font-size:12px;letter-spacing:.14em;text-transform:uppercase}td{color:var(--muted);font-weight:700}td strong{color:white}tr:last-child td{border-bottom:0}.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.step{border-radius:28px;padding:23px;background:rgba(255,255,255,.055);border:1px solid var(--line)}.step-num{color:var(--cyan);font-weight:950;font-size:13px}.step h3{margin:12px 0 8px}.step p{color:var(--muted)}.newsletter{border-radius:42px;padding:34px;background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.04));border:1px solid var(--line);box-shadow:var(--shadow)}.newsletter-grid{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}.email-row{display:grid;grid-template-columns:1.4fr 1fr auto;gap:10px;margin-top:20px}.email-row input,.email-row select{border:1px solid var(--line);background:rgba(2,6,18,.55);color:white;border-radius:20px;padding:14px;outline:0}.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.55);z-index:100;padding:22px}.modal.open{display:flex}.modal-box{width:min(760px,100%);max-height:84vh;overflow:auto;border-radius:32px;padding:24px;background:#07101f;border:1px solid var(--line);box-shadow:var(--shadow)}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.recent-item{display:flex;justify-content:space-between;gap:15px;align-items:center;border:1px solid var(--line);background:rgba(255,255,255,.055);border-radius:20px;padding:14px;margin-top:10px}.toast{position:fixed;right:22px;bottom:22px;background:white;color:#06101f;border-radius:18px;padding:14px 16px;font-weight:950;box-shadow:var(--shadow);transform:translateY(30px);opacity:0;transition:.25s ease;z-index:120}.toast.show{transform:translateY(0);opacity:1}.footer{padding:46px 0;border-top:1px solid var(--line);color:var(--soft)}.footer-grid{display:grid;grid-template-columns:1fr 2fr;gap:30px}.footer-links{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.footer-links h4{color:white;margin:0 0 12px}.footer-links a{display:block;margin:8px 0;color:var(--muted);font-size:14px}@media(max-width:1020px){.hero-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:repeat(2,1fr)}.filters,.search-summary{grid-template-columns:repeat(2,1fr)}.deal-grid,.timeline{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr}}@media(max-width:760px){.nav-links,.nav-actions{display:none}.mobile-menu{display:inline-flex}.hero-card{min-height:470px}.panel-row{display:block}.price-tag{display:inline-block;margin-top:12px;text-align:left}.form-grid,.filters,.search-summary,.deal-grid,.route-library-grid,.timeline,.email-row,.newsletter-grid,.footer-links{grid-template-columns:1fr}.section-head{display:block}.deal-tools{margin-top:16px}.hero-actions{display:grid}.btn{justify-content:center}}
+    :root {
+      --bg: #020617;
+      --card: rgba(255,255,255,.06);
+      --card-strong: rgba(255,255,255,.1);
+      --border: rgba(255,255,255,.12);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --silver: #e2e8f0;
+      --blue: #38bdf8;
+      --deep-blue: #0f172a;
+      --accent: #bae6fd;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,.22), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(226,232,240,.14), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(2, 6, 23, .7);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      font-size: 22px;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #e2e8f0, #38bdf8, #0f172a);
+      box-shadow: 0 0 40px rgba(56,189,248,.32);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      padding: 10px 12px;
+      border-radius: 999px;
+      transition: .2s ease;
+    }
+
+    .nav-links a:hover { background: rgba(255,255,255,.08); color: white; }
+
+    .hero {
+      padding: 88px 0 64px;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: radial-gradient(circle at center, black, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 850px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      border: 1px solid rgba(186,230,253,.28);
+      background: rgba(255,255,255,.08);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(44px, 7vw, 86px);
+      line-height: .94;
+      letter-spacing: -.06em;
+    }
+
+    .gradient-text {
+      display: block;
+      background: linear-gradient(90deg, #f8fafc, #bae6fd, #cbd5e1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-top: 8px;
+    }
+
+    .hero p {
+      margin: 26px 0 0;
+      max-width: 720px;
+      color: #cbd5e1;
+      line-height: 1.85;
+      font-size: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 18px;
+      padding: 15px 22px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: white; color: #020617; }
+    .btn-primary:hover { background: #e2e8f0; }
+    .btn-secondary { background: rgba(255,255,255,.06); color: white; border-color: var(--border); }
+    .btn-secondary:hover { background: rgba(255,255,255,.1); }
+
+    .section { padding: 54px 0; }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 26px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .25em;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 52px);
+      letter-spacing: -.045em;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      max-width: 680px;
+      line-height: 1.8;
+      margin: 14px 0 0;
+    }
+
+    .search-wrap {
+      width: min(360px, 100%);
+      position: relative;
+    }
+
+    .search-wrap input {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: white;
+      padding: 16px 44px 16px 16px;
+      border-radius: 20px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .search-wrap input:focus { border-color: rgba(56,189,248,.7); }
+    .search-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .destination-card {
+      min-height: 210px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(135deg, rgba(15,23,42,.95), rgba(8,47,73,.72));
+      border-radius: 28px;
+      padding: 22px;
+      text-align: right;
+      cursor: pointer;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+      box-shadow: 0 22px 70px rgba(0,0,0,.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .destination-card::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(56,189,248,.16);
+      left: -50px;
+      bottom: -50px;
+      filter: blur(2px);
+    }
+
+    .destination-card:hover,
+    .destination-card.active {
+      transform: translateY(-4px);
+      border-color: rgba(186,230,253,.55);
+      background: linear-gradient(135deg, rgba(15,23,42,1), rgba(14,116,144,.62));
+    }
+
+    .badge {
+      display: inline-flex;
+      background: rgba(255,255,255,.1);
+      color: #e0f2fe;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 12px;
+      margin-bottom: 30px;
+    }
+
+    .destination-card h3 {
+      position: relative;
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -.035em;
+    }
+
+    .destination-card .country {
+      position: relative;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .destination-card .vibe {
+      position: relative;
+      color: #cbd5e1;
+      line-height: 1.6;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+
+    .detail-card {
+      margin-top: 34px;
+      border: 1px solid var(--border);
+      border-radius: 36px;
+      overflow: hidden;
+      background: rgba(255,255,255,.045);
+      box-shadow: 0 28px 90px rgba(0,0,0,.35);
+    }
+
+    .detail-hero {
+      background:
+        radial-gradient(circle at top left, rgba(186,230,253,.22), transparent 30%),
+        linear-gradient(135deg, #020617, #0c4a6e 60%, #0f172a);
+      padding: 44px;
+    }
+
+    .url {
+      color: var(--accent);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 12px;
+      direction: ltr;
+      text-align: right;
+    }
+
+    .detail-hero h2 { font-size: clamp(38px, 5vw, 66px); }
+    .detail-hero p { color: #dbeafe; line-height: 1.9; max-width: 860px; font-size: 17px; }
+
+    .detail-body {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+    }
+
+    .detail-main, .affiliate-panel { padding: 36px; }
+    .affiliate-panel { border-right: 1px solid var(--border); background: rgba(2,6,23,.5); }
+
+    .info-title { font-size: 24px; font-weight: 800; margin: 0 0 16px; }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .mini-item {
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px;
+      padding: 16px;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+
+    .tip {
+      border: 1px solid rgba(56,189,248,.26);
+      background: rgba(56,189,248,.1);
+      border-radius: 24px;
+      padding: 20px;
+      color: #e0f2fe;
+      line-height: 1.8;
+    }
+
+    .affiliate-panel p { color: var(--muted); line-height: 1.7; }
+
+    .affiliate-links { display: grid; gap: 12px; margin-top: 22px; }
+
+    .affiliate-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.055);
+      border-radius: 20px;
+      padding: 16px;
+      transition: .18s ease;
+    }
+
+    .affiliate-link:hover { background: rgba(255,255,255,.1); border-color: rgba(186,230,253,.45); }
+    .affiliate-label strong { display: block; margin-bottom: 3px; }
+    .affiliate-label span { color: var(--muted); font-size: 13px; }
+    .icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.1);
+      color: var(--accent);
+      flex: none;
+    }
+
+    .disclosure {
+      margin-top: 20px;
+      border-radius: 20px;
+      background: white;
+      color: #0f172a;
+      padding: 18px;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .home-block {
+      margin-top: 42px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.055);
+      border-radius: 28px;
+      padding: 26px;
+    }
+
+    .city-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .city-pills button {
+      color: white;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .city-pills button:hover { background: rgba(255,255,255,.13); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      padding: 34px 0;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .detail-body { grid-template-columns: 1fr; }
+      .affiliate-panel { border-right: 0; border-top: 1px solid var(--border); }
+      .section-head { align-items: stretch; flex-direction: column; }
+      .search-wrap { width: 100%; }
+    }
+
+    @media (max-width: 620px) {
+      .nav { height: auto; padding: 14px 0; align-items: flex-start; flex-direction: column; }
+      .nav-links { flex-wrap: wrap; }
+      .hero { padding: 56px 0 42px; }
+      .grid { grid-template-columns: 1fr; }
+      .mini-grid { grid-template-columns: 1fr; }
+      .detail-hero, .detail-main, .affiliate-panel { padding: 24px; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; }
+    }
   </style>
 </head>
 <body>
-  <nav class="nav"><div class="container nav-inner"><a href="/" class="brand"><div class="brand-mark">⚡</div><div><div class="brand-title">Voltescape</div><div class="brand-sub">real deal search</div></div></a><div class="nav-links"><a href="#search">Search</a><a href="#deals">Deals</a><a href="#routes">Routes</a><a href="#how">How it works</a><a href="#alerts">Alerts</a></div><div class="nav-actions"><button class="btn ghost" onclick="openRecent()">Recent searches</button><button class="btn" onclick="scrollToId('search')">Start search</button></div><button class="mobile-menu" onclick="openRecent()">☰</button></div></nav>
-  <header class="hero" id="top"><div class="container hero-grid"><div><span class="pill">Private flight society · live search launcher</span><h1>Search real flight deals, <span class="shine">without fake prices.</span></h1><p>Voltescape is the premium discovery layer for flight deals from Israel. Build your route, save your search, compare curated targets and launch the same search in live engines like Google Flights, Skyscanner, Kiwi and Momondo.</p><div class="hero-actions"><button class="btn" onclick="scrollToId('search')">Start real search →</button><button class="btn ghost" onclick="scrollToId('deals')">Explore deal targets</button><button class="btn ghost" onclick="openRecent()">Open recent searches</button></div><div class="search-shell glass" id="search"><div class="tabs" id="tripTabs"><button class="tab active" data-trip="round">Round trip</button><button class="tab" data-trip="oneway">One way</button><button class="tab" data-trip="everywhere">Everywhere</button><button class="tab" data-trip="weekend">Weekend mode</button></div><div class="form-grid"><div class="field"><label>From</label><select id="from"><option value="TLV" selected>Tel Aviv (TLV)</option><option value="ATH">Athens (ATH)</option><option value="BER">Berlin (BER)</option><option value="MXP">Milan (MXP)</option><option value="CDG">Paris (CDG)</option><option value="LHR">London (LHR)</option></select></div><div class="field"><label>To</label><select id="to"><option value="everywhere" selected>Everywhere</option><option value="ATH">Athens</option><option value="BER">Berlin</option><option value="BUD">Budapest</option><option value="RHO">Rhodes</option><option value="MXP">Milan</option><option value="VIE">Vienna</option><option value="PRG">Prague</option><option value="FCO">Rome</option><option value="BCN">Barcelona</option><option value="CDG">Paris</option><option value="AMS">Amsterdam</option><option value="LON">London</option></select></div><div class="field"><label>Depart</label><input id="depart" type="date"></div><div class="field"><label>Return</label><input id="returnDate" type="date"></div><button class="btn search-btn" onclick="openEngine('google')">Open live search</button></div><div class="filters"><label class="check"><input id="direct" type="checkbox" checked> Direct preferred</label><label class="check"><input id="cheap" type="checkbox" checked> Cheapest first</label><label class="check"><input id="weekend" type="checkbox"> Weekend dates</label><label class="check"><input id="carry" type="checkbox"> Carry-on friendly</label><label class="check"><input id="noearly" type="checkbox"> No 6AM flights</label></div><div class="search-summary"><div class="summary-card"><span>Current route</span><strong id="sumRoute">TLV → Anywhere</strong></div><div class="summary-card"><span>Dates</span><strong id="sumDates">Flexible</strong></div><div class="summary-card"><span>Budget</span><strong id="sumBudget">Smart deal</strong></div><div class="summary-card"><span>Saved searches</span><strong id="sumSaved">0</strong></div></div><div class="hero-actions"><button class="btn ghost" onclick="openEngine('google')">Google Flights</button><button class="btn ghost" onclick="openEngine('skyscanner')">Skyscanner</button><button class="btn ghost" onclick="openEngine('kiwi')">Kiwi</button><button class="btn ghost" onclick="openEngine('momondo')">Momondo</button></div></div></div><div class="hero-card"><div class="hero-photo"></div><div class="floating-panel"><div class="panel-row"><div><span class="pill">Signal pick</span><div class="big-route" id="heroRoute">Tel Aviv → Athens</div><div style="color:var(--muted);margin-top:6px">Weekend flights · direct preferred · live search ready</div></div><div class="price-tag"><small>Target from</small><br><span id="heroPrice">₪289</span></div></div><div class="metric-row"><div class="mini-metric"><strong>2h 10m</strong>short route</div><div class="mini-metric"><strong>94/100</strong>deal signal</div><div class="mini-metric"><strong>Live</strong>search engine</div></div></div></div></div></header>
-  <section id="deals"><div class="container"><div class="section-head"><div><span class="pill">Suggested deal targets</span><h2>Curated routes that feel like finds.</h2><p class="section-text">These cards are discovery suggestions. They do not pretend to show live fares. Click a button to open real results in a live engine with your selected dates.</p></div><div class="deal-tools"><input class="tool-input" id="dealFilter" placeholder="Filter city or mood"><select class="tool-select" id="sortDeals"><option value="score">Best signal</option><option value="price">Lowest target</option><option value="duration">Shortest flight</option></select></div></div><div class="deal-grid" id="dealGrid"></div></div></section>
-  <section id="routes"><div class="container"><div class="section-head"><div><span class="pill">SEO route library</span><h2>Explore Voltescape flight-deal pages.</h2><p class="section-text">These internal links help users explore the site and help Google understand Voltescape as a flight-deal brand.</p></div><a class="btn ghost" href="/sitemap.xml">View sitemap</a></div><div class="route-library-grid"><a class="route-link-card" href="/cheap-flights-from-israel.html"><div><strong>Cheap Flights from Israel</strong><span>Affordable routes, flexible dates and Europe escape ideas.</span></div><div class="route-arrow">→</div></a><a class="route-link-card" href="/weekend-flights-from-tel-aviv.html"><div><strong>Weekend Flights from Tel Aviv</strong><span>Short direct escapes that make sense for 2–4 days.</span></div><div class="route-arrow">→</div></a><a class="route-link-card" href="/cheap-flights-to-athens.html"><div><strong>Cheap Flights to Athens</strong><span>Food, rooftops, vintage markets and a quick flight from TLV.</span></div><div class="route-arrow">→</div></a><a class="route-link-card" href="/cheap-flights-to-berlin.html"><div><strong>Cheap Flights to Berlin</strong><span>Nightlife, galleries, street style and second-hand shopping.</span></div><div class="route-arrow">→</div></a><a class="route-link-card" href="/cheap-flights-to-rome.html"><div><strong>Cheap Flights to Rome</strong><span>Pasta, city walks, shopping streets and classic weekends.</span></div><div class="route-arrow">→</div></a><a class="route-link-card" href="/last-minute-flight-deals.html"><div><strong>Last-Minute Flight Deals</strong><span>Fast escape ideas when the price drops suddenly.</span></div><div class="route-arrow">→</div></a><a class="route-link-card" href="/europe-flight-deals.html"><div><strong>Europe Flight Deals</strong><span>Compare Europe trips by price, mood and travel style.</span></div><div class="route-arrow">→</div></a><a class="route-link-card" href="/luxury-travel-deals.html"><div><strong>Luxury-Looking Travel Deals</strong><span>Premium-feeling trips without premium prices.</span></div><div class="route-arrow">→</div></a><a class="route-link-card" href="/student-flight-deals.html"><div><strong>Student Flight Deals</strong><span>Budget-friendly routes and flexible travel ideas.</span></div><div class="route-arrow">→</div></a><a class="route-link-card" href="/about-voltescape.html"><div><strong>About Voltescape</strong><span>The travel-deal discovery brand behind the site.</span></div><div class="route-arrow">→</div></a></div></div></section>
-  <section id="compare"><div class="container"><div class="section-head"><div><span class="pill">Live-search comparison</span><h2>Every row can launch a real search.</h2><p class="section-text">The table gives users a fast way to jump into real search engines while keeping Voltescape as the clean discovery interface.</p></div></div><div class="compare"><table><thead><tr><th>Route</th><th>City</th><th>Target</th><th>Flight</th><th>Mood</th><th>Signal</th><th>Live search</th></tr></thead><tbody id="dealTable"></tbody></table></div></div></section>
-  <section id="how"><div class="container"><div class="section-head"><div><span class="pill">Reality check</span><h2>How Voltescape becomes a real engine.</h2><p class="section-text">A static HTML file cannot legally and reliably scrape airline prices by itself. The next stage is a backend, affiliate partners, live APIs and a real alert database.</p></div></div><div class="timeline"><div class="step"><div class="step-num">01</div><h3>Discovery layer</h3><p>Route cards, deal logic, local saved searches and live search launchers.</p></div><div class="step"><div class="step-num">02</div><h3>Affiliate links</h3><p>Replace generic search links with tracked partner links for flights and hotels.</p></div><div class="step"><div class="step-num">03</div><h3>Live API</h3><p>Connect a paid flight API or partner backend for in-app prices and availability.</p></div><div class="step"><div class="step-num">04</div><h3>Alerts</h3><p>Store email alerts and notify users when selected routes drop below target prices.</p></div></div></div></section>
-  <section id="alerts"><div class="container"><div class="newsletter"><div class="newsletter-grid"><div><span class="pill">Deal alerts</span><h2 style="font-size:clamp(32px,5vw,56px);line-height:.98;letter-spacing:-.055em;margin:16px 0 8px">Get the escape before everyone else.</h2><p class="section-text">Collect users by destination, budget and mood. Later, this can connect to Mailchimp, Beehiiv, Supabase or a custom backend.</p></div><button class="btn ghost" onclick="copyShare()">Copy site link</button></div><div class="email-row"><input id="email" type="email" placeholder="Email address"><select id="alertMood"><option>Weekend escapes</option><option>Student deals</option><option>Luxury-looking trips</option><option>Vintage shopping cities</option></select><button class="btn" onclick="saveAlert()">Create alert</button></div></div></div></section>
-
-  <section id="affiliate-disclosure">
-    <div class="container">
-      <div class="newsletter" style="padding:26px">
-        <span class="pill">Affiliate disclosure</span>
-        <h2 style="font-size:clamp(28px,4vw,44px);line-height:1;letter-spacing:-.045em;margin:14px 0 8px">Some links may be affiliate links.</h2>
-        <p class="section-text">
-          Voltescape may earn a commission when users book through Travelpayouts or other partner links. This does not change the price shown by the partner site. Live prices and availability are provided by the external booking/search platform.
-        </p>
-      </div>
+  <header>
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="Voltescape home">
+        <span class="logo"></span>
+        <span>Voltescape</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#destinations">יעדים</a>
+        <a href="#deal">דיל נבחר</a>
+        <a href="#home-block">עמוד הבית</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <footer class="footer"><div class="container footer-grid"><div><div class="brand"><div class="brand-mark">⚡</div><div><div class="brand-title">Voltescape</div><div class="brand-sub">smart flight deals</div></div></div><p style="color:var(--muted);line-height:1.7;max-width:470px">Premium flight-deal discovery for travelers who want smart escapes from Israel and beyond.</p></div><div class="footer-links"><div><h4>Product</h4><a href="#search">Search</a><a href="#deals">Deals</a><a href="#alerts">Alerts</a><a href="#compare">Compare</a></div><div><h4>Routes</h4><a href="/cheap-flights-to-athens.html">Athens</a><a href="/cheap-flights-to-berlin.html">Berlin</a><a href="/cheap-flights-to-rome.html">Rome</a><a href="/europe-flight-deals.html">Europe deals</a></div><div><h4>Brand</h4><a href="/about-voltescape.html">About</a><a href="/student-flight-deals.html">Students</a><a href="/luxury-travel-deals.html">Luxury-looking</a><a href="/last-minute-flight-deals.html">Last minute</a></div><div><h4>Legal</h4><a href="/privacy-policy.html">Privacy</a><a href="#affiliate-disclosure">Affiliate disclosure</a><a href="/contact.html">Contact</a><a href="/sitemap.xml">Sitemap</a></div></div></div></footer>
-  <div class="modal" id="recentModal"><div class="modal-box"><div class="modal-head"><h2 style="margin:0">Recent searches</h2><button class="btn ghost" onclick="closeRecent()">Close</button></div><div id="recentList"></div><button class="btn dark" style="margin-top:16px" onclick="clearRecent()">Clear recent searches</button></div></div><div class="toast" id="toast">Saved</div>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="pill">✦ Voltescape Deals by Destination</div>
+        <h1>
+          Voltescape finds the deal.
+          <span class="gradient-text">You choose the destination.</span>
+        </h1>
+        <p>
+          לא רק טיסה. כל יעד מקבל חבילת חופשה חכמה: טיסות, מלונות, אטרקציות, eSIM והסעה מהשדה — כדי לבדוק אם הדיל באמת משתלם לפני שסוגרים.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#destinations">גלה דילים לפי יעד ←</a>
+          <a class="btn btn-secondary" href="#deal">ראה דוגמת עמוד יעד</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="destinations">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Destination pages</div>
+            <h2>גלה דילים לפי יעד</h2>
+            <p class="section-copy">
+              כל כרטיס הוא בסיס לעמוד יעד באתר. בכל עמוד יש טיסות, מלונות, אטרקציות, eSIM והסעה — כדי להפוך כל יעד לחנות קטנה שמרוויחה מכמה כיוונים.
+            </p>
+          </div>
+          <div class="search-wrap">
+            <span class="search-icon">⌕</span>
+            <input id="search" type="search" placeholder="חפש יעד..." autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="grid" id="destinationGrid"></div>
+
+        <article class="detail-card" id="deal">
+          <div class="detail-hero">
+            <div class="url" id="detailUrl">/deals/athens</div>
+            <h2 id="detailTitle">דילים לאתונה</h2>
+            <p id="detailIntro"></p>
+          </div>
+          <div class="detail-body">
+            <div class="detail-main">
+              <h3 class="info-title">למי היעד מתאים?</h3>
+              <div class="mini-grid" id="bestFor"></div>
+
+              <h3 class="info-title">מה לבדוק לפני שסוגרים?</h3>
+              <div class="mini-grid" id="checks"></div>
+
+              <div class="tip" id="tip"></div>
+            </div>
+
+            <aside class="affiliate-panel">
+              <h3 class="info-title">כפתורי אפיליאייט</h3>
+              <p>
+                כאן הלקוח בוחר מה הוא צריך. ככל שיש יותר אפשרויות סביב אותו יעד — יש לך יותר נקודות רווח.
+              </p>
+              <div class="affiliate-links" id="affiliateLinks"></div>
+              <div class="disclosure">
+                <strong>שקיפות:</strong> חלק מהקישורים באתר הם קישורי שותפים. אם תתבצע הזמנה דרך אחד הקישורים, Voltescape עשוי לקבל עמלה קטנה — ללא עלות נוספת למשתמש.
+              </div>
+            </aside>
+          </div>
+        </article>
+
+        <section class="home-block" id="home-block">
+          <div class="eyebrow">Homepage block</div>
+          <h2>בלוק מוכן לעמוד הבית</h2>
+          <p class="section-copy">
+            ב־Voltescape אנחנו לא מציגים רק טיסה. אנחנו בונים לך תמונה מלאה של החופשה: טיסה, מלון, אינטרנט, אטרקציות והסעה — כדי שתדע אם הדיל באמת משתלם.
+          </p>
+          <div class="city-pills" id="cityPills"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Voltescape. Deals by destination.<br />
+      Replace placeholder # links with your Travelpayouts / Klook / eSIM / hotel affiliate links.
+    </div>
+  </footer>
+
   <script>
-    const deals=[{code:'ATH',city:'Athens',mood:'Weekend',target:289,flight:'2h 10m',duration:130,score:94,route:'TLV → ATH',desc:'rooftops, old streets, short escape',img:'https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?auto=format&fit=crop&w=1100&q=80'},{code:'BUD',city:'Budapest',mood:'Nightlife',target:310,flight:'3h 25m',duration:205,score:91,route:'TLV → BUD',desc:'thermal baths, vintage stores and cheap nights',img:'https://images.unsplash.com/photo-1541849546-216549ae216d?auto=format&fit=crop&w=1100&q=80'},{code:'RHO',city:'Rhodes',mood:'Beach',target:350,flight:'1h 35m',duration:95,score:89,route:'TLV → RHO',desc:'sea air, old town and last-minute timing',img:'https://images.unsplash.com/photo-1587975844610-40f1ad10d07f?auto=format&fit=crop&w=1100&q=80'},{code:'MXP',city:'Milan',mood:'Fashion',target:399,flight:'3h 55m',duration:235,score:87,route:'TLV → MXP',desc:'espresso, design windows and fashion energy',img:'https://images.unsplash.com/photo-1513581166391-887a96ddeafd?auto=format&fit=crop&w=1100&q=80'},{code:'BER',city:'Berlin',mood:'Vintage',target:420,flight:'4h 20m',duration:260,score:92,route:'TLV → BER',desc:'vintage rails, cafés and street-style weekends',img:'https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&w=1100&q=80'},{code:'VIE',city:'Vienna',mood:'Elegant',target:459,flight:'3h 45m',duration:225,score:90,route:'TLV → VIE',desc:'clean streets, museums and coat weather',img:'https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&w=1100&q=80'},{code:'PRG',city:'Prague',mood:'Weekend',target:490,flight:'4h 00m',duration:240,score:86,route:'TLV → PRG',desc:'bridges, cold air and cinematic evenings',img:'https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=1100&q=80'}];
-    function scrollToId(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'})}function get(id){return document.getElementById(id)}function toast(msg='Saved'){const el=get('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1800)}function updateSummary(){const from=get('from').value,to=get('to').value,depart=get('depart').value,ret=get('returnDate').value;get('sumRoute').textContent=`${from} → ${to==='everywhere'?'Anywhere':to}`;get('sumDates').textContent=depart?`${depart}${ret?' → '+ret:''}`:'Flexible';get('sumSaved').textContent=JSON.parse(localStorage.getItem('voltescape_recent')||'[]').length;const selected=deals.find(d=>d.code===to)||deals[0];get('heroRoute').textContent=`Tel Aviv → ${selected.city}`;get('heroPrice').textContent=`₪${selected.target}`}function dateCompact(v){return v?v.replaceAll('-',''):''}function buildGoogleUrl(toOverride){const from=get('from').value;const to=toOverride||(get('to').value==='everywhere'?'':get('to').value);const q=encodeURIComponent(`${from} to ${to||'Europe'} flights ${get('depart').value||''} ${get('returnDate').value||''}`);return `https://www.google.com/travel/flights?q=${q}`}function buildSkyUrl(toOverride){const from=get('from').value.toLowerCase();const to=(toOverride||get('to').value);const destination=to==='everywhere'?'everywhere':to.toLowerCase();return `https://www.skyscanner.net/transport/flights/${from}/${destination}/${dateCompact(get('depart').value)||''}/${dateCompact(get('returnDate').value)||''}/`}function buildKiwiUrl(toOverride){const from=get('from').value;const to=toOverride||get('to').value;const q=encodeURIComponent(`${from} to ${to==='everywhere'?'anywhere':to}`);return `https://www.kiwi.com/en/search/results/${q}`}function buildMomondoUrl(toOverride){const from=get('from').value;const to=toOverride||get('to').value;const q=encodeURIComponent(`${from} to ${to==='everywhere'?'anywhere':to} flights`);return `https://www.momondo.com/flight-search/${q}`}function remember(engine,toOverride){const item={engine,from:get('from').value,to:toOverride||get('to').value,depart:get('depart').value,ret:get('returnDate').value,time:new Date().toLocaleString()};const recent=JSON.parse(localStorage.getItem('voltescape_recent')||'[]');recent.unshift(item);localStorage.setItem('voltescape_recent',JSON.stringify(recent.slice(0,10)));updateSummary()}function openEngine(engine,toOverride){let url=buildGoogleUrl(toOverride);if(engine==='skyscanner')url=buildSkyUrl(toOverride);if(engine==='kiwi')url=buildKiwiUrl(toOverride);if(engine==='momondo')url=buildMomondoUrl(toOverride);remember(engine,toOverride);window.open(url,'_blank')}function renderDeals(){const filter=get('dealFilter').value.toLowerCase(),sort=get('sortDeals').value;let list=deals.filter(d=>`${d.city} ${d.mood} ${d.code}`.toLowerCase().includes(filter));if(sort==='price')list.sort((a,b)=>a.target-b.target);if(sort==='duration')list.sort((a,b)=>a.duration-b.duration);if(sort==='score')list.sort((a,b)=>b.score-a.score);get('dealGrid').innerHTML=list.map(d=>`<article class="deal-card"><div class="deal-image" style="background-image:url('${d.img}')"><div class="deal-code">${d.code}</div><div class="deal-score">${d.score}/100 signal</div></div><div class="deal-body"><div class="deal-top"><div><h3>${d.city}</h3><p>${d.desc}</p></div><div class="target">₪${d.target}</div></div><div class="chips"><span class="chip">${d.route}</span><span class="chip">${d.flight}</span><span class="chip">${d.mood}</span><span class="chip">live search</span></div><div class="deal-actions"><button class="small-btn primary" onclick="openEngine('google','${d.code}')">Google</button><button class="small-btn" onclick="openEngine('skyscanner','${d.code}')">Skyscanner</button></div></div></article>`).join('');get('dealTable').innerHTML=list.map(d=>`<tr><td><strong>${d.route}</strong></td><td>${d.city}</td><td>₪${d.target}</td><td>${d.flight}</td><td>${d.mood}</td><td>${d.score}/100</td><td><button class="small-btn primary" onclick="openEngine('google','${d.code}')">Open live</button></td></tr>`).join('')}function openRecent(){const recent=JSON.parse(localStorage.getItem('voltescape_recent')||'[]');get('recentList').innerHTML=recent.length?recent.map((r,i)=>`<div class="recent-item"><div><strong>${r.from} → ${r.to} · ${r.engine}</strong><br><span style="color:var(--muted)">${r.depart||'Flexible'} ${r.ret?'→ '+r.ret:''}<br>${r.time}</span></div><button class="small-btn" onclick="rerunRecent(${i})">Open</button></div>`).join(''):'<p style="color:var(--muted)">No recent searches yet.</p>';get('recentModal').classList.add('open')}function closeRecent(){get('recentModal').classList.remove('open')}function clearRecent(){localStorage.removeItem('voltescape_recent');updateSummary();openRecent();toast('Recent searches cleared')}function rerunRecent(i){const recent=JSON.parse(localStorage.getItem('voltescape_recent')||'[]');const r=recent[i];if(!r)return;get('from').value=r.from;get('to').value=r.to;get('depart').value=r.depart;get('returnDate').value=r.ret;updateSummary();closeRecent();openEngine(r.engine,r.to)}function saveAlert(){const email=get('email').value.trim();if(!email||!email.includes('@'))return toast('Enter a valid email');const alerts=JSON.parse(localStorage.getItem('voltescape_alerts')||'[]');alerts.unshift({email,mood:get('alertMood').value,created:new Date().toISOString()});localStorage.setItem('voltescape_alerts',JSON.stringify(alerts.slice(0,20)));get('email').value='';toast('Alert saved locally')}function copyShare(){navigator.clipboard?.writeText('https://voltescape.com');toast('Link copied')}document.querySelectorAll('#tripTabs .tab').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#tripTabs .tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(btn.dataset.trip==='weekend')get('weekend').checked=true;updateSummary()})});['from','to','depart','returnDate','direct','weekend'].forEach(id=>get(id)?.addEventListener('change',updateSummary));get('dealFilter').addEventListener('input',renderDeals);get('sortDeals').addEventListener('change',renderDeals);const today=new Date(),nextMonth=new Date(today.getFullYear(),today.getMonth()+1,today.getDate()+7),returnDay=new Date(nextMonth.getFullYear(),nextMonth.getMonth(),nextMonth.getDate()+4);get('depart').value=nextMonth.toISOString().slice(0,10);get('returnDate').value=returnDay.toISOString().slice(0,10);renderDeals();updateSummary();
+    const destinations = [
+      {
+        city: "Athens", hebrew: "אתונה", slug: "athens", country: "Greece", vibe: "סופ״ש זול, וינטג׳, אוכל יווני וים", badge: "Best for quick escape",
+        intro: "אתונה היא יעד חכם לחופשה קצרה: טיסה יחסית קצרה, אוכל טוב, שווקים, וינטג׳, ים והיסטוריה. לפני שסוגרים דיל, בודקים לא רק את מחיר הטיסה אלא גם מלון, תחבורה ואטרקציות.",
+        bestFor: ["סופ״ש קצר", "וינטג׳ ושווקים", "אוכל טוב", "טיול לבד או עם חברים"],
+        checks: ["שעת נחיתה", "מזוודה כלולה", "מיקום ליד מטרו", "עלות הגעה מהשדה"],
+        tip: "טיפ Voltescape: אם הנחיתה בלילה, בדוק מראש כמה עולה להגיע מהשדה למלון. לפעמים טיסה זולה מתייקרת בגלל מונית יקרה.",
+        links: { flights: "https://aviasales.tpo.lu/E61aXTY4", hotels: "#", activities: "https://klook.tpo.lu/R5134Gv5", esim: "#", transfer: "#" }
+      },
+      {
+        city: "Berlin", hebrew: "ברלין", slug: "berlin", country: "Germany", vibe: "וינטג׳, תרבות, חיי לילה ועיר צעירה", badge: "Best for vintage",
+        intro: "ברלין מושלמת למי שאוהב עיר גדולה, וינטג׳, אוכל, מוזיאונים, חיי לילה ותחבורה ציבורית חזקה. הדיל משתלם במיוחד כשבוחרים מלון ליד רכבת.",
+        bestFor: ["וינטג׳", "חיי לילה", "טיול לבד", "בתי קפה ותרבות"],
+        checks: ["קרבה ל־U-Bahn", "מזג אוויר", "אזורי שופינג", "עלות תחבורה"],
+        tip: "טיפ Voltescape: בברלין עדיף לשלם קצת יותר על מיקום טוב מאשר לבזבז זמן וכסף בנסיעות ארוכות.",
+        links: { flights: "https://aviasales.tpo.lu/E61aXTY4", hotels: "#", activities: "https://klook.tpo.lu/R5134Gv5", esim: "#", transfer: "#" }
+      },
+      {
+        city: "Budapest", hebrew: "בודפשט", slug: "budapest", country: "Hungary", vibe: "ספא, נהר, ברים וחופשה משתלמת", badge: "Best value",
+        intro: "בודפשט נותנת תחושה אירופאית חזקה במחיר נוח יחסית: ספא, נהר, ברים, אוכל, ארכיטקטורה וחופשה שמתאימה גם לזוגות וגם לחברים.",
+        bestFor: ["זוגות", "ספא", "ברים", "חופשה משתלמת"],
+        checks: ["מיקום בפשט", "כרטיסי ספא", "שייט בדנובה", "הגעה מהשדה"],
+        tip: "טיפ Voltescape: אטרקציות כמו ספא ושייט עדיף לסגור מראש כדי לא להיתקע עם מחירים גבוהים או תורים.",
+        links: { flights: "https://aviasales.tpo.lu/E61aXTY4", hotels: "#", activities: "https://klook.tpo.lu/R5134Gv5", esim: "#", transfer: "#" }
+      },
+      {
+        city: "Bucharest", hebrew: "בוקרשט", slug: "bucharest", country: "Romania", vibe: "קניונים, אוכל, חיי לילה ומחירים נוחים", badge: "Budget pick",
+        intro: "בוקרשט מתאימה לחופשה קצרה וזולה יחסית עם קניונים גדולים, בתי קפה, מסעדות וחיי לילה. הבחירה במלון מרכזי עושה הבדל ענק.",
+        bestFor: ["שופינג", "קניונים", "סופ״ש קצר", "תקציב נמוך"],
+        checks: ["קרבה לעיר העתיקה", "מרחק מקניונים", "מזג אוויר", "תחבורה מהשדה"],
+        tip: "טיפ Voltescape: אל תחסוך יותר מדי על מלון רחוק — בבוקרשט מיקום טוב יכול לחסוך הרבה מוניות.",
+        links: { flights: "https://aviasales.tpo.lu/E61aXTY4", hotels: "#", activities: "https://klook.tpo.lu/R5134Gv5", esim: "#", transfer: "#" }
+      },
+      {
+        city: "Warsaw", hebrew: "ורשה", slug: "warsaw", country: "Poland", vibe: "שופינג, קניונים, עיר נקייה ודיל חכם", badge: "Underrated",
+        intro: "ורשה היא יעד אנדרייטד: קניונים, אוכל, עיר נקייה, מחירים יחסית נוחים ואווירה אירופאית בלי עומס תיירותי מוגזם.",
+        bestFor: ["שופינג", "קניונים", "חופשה רגועה", "מחירים נוחים"],
+        checks: ["מרכז העיר", "קניונים קרובים", "חורף קר", "הגעה מהשדה"],
+        tip: "טיפ Voltescape: ורשה מעולה למי שרוצה חופשה נוחה ולא יקרה מדי, במיוחד אם המלון קרוב לתחבורה ציבורית.",
+        links: { flights: "https://aviasales.tpo.lu/E61aXTY4", hotels: "#", activities: "https://klook.tpo.lu/R5134Gv5", esim: "#", transfer: "#" }
+      },
+      {
+        city: "Prague", hebrew: "פראג", slug: "prague", country: "Czech Republic", vibe: "עיר יפה, רומנטית וקלאסית לסופ״ש", badge: "Romantic escape",
+        intro: "פראג היא יעד קלאסי: עיר יפה, רומנטית, נוחה לטיול ברגל, עם גשרים, תצפיות, אוכל ואווירה מיוחדת.",
+        bestFor: ["זוגות", "סופ״ש", "טיולים רגליים", "עיר אירופאית קלאסית"],
+        checks: ["עיר עתיקה", "עומס תיירים", "מזג אוויר", "סיורים מראש"],
+        tip: "טיפ Voltescape: בפראג מיקום מרכזי חוסך המון זמן והופך את הטיול להרבה יותר קל.",
+        links: { flights: "https://aviasales.tpo.lu/E61aXTY4", hotels: "#", activities: "https://klook.tpo.lu/R5134Gv5", esim: "#", transfer: "#" }
+      },
+      {
+        city: "Sofia", hebrew: "סופיה", slug: "sofia", country: "Bulgaria", vibe: "זול, קצר, קליל וקרוב", badge: "Low cost",
+        intro: "סופיה מתאימה למי שרוצה חופשה קצרה וזולה יחסית, אוכל, קניונים, טבע קרוב ואווירה רגועה.",
+        bestFor: ["תקציב נמוך", "קניונים", "חופשה קלילה", "טיול קצר"],
+        checks: ["מלון מרכזי", "מזג אוויר", "טיול יום", "תחבורה מהשדה"],
+        tip: "טיפ Voltescape: סופיה היא דיל טוב למי שבא בראש נכון: לא הכי נוצצת, אבל יכולה להיות מאוד משתלמת.",
+        links: { flights: "https://aviasales.tpo.lu/E61aXTY4", hotels: "#", activities: "https://klook.tpo.lu/R5134Gv5", esim: "#", transfer: "#" }
+      },
+      {
+        city: "Milan", hebrew: "מילאנו", slug: "milan", country: "Italy", vibe: "אופנה, שופינג, אאוטלטים וסטייל", badge: "Fashion city",
+        intro: "מילאנו היא יעד חזק לאופנה, מותגים, אאוטלטים, קפה ועיר אלגנטית. היא לא תמיד הכי זולה, אבל עם תכנון נכון היא יכולה להיות דיל שווה.",
+        bestFor: ["אופנה", "מותגים", "אאוטלטים", "אוכל איטלקי"],
+        checks: ["איזה שדה תעופה", "הגעה לעיר", "מלון ליד מטרו", "סיילים"],
+        tip: "טיפ Voltescape: במילאנו חשוב לבדוק מאיזה שדה נוחתים. טיסה זולה לשדה רחוק יכולה לעלות ביוקר בזמן ובתחבורה.",
+        links: { flights: "https://aviasales.tpo.lu/E61aXTY4", hotels: "#", activities: "https://klook.tpo.lu/R5134Gv5", esim: "#", transfer: "#" }
+      },
+      {
+        city: "Paris", hebrew: "פריז", slug: "paris", country: "France", vibe: "יוקרה, אופנה, מוזיאונים וחופשה שצריך לתכנן חכם", badge: "Luxury classic",
+        intro: "פריז היא יעד חלומי, אבל יכולה להיות יקרה אם לא מתכננים נכון. צריך לבדוק מלון, מיקום, תחבורה, אטרקציות ועלויות יומיות.",
+        bestFor: ["זוגות", "אופנה", "מוזיאונים", "שופינג יוקרתי"],
+        checks: ["מלון ליד מטרו", "אטרקציות מראש", "שדה תעופה", "אזורי שופינג"],
+        tip: "טיפ Voltescape: בפריז לא חייבים להיות הכי במרכז, אבל חייבים להיות ליד מטרו. זה משנה את כל החופשה.",
+        links: { flights: "https://aviasales.tpo.lu/E61aXTY4", hotels: "#", activities: "https://klook.tpo.lu/R5134Gv5", esim: "#", transfer: "#" }
+      },
+      {
+        city: "Rome", hebrew: "רומא", slug: "rome", country: "Italy", vibe: "אוכל, היסטוריה, רחובות יפים ואווירה איטלקית", badge: "Italian weekend",
+        intro: "רומא מושלמת למי שרוצה אוכל איטלקי, היסטוריה, רחובות יפים, קפה, שופינג ואווירה. עם תכנון נכון אפשר להפוך אותה לדיל חכם.",
+        bestFor: ["אוכל", "היסטוריה", "זוגות", "טיול רגלי"],
+        checks: ["מלון במרכז ההיסטורי", "כרטיסים מראש", "עומס תיירים", "הגעה מהשדה"],
+        tip: "טיפ Voltescape: ברומא כדאי לסגור כרטיסים לאטרקציות מרכזיות מראש. זה חוסך תורים ולפעמים גם כסף.",
+        links: { flights: "https://aviasales.tpo.lu/E61aXTY4", hotels: "#", activities: "https://klook.tpo.lu/R5134Gv5", esim: "#", transfer: "#" }
+      }
+    ];
+
+    const actions = [
+      { key: "flights", icon: "✈️", label: "טיסות", sub: "Flights" },
+      { key: "hotels", icon: "🏨", label: "מלונות", sub: "Hotels" },
+      { key: "activities", icon: "🎟️", label: "אטרקציות", sub: "Activities" },
+      { key: "esim", icon: "📱", label: "אינטרנט", sub: "eSIM" },
+      { key: "transfer", icon: "🚕", label: "הסעה", sub: "Airport transfer" }
+    ];
+
+    const grid = document.getElementById("destinationGrid");
+    const search = document.getElementById("search");
+    const cityPills = document.getElementById("cityPills");
+    let selectedSlug = "athens";
+
+    function renderGrid(items) {
+      grid.innerHTML = items.map(d => `
+        <button class="destination-card ${d.slug === selectedSlug ? "active" : ""}" data-slug="${d.slug}" aria-label="דילים ל${d.hebrew}">
+          <span class="badge">${d.badge}</span>
+          <h3>${d.hebrew}</h3>
+          <div class="country">${d.city}, ${d.country}</div>
+          <div class="vibe">${d.vibe}</div>
+        </button>
+      `).join("");
+
+      document.querySelectorAll(".destination-card").forEach(card => {
+        card.addEventListener("click", () => selectDestination(card.dataset.slug, true));
+      });
+    }
+
+    function renderPills() {
+      cityPills.innerHTML = destinations.map(d => `
+        <button data-slug="${d.slug}">${d.hebrew}</button>
+      `).join("");
+
+      cityPills.querySelectorAll("button").forEach(button => {
+        button.addEventListener("click", () => selectDestination(button.dataset.slug, true));
+      });
+    }
+
+    function selectDestination(slug, scrollToDetail = false) {
+      const d = destinations.find(item => item.slug === slug) || destinations[0];
+      selectedSlug = d.slug;
+
+      document.getElementById("detailUrl").textContent = `/deals/${d.slug}`;
+      document.getElementById("detailTitle").textContent = `דילים ל${d.hebrew}`;
+      document.getElementById("detailIntro").textContent = d.intro;
+      document.getElementById("bestFor").innerHTML = d.bestFor.map(item => `<div class="mini-item">${item}</div>`).join("");
+      document.getElementById("checks").innerHTML = d.checks.map(item => `<div class="mini-item">${item}</div>`).join("");
+      document.getElementById("tip").textContent = d.tip;
+
+      document.getElementById("affiliateLinks").innerHTML = actions.map(action => {
+        const href = d.links[action.key] || "#";
+        return `
+          <a class="affiliate-link" href="${href}" target="_blank" rel="nofollow sponsored noopener">
+            <span class="icon-box">${action.icon}</span>
+            <span class="affiliate-label">
+              <strong>${action.label}</strong>
+              <span>${action.sub}</span>
+            </span>
+            <span>←</span>
+          </a>
+        `;
+      }).join("");
+
+      const q = search.value.toLowerCase().trim();
+      const filtered = !q ? destinations : destinations.filter(d => [d.city, d.hebrew, d.country, d.vibe, d.badge].join(" ").toLowerCase().includes(q));
+      renderGrid(filtered);
+
+      if (scrollToDetail) document.getElementById("deal").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    search.addEventListener("input", () => {
+      const q = search.value.toLowerCase().trim();
+      const filtered = !q ? destinations : destinations.filter(d => [d.city, d.hebrew, d.country, d.vibe, d.badge].join(" ").toLowerCase().includes(q));
+      renderGrid(filtered);
+    });
+
+    renderGrid(destinations);
+    renderPills();
+    selectDestination("athens");
   </script>
 </body>
 </html>
