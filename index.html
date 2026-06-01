@@ -454,6 +454,53 @@
       margin-top: 16px;
     }
 
+    .cheap-flights-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .cheap-flight-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 170px;
+      padding: 20px;
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(111,183,255,0.12), rgba(255,255,255,0.06));
+      border: 1px solid var(--line);
+      transition: 0.23s ease;
+    }
+
+    .cheap-flight-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(111,183,255,0.48);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .cheap-flight-card strong {
+      display: block;
+      font-size: 1.35rem;
+      letter-spacing: -0.5px;
+      margin: 16px 0 4px;
+    }
+
+    .cheap-flight-card span,
+    .cheap-flight-card small {
+      color: var(--muted);
+    }
+
+    .cheap-flight-card .price-note {
+      width: fit-content;
+      color: #07111f;
+      background: linear-gradient(135deg, var(--silver), var(--blue));
+      font-size: 0.74rem;
+      font-weight: 900;
+      padding: 5px 9px;
+      border-radius: 999px;
+    }
+
     .homepage-block {
       border-radius: var(--radius);
       border: 1px solid var(--line);
@@ -515,7 +562,8 @@
         grid-template-columns: 1fr;
       }
 
-      .destinations-grid {
+      .destinations-grid,
+      .cheap-flights-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -542,7 +590,8 @@
       }
 
       .destinations-grid,
-      .affiliate-grid {
+      .affiliate-grid,
+      .cheap-flights-grid {
         grid-template-columns: 1fr;
       }
 
@@ -568,6 +617,7 @@
 
       <nav class="nav-links" aria-label="ניווט ראשי">
         <a href="#destinations">Destinations</a>
+        <a href="#cheap-flights-israel">Cheapest flights</a>
         <a href="#berlin">Featured deal</a>
         <a href="#homepage-block">Homepage block</a>
       </nav>
@@ -588,7 +638,7 @@
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#destinations">Explore deals by destination →</a>
-            <a class="btn btn-secondary" href="#berlin">See a destination example</a>
+            <a class="btn btn-secondary" href="#cheap-flights-israel">Cheapest flights from Israel</a>
           </div>
         </div>
 
@@ -718,6 +768,71 @@
               <div class="english">Rome, Italy</div>
               <p>אוכל, היסטוריה, רחובות יפים ואווירה איטלקית</p>
             </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="cheap-flights-israel" class="deal-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">✈️ From Israel</span>
+            <h2>Cheapest flights from Israel</h2>
+            <p>Quick links to low-cost friendly destinations from Tel Aviv. Each button opens a round-trip flight search from Israel with the destination already selected. Prices are checked live on Aviasales after the click.</p>
+          </div>
+        </div>
+
+        <div class="cheap-flights-grid">
+          <a class="cheap-flight-card" data-cheap-flight="ATHENS" href="#" target="_blank" rel="nofollow sponsored noopener">
+            <small class="price-note">Usually cheap</small>
+            <div><strong>Athens</strong><span>TLV → ATH · Greece</span></div>
+            <small>Search cheapest dates →</small>
+          </a>
+          <a class="cheap-flight-card" data-cheap-flight="BUDAPEST" href="#" target="_blank" rel="nofollow sponsored noopener">
+            <small class="price-note">Best value</small>
+            <div><strong>Budapest</strong><span>TLV → BUD · Hungary</span></div>
+            <small>Search cheapest dates →</small>
+          </a>
+          <a class="cheap-flight-card" data-cheap-flight="SOFIA" href="#" target="_blank" rel="nofollow sponsored noopener">
+            <small class="price-note">Low cost</small>
+            <div><strong>Sofia</strong><span>TLV → SOF · Bulgaria</span></div>
+            <small>Search cheapest dates →</small>
+          </a>
+          <a class="cheap-flight-card" data-cheap-flight="BUCHAREST" href="#" target="_blank" rel="nofollow sponsored noopener">
+            <small class="price-note">Budget pick</small>
+            <div><strong>Bucharest</strong><span>TLV → OTP · Romania</span></div>
+            <small>Search cheapest dates →</small>
+          </a>
+          <a class="cheap-flight-card" data-cheap-flight="WARSAW" href="#" target="_blank" rel="nofollow sponsored noopener">
+            <small class="price-note">Smart deal</small>
+            <div><strong>Warsaw</strong><span>TLV → WAW · Poland</span></div>
+            <small>Search cheapest dates →</small>
+          </a>
+          <a class="cheap-flight-card" data-cheap-flight="ROME" href="#" target="_blank" rel="nofollow sponsored noopener">
+            <small class="price-note">Weekend</small>
+            <div><strong>Rome</strong><span>TLV → ROM · Italy</span></div>
+            <small>Search cheapest dates →</small>
+          </a>
+          <a class="cheap-flight-card" data-cheap-flight="MILAN" href="#" target="_blank" rel="nofollow sponsored noopener">
+            <small class="price-note">Fashion trip</small>
+            <div><strong>Milan</strong><span>TLV → MIL · Italy</span></div>
+            <small>Search cheapest dates →</small>
+          </a>
+          <a class="cheap-flight-card" data-cheap-flight="BERLIN" href="#" target="_blank" rel="nofollow sponsored noopener">
+            <small class="price-note">Vintage city</small>
+            <div><strong>Berlin</strong><span>TLV → BER · Germany</span></div>
+            <small>Search cheapest dates →</small>
+          </a>
+          <a class="cheap-flight-card" data-cheap-flight="PRAGUE" href="#" target="_blank" rel="nofollow sponsored noopener">
+            <small class="price-note">Classic escape</small>
+            <div><strong>Prague</strong><span>TLV → PRG · Czech Republic</span></div>
+            <small>Search cheapest dates →</small>
+          </a>
+          <a class="cheap-flight-card" data-cheap-flight="PARIS" href="#" target="_blank" rel="nofollow sponsored noopener">
+            <small class="price-note">When discounted</small>
+            <div><strong>Paris</strong><span>TLV → PAR · France</span></div>
+            <small>Search cheapest dates →</small>
           </a>
         </div>
       </div>
@@ -970,6 +1085,11 @@
         esim: 'https://yesim.tpo.lu/AU9x5GjB',
         transfer: 'https://kiwitaxi.tpo.lu/wnzjfyjy'
       };
+    });
+
+    document.querySelectorAll('.cheap-flight-card').forEach((card) => {
+      const cityKey = card.dataset.cheapFlight;
+      if (cityKey) card.href = buildRoundTripFlightLink(cityKey);
     });
 
     document.querySelectorAll('AffiliateLinks').forEach((placeholder) => {
