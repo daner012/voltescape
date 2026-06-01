@@ -922,82 +922,63 @@
         <div><span class="icon">🚕</span><strong>הסעה</strong><span>Airport transfer</span></div><div class="arrow">←</div>
       </a>
     </div>
-    <p class="disclosure">כאן מדביקים את קישורי האפיליאייט האמיתיים שלך לכל יעד. כרגע חלק מהקישורים הם placeholders.</p>
+    <p class="disclosure">קישורי הטיסות נבנים אוטומטית כהלוך־חזור: יציאה בעוד 30 יום וחזרה אחרי 7 ימים. המשתמש עדיין יכול לשנות תאריכים ב־Aviasales.</p>
   </template>
 
   <script>
-    const affiliateLinks = {
-      ATHENS: {
-        flights: 'https://aviasales.tpo.lu/rSZXWBMd',
-        hotels: 'https://klook.tpo.lu/D9kaX1Le',
-        activities: 'https://klook.tpo.lu/D9kaX1Le',
-        esim: 'https://yesim.tpo.lu/AU9x5GjB',
-        transfer: 'https://kiwitaxi.tpo.lu/wnzjfyjy'
-      },
-      BERLIN: {
-        flights: 'https://aviasales.tpo.lu/nbdNPv2c',
-        hotels: 'https://klook.tpo.lu/D9kaX1Le',
-        activities: 'https://klook.tpo.lu/D9kaX1Le',
-        esim: 'https://yesim.tpo.lu/AU9x5GjB',
-        transfer: 'https://kiwitaxi.tpo.lu/wnzjfyjy'
-      },
-      BUDAPEST: {
-        flights: 'https://aviasales.tpo.lu/TOkvftlz',
-        hotels: 'https://klook.tpo.lu/D9kaX1Le',
-        activities: 'https://klook.tpo.lu/D9kaX1Le',
-        esim: 'https://yesim.tpo.lu/AU9x5GjB',
-        transfer: 'https://kiwitaxi.tpo.lu/wnzjfyjy'
-      },
-      BUCHAREST: {
-        flights: 'https://aviasales.tpo.lu/bvGOezaX',
-        hotels: 'https://klook.tpo.lu/D9kaX1Le',
-        activities: 'https://klook.tpo.lu/D9kaX1Le',
-        esim: 'https://yesim.tpo.lu/AU9x5GjB',
-        transfer: 'https://kiwitaxi.tpo.lu/wnzjfyjy'
-      },
-      WARSAW: {
-        flights: 'https://aviasales.tpo.lu/5xA12UP1',
-        hotels: 'https://klook.tpo.lu/D9kaX1Le',
-        activities: 'https://klook.tpo.lu/D9kaX1Le',
-        esim: 'https://yesim.tpo.lu/AU9x5GjB',
-        transfer: 'https://kiwitaxi.tpo.lu/wnzjfyjy'
-      },
-      PRAGUE: {
-        flights: 'https://aviasales.tpo.lu/XIf054e9',
-        hotels: 'https://klook.tpo.lu/D9kaX1Le',
-        activities: 'https://klook.tpo.lu/D9kaX1Le',
-        esim: 'https://yesim.tpo.lu/AU9x5GjB',
-        transfer: 'https://kiwitaxi.tpo.lu/wnzjfyjy'
-      },
-      SOFIA: {
-        flights: 'https://aviasales.tpo.lu/w8Uk2L62',
-        hotels: 'https://klook.tpo.lu/D9kaX1Le',
-        activities: 'https://klook.tpo.lu/D9kaX1Le',
-        esim: 'https://yesim.tpo.lu/AU9x5GjB',
-        transfer: 'https://kiwitaxi.tpo.lu/wnzjfyjy'
-      },
-      MILAN: {
-        flights: 'https://aviasales.tpo.lu/PauAItdb',
-        hotels: 'https://klook.tpo.lu/D9kaX1Le',
-        activities: 'https://klook.tpo.lu/D9kaX1Le',
-        esim: 'https://yesim.tpo.lu/AU9x5GjB',
-        transfer: 'https://kiwitaxi.tpo.lu/wnzjfyjy'
-      },
-      PARIS: {
-        flights: 'https://aviasales.tpo.lu/ZLW6c6EE',
-        hotels: 'https://klook.tpo.lu/D9kaX1Le',
-        activities: 'https://klook.tpo.lu/D9kaX1Le',
-        esim: 'https://yesim.tpo.lu/AU9x5GjB',
-        transfer: 'https://kiwitaxi.tpo.lu/wnzjfyjy'
-      },
-      ROME: {
-        flights: 'https://aviasales.tpo.lu/Y7hupYLy',
-        hotels: 'https://klook.tpo.lu/D9kaX1Le',
-        activities: 'https://klook.tpo.lu/D9kaX1Le',
-        esim: 'https://yesim.tpo.lu/AU9x5GjB',
-        transfer: 'https://kiwitaxi.tpo.lu/wnzjfyjy'
-      }
+    const flightDestinations = {
+      ATHENS: { iata: 'ATH', subId: 'flights-athens' },
+      BERLIN: { iata: 'BER', subId: 'flights-berlin' },
+      BUDAPEST: { iata: 'BUD', subId: 'flights-budapest' },
+      BUCHAREST: { iata: 'OTP', subId: 'flights-bucharest' },
+      WARSAW: { iata: 'WAW', subId: 'flights-warsaw' },
+      PRAGUE: { iata: 'PRG', subId: 'flights-prague' },
+      SOFIA: { iata: 'SOF', subId: 'flights-sofia' },
+      MILAN: { iata: 'MIL', subId: 'flights-milan' },
+      PARIS: { iata: 'PAR', subId: 'flights-paris' },
+      ROME: { iata: 'ROM', subId: 'flights-rome' }
     };
+
+    function formatDate(date) {
+      return date.toISOString().slice(0, 10);
+    }
+
+    function buildRoundTripFlightLink(cityKey) {
+      const city = flightDestinations[cityKey];
+      const departDate = new Date();
+      departDate.setDate(departDate.getDate() + 30);
+
+      const returnDate = new Date(departDate);
+      returnDate.setDate(returnDate.getDate() + 7);
+
+      const aviasalesSearchUrl = new URL('https://search.aviasales.com/flights/');
+      aviasalesSearchUrl.searchParams.set('origin_iata', 'TLV');
+      aviasalesSearchUrl.searchParams.set('destination_iata', city.iata);
+      aviasalesSearchUrl.searchParams.set('depart_date', formatDate(departDate));
+      aviasalesSearchUrl.searchParams.set('return_date', formatDate(returnDate));
+      aviasalesSearchUrl.searchParams.set('adults', '1');
+      aviasalesSearchUrl.searchParams.set('children', '0');
+      aviasalesSearchUrl.searchParams.set('infants', '0');
+      aviasalesSearchUrl.searchParams.set('trip_class', '0');
+      aviasalesSearchUrl.searchParams.set('locale', 'en');
+      aviasalesSearchUrl.searchParams.set('one_way', 'false');
+
+      return 'https://tp.media/r?marker=734712.' + city.subId +
+        '&trs=534983&p=4114&u=' + encodeURIComponent(aviasalesSearchUrl.toString()) +
+        '&campaign_id=100';
+    }
+
+    const affiliateLinks = {};
+
+    Object.keys(flightDestinations).forEach((cityKey) => {
+      affiliateLinks[cityKey] = {
+        flights: buildRoundTripFlightLink(cityKey),
+        hotels: 'https://klook.tpo.lu/D9kaX1Le',
+        activities: 'https://klook.tpo.lu/D9kaX1Le',
+        esim: 'https://yesim.tpo.lu/AU9x5GjB',
+        transfer: 'https://kiwitaxi.tpo.lu/wnzjfyjy'
+      };
+    });
 
     document.querySelectorAll('AffiliateLinks').forEach((placeholder) => {
       const city = placeholder.getAttribute('city');
