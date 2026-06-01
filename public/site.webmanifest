@@ -1,8 +1,0 @@
-{
-  "name": "Voltescape",
-  "short_name": "Voltescape",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#070a11",
-  "theme_color": "#070a11"
-}

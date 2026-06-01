@@ -1,29 +1,21 @@
-# Voltescape Revenue App
+# Voltescape Static Launch
 
-Premium Next.js travel-deals app for Voltescape, optimized for affiliate clicks, server-side Travelpayouts pricing, Supabase alert capture, and SEO route pages.
+This folder is the same-day emergency launch version of Voltescape.
 
-## Run
+Upload the contents of this folder to any static host if the Next.js/Vercel pipeline is not ready yet.
 
-```bash
-npm install
-npm run dev
-```
+## Files
 
-Open `http://localhost:3000`.
+- `index.html` — homepage
+- `404.html` — fallback page to avoid dead routes on simple static hosts
+- `voltescape-assets/voltescape-hero.png` — hero image
 
-## Environment
+## Fast Launch Options
 
-Copy `.env.example` to `.env.local` and fill:
+1. Drag this folder into Netlify Drop or another static host.
+2. Upload the folder contents to any host connected to `voltescape.com`.
+3. Point the domain to that host.
 
-- `TRAVELPAYOUTS_TOKEN`
-- `TRAVELPAYOUTS_MARKER`
-- `NEXT_PUBLIC_SITE_URL`
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `SUPABASE_SERVICE_ROLE_KEY`
+## After Launch
 
-`TRAVELPAYOUTS_TOKEN` is used only in server routes. Do not expose it in client code.
-
-## Supabase
-
-Run `supabase/schema.sql` in your Supabase SQL editor.
+Replace this static version with the full Next.js app when Vercel, Supabase and Travelpayouts environment variables are ready.
