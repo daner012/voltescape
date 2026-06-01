@@ -1,225 +1,1099 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VOLT ESCAPE V5</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VOLT ESCAPE — Private Flight Society</title>
+<meta name="description" content="Private flight deals. Seen by very few. VOLT ESCAPE is a curated luxury flight discovery club." />
+
+<!-- Travelpayouts Drive -->
+<script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1">
+(function () {
+    var script = document.createElement("script");
+    script.async = 1;
+    script.src = 'https://emrld.ltd/NTM0OTgz.js?t=534983';
+    document.head.appendChild(script);
+})();
+</script>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#040404;
+  --panel:#0d0d0d;
+  --panel2:#15110b;
+  --gold:#d8b45c;
+  --gold2:#f3d98a;
+  --muted:#a7a29a;
+  --white:#fff7e8;
+  --line:rgba(216,180,92,.22);
+  --glass:rgba(255,255,255,.055);
+  --shadow:0 30px 90px rgba(0,0,0,.55);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-font-family:-apple-system,BlinkMacSystemFont,sans-serif;
-background:#050b16;
-color:white;
+  font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(216,180,92,.14), transparent 32%),
+    radial-gradient(circle at 80% 10%, rgba(255,255,255,.08), transparent 28%),
+    linear-gradient(180deg,#020202 0%,#070707 45%,#0b0906 100%);
+  color:var(--white);
+  overflow-x:hidden;
 }
+
+a{
+  color:inherit;
+}
+
+.page{
+  min-height:100vh;
+}
+
+.nav{
+  position:fixed;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(1180px,calc(100% - 34px));
+  z-index:50;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 18px;
+  border:1px solid var(--line);
+  background:rgba(4,4,4,.62);
+  backdrop-filter:blur(20px);
+  border-radius:999px;
+  box-shadow:0 20px 70px rgba(0,0,0,.35);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  letter-spacing:2px;
+  font-weight:800;
+}
+
+.brand-mark{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:
+    linear-gradient(135deg,var(--gold2),var(--gold)),
+    radial-gradient(circle,#fff,transparent);
+  box-shadow:0 0 28px rgba(216,180,92,.35);
+}
+
+.nav-links{
+  display:flex;
+  gap:22px;
+  align-items:center;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.nav-links a{
+  text-decoration:none;
+}
+
+.nav-cta{
+  padding:11px 16px;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#090806;
+  text-decoration:none;
+  font-weight:800;
+}
+
 .hero{
-height:85vh;
-background:
-linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.65)),
-url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1800');
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:30px;
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:130px 24px 70px;
+  overflow:hidden;
 }
-.hero-content{max-width:900px}
-.kicker{letter-spacing:4px;opacity:.8;margin-bottom:20px}
-h1{font-size:78px;line-height:.95}
-.hero p{font-size:22px;margin-top:20px;opacity:.95}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(120deg,rgba(0,0,0,.76),rgba(0,0,0,.12),rgba(0,0,0,.76)),
+    radial-gradient(circle at 50% 40%,rgba(216,180,92,.22),transparent 28%),
+    linear-gradient(135deg,#060606,#17100a 40%,#020202);
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  width:980px;
+  height:390px;
+  border-radius:55% 45% 45% 55%;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.02),rgba(216,180,92,.12),rgba(255,255,255,.02));
+  filter:blur(1px);
+  transform:rotate(-9deg);
+  top:23%;
+  right:-180px;
+  border:1px solid rgba(216,180,92,.12);
+}
+
+.jet-line{
+  position:absolute;
+  right:7%;
+  top:31%;
+  width:520px;
+  height:120px;
+  opacity:.55;
+  border-top:2px solid rgba(216,180,92,.55);
+  border-radius:50%;
+  transform:rotate(-10deg);
+}
+
+.jet-line::before{
+  content:"✈";
+  position:absolute;
+  right:20px;
+  top:-31px;
+  font-size:54px;
+  color:rgba(243,217,138,.85);
+  text-shadow:0 0 28px rgba(216,180,92,.55);
+}
+
+.hero-content{
+  position:relative;
+  z-index:3;
+  width:min(1180px,100%);
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:50px;
+  align-items:center;
+}
+
+.kicker{
+  display:inline-flex;
+  gap:10px;
+  align-items:center;
+  color:var(--gold2);
+  letter-spacing:4px;
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+
+.kicker::before{
+  content:"";
+  width:42px;
+  height:1px;
+  background:var(--gold);
+}
+
+h1{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(54px,8vw,118px);
+  line-height:.86;
+  letter-spacing:-5px;
+  margin-bottom:24px;
+}
+
+.hero-title-gold{
+  color:var(--gold2);
+}
+
+.hero-copy{
+  max-width:640px;
+  color:#d9d1c1;
+  font-size:clamp(18px,2vw,23px);
+  line-height:1.55;
+  margin-bottom:30px;
+}
+
+.hero-actions{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-bottom:34px;
+}
+
 .btn{
-display:inline-block;
-margin-top:25px;
-padding:16px 28px;
-border-radius:999px;
-background:white;
-color:black;
-font-weight:700;
-text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:15px 22px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:850;
+  border:1px solid rgba(216,180,92,.3);
+  transition:.25s ease;
 }
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#070604;
+  box-shadow:0 14px 40px rgba(216,180,92,.22);
+}
+
+.btn-ghost{
+  background:rgba(255,255,255,.05);
+  color:var(--white);
+  backdrop-filter:blur(12px);
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+}
+
+.hero-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  max-width:650px;
+}
+
+.stat{
+  padding:18px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:rgba(255,255,255,.045);
+  backdrop-filter:blur(18px);
+}
+
+.stat strong{
+  display:block;
+  color:var(--gold2);
+  font-size:22px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.private-card{
+  border:1px solid var(--line);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.025)),
+    radial-gradient(circle at 30% 0%,rgba(216,180,92,.28),transparent 42%);
+  border-radius:38px;
+  padding:26px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(20px);
+}
+
+.private-card-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:80px;
+}
+
+.private-card small{
+  color:var(--muted);
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.private-chip{
+  color:#080706;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  padding:9px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.private-card h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:42px;
+  line-height:1;
+  margin-bottom:14px;
+}
+
+.private-card p{
+  color:#d9d1c1;
+  line-height:1.6;
+  margin-bottom:26px;
+}
+
+.search-shell{
+  display:grid;
+  gap:12px;
+}
+
+.search-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.field{
+  background:rgba(0,0,0,.34);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;
+  padding:14px;
+}
+
+.field label{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+
+.field div{
+  font-weight:800;
+}
+
 .ticker{
-padding:18px;
-background:#0f2344;
-text-align:center;
-font-weight:600;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:rgba(10,10,10,.88);
+  overflow:hidden;
+  white-space:nowrap;
 }
-.wrap{max-width:1300px;margin:auto;padding:30px}
-.section-title{font-size:42px;margin:50px 0 25px}
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:20px;
+
+.ticker-track{
+  display:inline-block;
+  padding:18px 0;
+  animation:marquee 28s linear infinite;
+  color:var(--gold2);
+  font-weight:800;
+  letter-spacing:1px;
 }
-.card{
-position:relative;
-height:380px;
-border-radius:28px;
-overflow:hidden;
-display:flex;
-align-items:flex-end;
-padding:24px;
-background-size:cover;
-background-position:center;
+
+@keyframes marquee{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
 }
-.card::before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.82));
+
+.section{
+  width:min(1240px,calc(100% - 34px));
+  margin:0 auto;
+  padding:86px 0 0;
 }
-.content{position:relative;z-index:2}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  align-items:end;
+  margin-bottom:28px;
+}
+
+.section-kicker{
+  color:var(--gold2);
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-weight:900;
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+.section h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(38px,5vw,68px);
+  line-height:.95;
+  letter-spacing:-2px;
+}
+
+.section-intro{
+  max-width:430px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.destinations{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.destination{
+  min-height:470px;
+  position:relative;
+  overflow:hidden;
+  border-radius:34px;
+  border:1px solid rgba(216,180,92,.18);
+  background:#111;
+  box-shadow:0 26px 80px rgba(0,0,0,.36);
+  isolation:isolate;
+}
+
+.destination::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background:var(--art);
+  transform:scale(1.02);
+  transition:.45s ease;
+}
+
+.destination::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.35) 42%,rgba(0,0,0,.88)),
+    radial-gradient(circle at 50% 20%,rgba(255,255,255,.14),transparent 38%);
+}
+
+.destination:hover::before{
+  transform:scale(1.08);
+}
+
+.destination-content{
+  position:absolute;
+  left:24px;
+  right:24px;
+  bottom:24px;
+}
+
+.destination-top{
+  position:absolute;
+  top:22px;
+  left:22px;
+  right:22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:2;
+}
+
 .badge{
-display:inline-block;
-padding:8px 12px;
-background:rgba(255,255,255,.15);
-border-radius:999px;
-margin-bottom:10px;
+  display:inline-flex;
+  padding:9px 13px;
+  border-radius:999px;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(216,180,92,.32);
+  color:var(--gold2);
+  font-size:12px;
+  font-weight:850;
+  backdrop-filter:blur(12px);
 }
-.view{
-display:inline-block;
-margin-top:12px;
-padding:12px 18px;
-border-radius:14px;
-background:white;
-color:black;
-font-weight:700;
-text-decoration:none;
+
+.code{
+  color:rgba(255,255,255,.72);
+  font-size:12px;
+  letter-spacing:2px;
+  font-weight:900;
 }
-.moods{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:16px;
+
+.destination h3{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:42px;
+  margin-bottom:10px;
+  letter-spacing:-1px;
 }
+
+.destination p{
+  color:#d7d0c2;
+  line-height:1.5;
+  min-height:48px;
+}
+
+.access{
+  margin-top:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.access a{
+  text-decoration:none;
+  color:#080706;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  padding:13px 16px;
+  border-radius:14px;
+  font-weight:900;
+}
+
+.access span{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.berlin{--art:
+  linear-gradient(135deg,rgba(0,0,0,.1),rgba(0,0,0,.4)),
+  radial-gradient(circle at 70% 16%,rgba(255,180,90,.48),transparent 14%),
+  linear-gradient(90deg,#111 0 14%,transparent 14% 18%,#1b1b1b 18% 31%,transparent 31% 37%,#101010 37% 50%,transparent 50% 56%,#222 56% 70%,transparent 70%),
+  linear-gradient(180deg,#21180d,#090909 55%,#020202);
+}
+
+.london{--art:
+  radial-gradient(circle at 58% 16%,rgba(216,180,92,.62),transparent 16%),
+  linear-gradient(120deg,rgba(255,255,255,.08),transparent 30%),
+  linear-gradient(90deg,#0c0c0c 0 12%,transparent 12% 18%,#1f1710 18% 34%,transparent 34% 42%,#191919 42% 55%,transparent 55% 63%,#2b2116 63% 80%,transparent 80%),
+  linear-gradient(180deg,#16110c,#050505);
+}
+
+.athens{--art:
+  radial-gradient(circle at 62% 20%,rgba(255,220,150,.68),transparent 18%),
+  linear-gradient(90deg,transparent 0 14%,rgba(255,255,255,.2) 14% 18%,transparent 18% 26%,rgba(255,255,255,.16) 26% 32%,transparent 32%),
+  linear-gradient(180deg,#2a1b0b,#0c0c12 60%,#020202);
+}
+
+.budapest{--art:
+  radial-gradient(circle at 50% 12%,rgba(216,180,92,.45),transparent 15%),
+  linear-gradient(0deg,rgba(216,180,92,.24) 0 8%,transparent 8% 100%),
+  linear-gradient(90deg,#0f0f16 0 16%,transparent 16% 23%,#24180c 23% 42%,transparent 42% 50%,#171717 50% 67%,transparent 67%),
+  linear-gradient(180deg,#160f08,#070707);
+}
+
+.venice{--art:
+  radial-gradient(circle at 70% 18%,rgba(243,217,138,.55),transparent 17%),
+  linear-gradient(0deg,rgba(255,255,255,.1) 0 16%,transparent 16%),
+  linear-gradient(120deg,transparent 0 50%,rgba(216,180,92,.25) 50% 54%,transparent 54%),
+  linear-gradient(180deg,#24190f,#090706);
+}
+
+.moscow{--art:
+  radial-gradient(circle at 38% 15%,rgba(255,240,200,.5),transparent 14%),
+  radial-gradient(circle at 65% 20%,rgba(216,180,92,.4),transparent 12%),
+  linear-gradient(90deg,#120f12 0 12%,transparent 12% 18%,#2a170f 18% 30%,transparent 30% 38%,#111 38% 50%,transparent 50% 60%,#2b1d13 60% 78%,transparent 78%),
+  linear-gradient(180deg,#1a1113,#050505);
+}
+
+.mood-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:16px;
+}
+
 .mood{
-background:#0f2344;
-padding:22px;
-border-radius:22px;
-text-align:center;
-font-size:20px;
+  min-height:170px;
+  padding:22px;
+  border-radius:28px;
+  border:1px solid var(--line);
+  background:
+    radial-gradient(circle at top right,rgba(216,180,92,.16),transparent 42%),
+    rgba(255,255,255,.045);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:.25s ease;
 }
-.box{
-margin-top:40px;
-background:#0f2344;
-padding:30px;
-border-radius:28px;
+
+.mood:hover{
+  transform:translateY(-5px);
+  border-color:rgba(216,180,92,.45);
 }
+
+.mood-icon{
+  font-size:28px;
+}
+
+.mood strong{
+  display:block;
+  font-size:18px;
+}
+
+.mood span{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.45;
+}
+
+.split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+
+.panel{
+  border:1px solid var(--line);
+  background:
+    radial-gradient(circle at top left,rgba(216,180,92,.16),transparent 40%),
+    rgba(255,255,255,.045);
+  border-radius:34px;
+  padding:34px;
+}
+
+.panel h3{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:36px;
+  margin-bottom:16px;
+}
+
+.panel p{
+  color:#d7d0c2;
+  line-height:1.65;
+}
+
+.signal-list{
+  display:grid;
+  gap:12px;
+  margin-top:22px;
+}
+
+.signal{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:15px;
+  background:rgba(0,0,0,.24);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+}
+
+.signal b{
+  color:var(--gold2);
+}
+
+.form-preview{
+  display:flex;
+  gap:10px;
+  margin-top:24px;
+  flex-wrap:wrap;
+}
+
+.form-preview input{
+  flex:1;
+  min-width:220px;
+  padding:16px 18px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.35);
+  color:#fff;
+  outline:none;
+}
+
 .footer{
-text-align:center;
-padding:60px 20px;
-opacity:.75;
+  width:min(1240px,calc(100% - 34px));
+  margin:80px auto 0;
+  padding:36px 0 50px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  color:var(--muted);
 }
-@media(max-width:700px){
-h1{font-size:48px}
-.hero p{font-size:18px}
+
+.footer b{
+  color:var(--white);
+  letter-spacing:2px;
+}
+
+.footer-links{
+  display:flex;
+  gap:18px;
+}
+
+.footer-links a{
+  color:var(--muted);
+  text-decoration:none;
+}
+
+@media(max-width:980px){
+  .hero-content{
+    grid-template-columns:1fr;
+  }
+  .private-card-top{
+    margin-bottom:40px;
+  }
+  .destinations{
+    grid-template-columns:1fr 1fr;
+  }
+  .mood-grid{
+    grid-template-columns:1fr 1fr;
+  }
+  .split{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:650px){
+  .nav{
+    top:10px;
+    width:calc(100% - 20px);
+  }
+  .nav-links{
+    display:none;
+  }
+  .hero{
+    padding:110px 16px 50px;
+  }
+  h1{
+    letter-spacing:-2px;
+  }
+  .hero-stats{
+    grid-template-columns:1fr;
+  }
+  .search-row{
+    grid-template-columns:1fr;
+  }
+  .destinations{
+    grid-template-columns:1fr;
+  }
+  .destination{
+    min-height:390px;
+  }
+  .mood-grid{
+    grid-template-columns:1fr;
+  }
+  .section-head{
+    display:block;
+  }
+  .footer{
+    display:block;
+    text-align:center;
+  }
+  .footer-links{
+    justify-content:center;
+    margin-top:18px;
+  }
 }
 </style>
 </head>
-<body>
 
-<section class="hero">
-<div class="hero-content">
-<div class="kicker">PRIVATE FLIGHT SOCIETY</div>
-<h1>VOLT ESCAPE</h1>
-<p>Some flights aren't meant to stay online.</p>
-<a class="btn" href="https://aviasales.tpo.lu/E61aXTY4">Request Private Access</a>
-</div>
-</section>
+<body>
+<div class="page">
+
+<nav class="nav">
+  <div class="brand">
+    <div class="brand-mark"></div>
+    <span>VOLT ESCAPE</span>
+  </div>
+
+  <div class="nav-links">
+    <a href="#deals">Live</a>
+    <a href="#moods">Moods</a>
+    <a href="#members">Members</a>
+    <a class="nav-cta" href="https://form.typeform.com/to/lax5dkBh" target="_blank">Access</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="jet-line"></div>
+
+  <div class="hero-content">
+    <div>
+      <div class="kicker">Private Flight Society</div>
+
+      <h1>
+        Private flight deals.<br>
+        <span class="hero-title-gold">Seen by very few.</span>
+      </h1>
+
+      <p class="hero-copy">
+        VOLT surfaces rare flight opportunities before they disappear into someone else's story.
+        No endless filters. No clutter. Just curated escapes worth opening your passport for.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://form.typeform.com/to/lax5dkBh" target="_blank">
+          Access Private Deals
+        </a>
+        <a class="btn btn-ghost" href="#deals">
+          Explore Live Opportunities
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <strong>Curated</strong>
+          <span>Not every cheap fare makes it in.</span>
+        </div>
+        <div class="stat">
+          <strong>Global</strong>
+          <span>Discovery across luxury and escape cities.</span>
+        </div>
+        <div class="stat">
+          <strong>Private</strong>
+          <span>Built like a members-only travel signal.</span>
+        </div>
+      </div>
+    </div>
+
+    <aside class="private-card">
+      <div class="private-card-top">
+        <small>Member Signal</small>
+        <div class="private-chip">LIVE</div>
+      </div>
+
+      <h2>Flight windows open quietly.</h2>
+
+      <p>
+        Join the private list to receive curated destination drops,
+        rare fare alerts, and travel opportunities before they become trends.
+      </p>
+
+      <div class="search-shell">
+        <div class="search-row">
+          <div class="field">
+            <label>Origin</label>
+            <div>TLV / Global</div>
+          </div>
+
+          <div class="field">
+            <label>Access</label>
+            <div>Private List</div>
+          </div>
+        </div>
+
+        <a class="btn btn-primary" href="https://form.typeform.com/to/lax5dkBh" target="_blank">
+          Request Invite
+        </a>
+      </div>
+    </aside>
+  </div>
+</header>
 
 <div class="ticker">
-TLV → Berlin • TLV → London • TLV → Athens • TLV → Budapest • TLV → Venice • TLV → Moscow
+  <div class="ticker-track">
+    TLV → BERLIN · PRIVATE FARE WINDOW &nbsp; ✦ &nbsp;
+    TLV → LONDON · CITY SIGNAL &nbsp; ✦ &nbsp;
+    TLV → ATHENS · SUMMER ESCAPE &nbsp; ✦ &nbsp;
+    TLV → BUDAPEST · WEEKEND OPPORTUNITY &nbsp; ✦ &nbsp;
+    TLV → VENICE · RARE ESCAPE &nbsp; ✦ &nbsp;
+    TLV → MOSCOW · LONG-HAUL SIGNAL &nbsp; ✦ &nbsp;
+    TLV → BERLIN · PRIVATE FARE WINDOW &nbsp; ✦ &nbsp;
+    TLV → LONDON · CITY SIGNAL &nbsp; ✦ &nbsp;
+    TLV → ATHENS · SUMMER ESCAPE &nbsp; ✦ &nbsp;
+    TLV → BUDAPEST · WEEKEND OPPORTUNITY &nbsp; ✦ &nbsp;
+    TLV → VENICE · RARE ESCAPE &nbsp; ✦ &nbsp;
+    TLV → MOSCOW · LONG-HAUL SIGNAL &nbsp; ✦ &nbsp;
+  </div>
 </div>
 
-<div class="wrap">
+<section class="section" id="deals">
+  <div class="section-head">
+    <div>
+      <div class="section-kicker">Live Opportunities</div>
+      <h2>Access the escape.</h2>
+    </div>
 
-<h2 class="section-title">Live Opportunities</h2>
+    <p class="section-intro">
+      Destination cards are curated by mood, style, and travel energy.
+      Live price checks open through VOLT's flight affiliate layer.
+    </p>
+  </div>
 
-<div class="cards">
+  <div class="destinations">
+    <article class="destination berlin">
+      <div class="destination-top">
+        <span class="badge">Private Fare Window</span>
+        <span class="code">BER</span>
+      </div>
+      <div class="destination-content">
+        <h3>Berlin</h3>
+        <p>Vintage districts. Late cafés. Independent fashion.</p>
+        <div class="access">
+          <a href="https://aviasales.tpo.lu/E61aXTY4" target="_blank">Access Deal</a>
+          <span>Check live availability</span>
+        </div>
+      </div>
+    </article>
 
-<div class="card" style="background-image:url('https://images.unsplash.com/photo-1560969184-10fe8719e047?q=80&w=1200')">
-<div class="content">
-<div class="badge">Private Fare Window</div>
-<h3>BERLIN</h3>
-<a class="view" href="https://aviasales.tpo.lu/E61aXTY4">Access Deal</a>
-</div>
-</div>
+    <article class="destination london">
+      <div class="destination-top">
+        <span class="badge">City Signal</span>
+        <span class="code">LON</span>
+      </div>
+      <div class="destination-content">
+        <h3>London</h3>
+        <p>Mayfair energy. Luxury shopping. Hidden restaurants.</p>
+        <div class="access">
+          <a href="https://aviasales.tpo.lu/E61aXTY4" target="_blank">Access Deal</a>
+          <span>Check live availability</span>
+        </div>
+      </div>
+    </article>
 
-<div class="card" style="background-image:url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1200')">
-<div class="content">
-<div class="badge">City Signal</div>
-<h3>LONDON</h3>
-<a class="view" href="https://aviasales.tpo.lu/E61aXTY4">Access Deal</a>
-</div>
-</div>
+    <article class="destination athens">
+      <div class="destination-top">
+        <span class="badge">Summer Escape</span>
+        <span class="code">ATH</span>
+      </div>
+      <div class="destination-content">
+        <h3>Athens</h3>
+        <p>Rooftops. Sea air. Last-minute freedom.</p>
+        <div class="access">
+          <a href="https://aviasales.tpo.lu/E61aXTY4" target="_blank">Access Deal</a>
+          <span>Check live availability</span>
+        </div>
+      </div>
+    </article>
 
-<div class="card" style="background-image:url('https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=1200')">
-<div class="content">
-<div class="badge">Summer Escape</div>
-<h3>ATHENS</h3>
-<a class="view" href="https://aviasales.tpo.lu/E61aXTY4">Access Deal</a>
-</div>
-</div>
+    <article class="destination budapest">
+      <div class="destination-top">
+        <span class="badge">Weekend Opportunity</span>
+        <span class="code">BUD</span>
+      </div>
+      <div class="destination-content">
+        <h3>Budapest</h3>
+        <p>Thermal baths. Architecture. Affordable luxury.</p>
+        <div class="access">
+          <a href="https://aviasales.tpo.lu/E61aXTY4" target="_blank">Access Deal</a>
+          <span>Check live availability</span>
+        </div>
+      </div>
+    </article>
 
-<div class="card" style="background-image:url('https://images.unsplash.com/photo-1549877452-9c387954fbc2?q=80&w=1200')">
-<div class="content">
-<div class="badge">Weekend Opportunity</div>
-<h3>BUDAPEST</h3>
-<a class="view" href="https://aviasales.tpo.lu/E61aXTY4">Access Deal</a>
-</div>
-</div>
+    <article class="destination venice">
+      <div class="destination-top">
+        <span class="badge">Rare Escape</span>
+        <span class="code">VCE</span>
+      </div>
+      <div class="destination-content">
+        <h3>Venice</h3>
+        <p>Canals. Quiet mornings. Timeless atmosphere.</p>
+        <div class="access">
+          <a href="https://aviasales.tpo.lu/E61aXTY4" target="_blank">Access Deal</a>
+          <span>Check live availability</span>
+        </div>
+      </div>
+    </article>
 
-<div class="card" style="background-image:url('https://images.unsplash.com/photo-1514890547357-a9ee288728e0?q=80&w=1200')">
-<div class="content">
-<div class="badge">Rare Escape</div>
-<h3>VENICE</h3>
-<a class="view" href="https://aviasales.tpo.lu/E61aXTY4">Access Deal</a>
-</div>
-</div>
+    <article class="destination moscow">
+      <div class="destination-top">
+        <span class="badge">Long-Haul Signal</span>
+        <span class="code">MOW</span>
+      </div>
+      <div class="destination-content">
+        <h3>Moscow</h3>
+        <p>Grand avenues. Culture. Winter prestige.</p>
+        <div class="access">
+          <a href="https://aviasales.tpo.lu/E61aXTY4" target="_blank">Access Deal</a>
+          <span>Check live availability</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
 
-<div class="card" style="background-image:url('https://images.unsplash.com/photo-1513326738677-b964603b136d?q=80&w=1200')">
-<div class="content">
-<div class="badge">Long-Haul Signal</div>
-<h3>MOSCOW</h3>
-<a class="view" href="https://aviasales.tpo.lu/E61aXTY4">Access Deal</a>
-</div>
-</div>
+<section class="section" id="moods">
+  <div class="section-head">
+    <div>
+      <div class="section-kicker">Discover By Mood</div>
+      <h2>Choose the feeling.</h2>
+    </div>
+
+    <p class="section-intro">
+      VOLT is designed for discovery first. Start with the kind of escape you want,
+      then unlock live availability.
+    </p>
+  </div>
+
+  <div class="mood-grid">
+    <div class="mood">
+      <div class="mood-icon">🌴</div>
+      <div>
+        <strong>Beach Escapes</strong>
+        <span>Sea air, slow mornings, clean departures.</span>
+      </div>
+    </div>
+
+    <div class="mood">
+      <div class="mood-icon">💎</div>
+      <div>
+        <strong>Luxury Weekends</strong>
+        <span>Hotels, shopping, cocktails, soft exits.</span>
+      </div>
+    </div>
+
+    <div class="mood">
+      <div class="mood-icon">🎨</div>
+      <div>
+        <strong>Fashion Cities</strong>
+        <span>Vintage racks, cafés, design districts.</span>
+      </div>
+    </div>
+
+    <div class="mood">
+      <div class="mood-icon">🌃</div>
+      <div>
+        <strong>Nightlife Signals</strong>
+        <span>Late flights, bright streets, big cities.</span>
+      </div>
+    </div>
+
+    <div class="mood">
+      <div class="mood-icon">🍷</div>
+      <div>
+        <strong>Weekend Europe</strong>
+        <span>Short breaks that feel like a full reset.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="members">
+  <div class="split">
+    <div class="panel">
+      <div class="section-kicker">Members Only</div>
+      <h3>Most people search. Members receive signals.</h3>
+      <p>
+        VOLT is not built to show every route, every airline, and every filter.
+        It is built to surface travel opportunities with taste, timing, and intent.
+      </p>
+
+      <div class="signal-list">
+        <div class="signal">
+          <span>Berlin</span>
+          <b>Window Open</b>
+        </div>
+        <div class="signal">
+          <span>Athens</span>
+          <b>Summer Signal</b>
+        </div>
+        <div class="signal">
+          <span>London</span>
+          <b>City Access</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="section-kicker">Private List</div>
+      <h3>Join before the deals become trends.</h3>
+      <p>
+        Get destination drops, rare fare alerts, and private travel opportunities.
+        The list is the product before the product.
+      </p>
+
+      <div class="form-preview">
+        <input type="email" placeholder="Your email" />
+        <a class="btn btn-primary" href="https://form.typeform.com/to/lax5dkBh" target="_blank">
+          Join The List
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div>
+    <b>VOLT ESCAPE</b>
+    <div>If you know, you know.</div>
+  </div>
+
+  <div class="footer-links">
+    <a href="#deals">Deals</a>
+    <a href="#moods">Moods</a>
+    <a href="https://form.typeform.com/to/lax5dkBh" target="_blank">Access</a>
+  </div>
+</footer>
 
 </div>
-
-<h2 class="section-title">Discover By Mood</h2>
-
-<div class="moods">
-<div class="mood">🌴 Beach Escapes</div>
-<div class="mood">💎 Luxury</div>
-<div class="mood">🎨 Fashion Cities</div>
-<div class="mood">🌃 Nightlife</div>
-<div class="mood">🍷 Weekend Europe</div>
-</div>
-
-<div class="box">
-<h2>Members See It First</h2>
-<br>
-<p>Join the private list and receive destination drops before they become trends.</p>
-<br>
-<p>Rare opportunities. Curated destinations. Private access.</p>
-</div>
-
-<div class="box">
-<h2>Why VOLT</h2>
-<br>
-<p>Most people search for flights.</p>
-<p>A few wait for something better.</p>
-<br>
-<p>VOLT surfaces opportunities before everyone else sees them.</p>
-</div>
-
-</div>
-
-<div class="footer">
-<h2>VOLT ESCAPE</h2>
-<br>
-<p>If you know, you know.</p>
-</div>
-
 </body>
 </html>
