@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://voltescape.com/</loc>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://voltescape.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://voltescape.com/cheap-flights-from-israel.html</loc><priority>0.8</priority></url>
+  <url><loc>https://voltescape.com/weekend-flights-from-tel-aviv.html</loc><priority>0.8</priority></url>
+  <url><loc>https://voltescape.com/cheap-flights-to-athens.html</loc><priority>0.8</priority></url>
+  <url><loc>https://voltescape.com/cheap-flights-to-berlin.html</loc><priority>0.8</priority></url>
+  <url><loc>https://voltescape.com/cheap-flights-to-rome.html</loc><priority>0.8</priority></url>
+  <url><loc>https://voltescape.com/last-minute-flight-deals.html</loc><priority>0.8</priority></url>
+  <url><loc>https://voltescape.com/europe-flight-deals.html</loc><priority>0.8</priority></url>
+  <url><loc>https://voltescape.com/luxury-travel-deals.html</loc><priority>0.8</priority></url>
+  <url><loc>https://voltescape.com/student-flight-deals.html</loc><priority>0.8</priority></url>
+  <url><loc>https://voltescape.com/about-voltescape.html</loc><priority>0.7</priority></url>
 </urlset>
