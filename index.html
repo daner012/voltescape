@@ -275,7 +275,7 @@
 
     @media (max-width: 640px) {
       .container { width: min(100% - 28px, 1180px); }
-      .deal-grid, .guide-grid, .launch-grid, .seo-grid, .mood-buttons, .metrics, .footer-links { grid-template-columns: 1fr; }
+      .deal-grid, .guide-grid, .launch-grid, .seo-grid, .mood-buttons, .metrics, .footer-links, .route-library-grid { grid-template-columns: 1fr; }
       h1 { font-size: 52px; }
       .section-head, .band-inner { align-items: flex-start; flex-direction: column; }
       .panel, .mood-card { padding: 24px; border-radius: 32px; }
@@ -305,6 +305,7 @@
         <a href="#guides">Guides</a>
         <a href="#alerts">Alerts</a>
         <a href="#seo">SEO</a>
+        <a href="#seo-pages">Route pages</a>
       </nav>
 
       <div class="nav-actions">
@@ -321,6 +322,7 @@
       <a href="#guides">Guides</a>
       <a href="#alerts">Alerts</a>
       <a href="#seo">SEO</a>
+      <a href="#seo-pages">Route pages</a>
     </div>
   </header>
 
@@ -504,6 +506,33 @@
         </div>
       </div>
     </section>
+
+    <section class="route-library" id="seo-pages">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="badge">Internal links for Google</span>
+            <h2>Explore Voltescape flight-deal pages</h2>
+            <p class="section-text">These links help visitors move through the site and help Google understand that Voltescape is built around flight deals, weekend escapes and routes from Israel.</p>
+          </div>
+          <a class="btn ghost" href="/sitemap.xml">View sitemap</a>
+        </div>
+
+        <div class="route-library-grid">
+          <a class="route-link-card" href="/cheap-flights-from-israel.html"><div><strong>Cheap Flights from Israel</strong><span>Affordable routes, flexible dates and Europe escape ideas.</span></div><div class="route-arrow">→</div></a>
+          <a class="route-link-card" href="/weekend-flights-from-tel-aviv.html"><div><strong>Weekend Flights from Tel Aviv</strong><span>Short direct escapes that make sense for 2–4 days.</span></div><div class="route-arrow">→</div></a>
+          <a class="route-link-card" href="/cheap-flights-to-athens.html"><div><strong>Cheap Flights to Athens</strong><span>Food, rooftops, vintage markets and a quick flight from TLV.</span></div><div class="route-arrow">→</div></a>
+          <a class="route-link-card" href="/cheap-flights-to-berlin.html"><div><strong>Cheap Flights to Berlin</strong><span>Nightlife, galleries, street style and second-hand shopping.</span></div><div class="route-arrow">→</div></a>
+          <a class="route-link-card" href="/cheap-flights-to-rome.html"><div><strong>Cheap Flights to Rome</strong><span>Pasta, city walks, shopping streets and classic weekends.</span></div><div class="route-arrow">→</div></a>
+          <a class="route-link-card" href="/last-minute-flight-deals.html"><div><strong>Last-Minute Flight Deals</strong><span>Fast escape ideas when the price drops suddenly.</span></div><div class="route-arrow">→</div></a>
+          <a class="route-link-card" href="/europe-flight-deals.html"><div><strong>Europe Flight Deals</strong><span>Compare Europe trips by price, mood and travel style.</span></div><div class="route-arrow">→</div></a>
+          <a class="route-link-card" href="/luxury-travel-deals.html"><div><strong>Luxury-Looking Travel Deals</strong><span>Premium-feeling trips without premium prices.</span></div><div class="route-arrow">→</div></a>
+          <a class="route-link-card" href="/student-flight-deals.html"><div><strong>Student Flight Deals</strong><span>Budget-friendly routes and flexible travel ideas.</span></div><div class="route-arrow">→</div></a>
+          <a class="route-link-card" href="/about-voltescape.html"><div><strong>About Voltescape</strong><span>The travel-deal discovery brand behind the site.</span></div><div class="route-arrow">→</div></a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -520,8 +549,8 @@
       </div>
       <div class="footer-links">
         <div><h4>Product</h4><a href="#search">Search</a><a href="#deals">Deals</a><a href="#alerts">Alerts</a><a href="#destinations">Destination map</a></div>
-        <div><h4>Routes</h4><a href="#deals">Athens</a><a href="#deals">Berlin</a><a href="#deals">Rome</a><a href="#deals">Paris</a></div>
-        <div><h4>Company</h4><a href="#seo">About</a><a href="#alerts">Contact</a><a href="#alerts">Partners</a><a href="#guides">Press</a></div>
+        <div><h4>Routes</h4><a href="/cheap-flights-to-athens.html">Athens</a><a href="/cheap-flights-to-berlin.html">Berlin</a><a href="/cheap-flights-to-rome.html">Rome</a><a href="/europe-flight-deals.html">Europe deals</a></div>
+        <div><h4>Company</h4><a href="/about-voltescape.html">About</a><a href="#alerts">Contact</a><a href="#alerts">Partners</a><a href="#guides">Press</a></div>
         <div><h4>Legal</h4><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Affiliate disclosure</a><a href="#">Cookies</a></div>
       </div>
     </div>
@@ -540,16 +569,16 @@
     ];
 
     const seoPages = [
-      ['/cheap-flights-from-israel','Cheap Flights from Israel | Voltescape','Find affordable flights from Israel to Europe, weekend destinations, last-minute ideas and curated routes from Tel Aviv.'],
-      ['/weekend-flights-from-tel-aviv','Weekend Flights from Tel Aviv | Voltescape','Short, smart weekend escapes from Tel Aviv with simple route ideas, direct flights and budget filters.'],
-      ['/cheap-flights-to-athens','Cheap Flights to Athens from Tel Aviv | Voltescape','Discover affordable Tel Aviv to Athens flights, weekend dates, vintage market ideas and low-cost trip planning.'],
-      ['/cheap-flights-to-berlin','Cheap Flights to Berlin from Tel Aviv | Voltescape','Find Berlin flight deals, direct route tips, nightlife travel ideas and city-break planning from Israel.'],
-      ['/cheap-flights-to-rome','Cheap Flights to Rome from Tel Aviv | Voltescape','Compare Rome escape ideas, affordable flight windows, romantic itineraries and direct flights from Tel Aviv.'],
-      ['/last-minute-flight-deals','Last-Minute Flight Deals | Voltescape','Track last-minute flight opportunities, quick weekend departures and flexible destination ideas.'],
-      ['/europe-flight-deals','Europe Flight Deals from Israel | Voltescape','Browse Europe flight deals by city, mood, travel dates and budget from Israel.'],
-      ['/luxury-travel-deals','Luxury-Looking Travel Deals | Voltescape','Premium-feeling trips without premium prices: Paris, Milan, Vienna, Rome and more curated escapes.'],
-      ['/student-flight-deals','Student Flight Deals from Israel | Voltescape','Budget flight ideas, flexible dates and low-cost cities for students traveling from Israel.'],
-      ['/about-voltescape','About Voltescape | Smart Flight Deals','Voltescape is a travel-deal discovery brand focused on fast, stylish and curated flight inspiration.']
+      ['/cheap-flights-from-israel.html','Cheap Flights from Israel | Voltescape','Find affordable flights from Israel to Europe, weekend destinations, last-minute ideas and curated routes from Tel Aviv.'],
+      ['/weekend-flights-from-tel-aviv.html','Weekend Flights from Tel Aviv | Voltescape','Short, smart weekend escapes from Tel Aviv with simple route ideas, direct flights and budget filters.'],
+      ['/cheap-flights-to-athens.html','Cheap Flights to Athens from Tel Aviv | Voltescape','Discover affordable Tel Aviv to Athens flights, weekend dates, vintage market ideas and low-cost trip planning.'],
+      ['/cheap-flights-to-berlin.html','Cheap Flights to Berlin from Tel Aviv | Voltescape','Find Berlin flight deals, direct route tips, nightlife travel ideas and city-break planning from Israel.'],
+      ['/cheap-flights-to-rome.html','Cheap Flights to Rome from Tel Aviv | Voltescape','Compare Rome escape ideas, affordable flight windows, romantic itineraries and direct flights from Tel Aviv.'],
+      ['/last-minute-flight-deals.html','Last-Minute Flight Deals | Voltescape','Track last-minute flight opportunities, quick weekend departures and flexible destination ideas.'],
+      ['/europe-flight-deals.html','Europe Flight Deals from Israel | Voltescape','Browse Europe flight deals by city, mood, travel dates and budget from Israel.'],
+      ['/luxury-travel-deals.html','Luxury-Looking Travel Deals | Voltescape','Premium-feeling trips without premium prices: Paris, Milan, Vienna, Rome and more curated escapes.'],
+      ['/student-flight-deals.html','Student Flight Deals from Israel | Voltescape','Budget flight ideas, flexible dates and low-cost cities for students traveling from Israel.'],
+      ['/about-voltescape.html','About Voltescape | Smart Flight Deals','Voltescape is a travel-deal discovery brand focused on fast, stylish and curated flight inspiration.']
     ];
 
     const filters = ['All','Weekend','Budget','Luxury','Shopping','Beach','Urban','Culture'];
