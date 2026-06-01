@@ -4,155 +4,168 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Voltescape — Deals by Destination</title>
-  <meta name="description" content="Voltescape מציג דילים לפי יעד: טיסות, מלונות, אטרקציות, eSIM והסעות במקום אחד." />
+  <meta name="description" content="Voltescape מוצא לך דילים לפי יעד: טיסות, מלונות, אטרקציות, eSIM והסעה מהשדה — הכל במקום אחד." />
+
   <style>
     :root {
-      --bg: #020617;
-      --card: rgba(255,255,255,.06);
-      --card-strong: rgba(255,255,255,.1);
-      --border: rgba(255,255,255,.12);
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --silver: #e2e8f0;
-      --blue: #38bdf8;
-      --deep-blue: #0f172a;
-      --accent: #bae6fd;
+      --bg: #07111f;
+      --bg-soft: #0d1b2e;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-strong: rgba(255, 255, 255, 0.13);
+      --text: #f4f7fb;
+      --muted: #aebbd0;
+      --silver: #d9e2ef;
+      --blue: #6fb7ff;
+      --blue-strong: #2f8fff;
+      --line: rgba(255,255,255,0.14);
+      --shadow: 0 24px 70px rgba(0,0,0,0.38);
+      --radius: 26px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(56,189,248,.22), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(226,232,240,.14), transparent 35%),
-        var(--bg);
+        radial-gradient(circle at top left, rgba(111,183,255,0.22), transparent 32%),
+        radial-gradient(circle at 80% 10%, rgba(217,226,239,0.15), transparent 28%),
+        linear-gradient(145deg, #050a12, var(--bg));
       color: var(--text);
       min-height: 100vh;
+      line-height: 1.6;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .container {
-      width: min(1180px, calc(100% - 32px));
+      width: min(1180px, calc(100% - 34px));
       margin: 0 auto;
     }
 
     header {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 50;
       backdrop-filter: blur(18px);
-      background: rgba(2, 6, 23, .7);
-      border-bottom: 1px solid var(--border);
+      background: rgba(5, 10, 18, 0.72);
+      border-bottom: 1px solid var(--line);
     }
 
     .nav {
-      height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      font-size: 22px;
+      gap: 18px;
+      padding: 18px 0;
     }
 
     .logo {
-      width: 42px;
-      height: 42px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #e2e8f0, #38bdf8, #0f172a);
-      box-shadow: 0 0 40px rgba(56,189,248,.32);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: -0.6px;
+      font-size: 1.18rem;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, var(--silver), var(--blue));
+      box-shadow: 0 0 30px rgba(111,183,255,0.45);
     }
 
     .nav-links {
       display: flex;
-      align-items: center;
       gap: 10px;
-      color: var(--muted);
-      font-size: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .nav-links a {
-      padding: 10px 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      padding: 9px 13px;
+      border: 1px solid transparent;
       border-radius: 999px;
-      transition: .2s ease;
+      transition: 0.2s ease;
     }
 
-    .nav-links a:hover { background: rgba(255,255,255,.08); color: white; }
+    .nav-links a:hover {
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,0.06);
+    }
 
     .hero {
-      padding: 88px 0 64px;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-      position: relative;
+      padding: 86px 0 42px;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 52px 52px;
-      mask-image: radial-gradient(circle at center, black, transparent 70%);
-      pointer-events: none;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 28px;
+      align-items: stretch;
     }
 
-    .hero-content {
-      position: relative;
-      max-width: 850px;
+    .hero-copy {
+      padding: 44px;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
 
-    .pill {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--accent);
-      border: 1px solid rgba(186,230,253,.28);
-      background: rgba(255,255,255,.08);
+      color: var(--blue);
+      background: rgba(111,183,255,0.10);
+      border: 1px solid rgba(111,183,255,0.22);
+      padding: 8px 13px;
       border-radius: 999px;
-      padding: 10px 14px;
-      font-size: 14px;
-      margin-bottom: 24px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      margin-bottom: 20px;
     }
 
     h1 {
-      margin: 0;
-      font-size: clamp(44px, 7vw, 86px);
-      line-height: .94;
-      letter-spacing: -.06em;
+      font-size: clamp(2.45rem, 6vw, 5.7rem);
+      line-height: 0.95;
+      letter-spacing: -3px;
+      margin-bottom: 20px;
     }
 
     .gradient-text {
-      display: block;
-      background: linear-gradient(90deg, #f8fafc, #bae6fd, #cbd5e1);
+      background: linear-gradient(90deg, #fff, var(--silver), var(--blue));
       -webkit-background-clip: text;
-      background-clip: text;
       color: transparent;
-      margin-top: 8px;
     }
 
     .hero p {
-      margin: 26px 0 0;
-      max-width: 720px;
-      color: #cbd5e1;
-      line-height: 1.85;
-      font-size: 18px;
+      color: var(--muted);
+      font-size: 1.12rem;
+      max-width: 680px;
+      margin-bottom: 30px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 32px;
     }
 
     .btn {
@@ -160,564 +173,838 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      border-radius: 18px;
-      padding: 15px 22px;
-      font-weight: 700;
-      border: 1px solid transparent;
+      padding: 13px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-weight: 800;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
       cursor: pointer;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
     }
 
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary { background: white; color: #020617; }
-    .btn-primary:hover { background: #e2e8f0; }
-    .btn-secondary { background: rgba(255,255,255,.06); color: white; border-color: var(--border); }
-    .btn-secondary:hover { background: rgba(255,255,255,.1); }
+    .btn:hover {
+      transform: translateY(-2px);
+    }
 
-    .section { padding: 54px 0; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--silver), var(--blue));
+      color: #06101e;
+      border-color: transparent;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+    }
+
+    .hero-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(145deg, rgba(111,183,255,0.12), rgba(255,255,255,0.05));
+      padding: 30px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card:before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(111,183,255,0.18);
+      filter: blur(20px);
+      top: -90px;
+      left: -80px;
+    }
+
+    .deal-preview {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini-card {
+      padding: 18px;
+      background: rgba(255,255,255,0.09);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+    }
+
+    .mini-card strong {
+      display: block;
+      font-size: 1.08rem;
+      margin-bottom: 4px;
+    }
+
+    .mini-card span {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    section {
+      padding: 44px 0;
+      scroll-margin-top: 95px;
+    }
 
     .section-head {
       display: flex;
       align-items: end;
       justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 26px;
+      gap: 18px;
+      margin-bottom: 22px;
     }
 
-    .eyebrow {
-      color: var(--accent);
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: .25em;
-      margin-bottom: 10px;
+    .section-head h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      letter-spacing: -1.4px;
+      line-height: 1;
     }
 
-    h2 {
-      margin: 0;
-      font-size: clamp(30px, 4vw, 52px);
-      letter-spacing: -.045em;
-    }
-
-    .section-copy {
+    .section-head p {
       color: var(--muted);
-      max-width: 680px;
-      line-height: 1.8;
-      margin: 14px 0 0;
+      max-width: 560px;
     }
 
-    .search-wrap {
-      width: min(360px, 100%);
-      position: relative;
-    }
-
-    .search-wrap input {
-      width: 100%;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      color: white;
-      padding: 16px 44px 16px 16px;
+    .search-box {
+      margin: 20px 0 24px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 12px 14px;
       border-radius: 20px;
-      outline: none;
-      font-size: 15px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--line);
     }
 
-    .search-wrap input:focus { border-color: rgba(56,189,248,.7); }
-    .search-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+    .search-box input {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      outline: 0;
+      color: var(--text);
+      font-size: 1rem;
+      direction: rtl;
+    }
 
-    .grid {
+    .search-box input::placeholder {
+      color: rgba(174,187,208,0.8);
+    }
+
+    .destinations-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
+      gap: 14px;
     }
 
     .destination-card {
-      min-height: 210px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: linear-gradient(135deg, rgba(15,23,42,.95), rgba(8,47,73,.72));
-      border-radius: 28px;
-      padding: 22px;
-      text-align: right;
-      cursor: pointer;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
-      box-shadow: 0 22px 70px rgba(0,0,0,.25);
-      position: relative;
-      overflow: hidden;
+      min-height: 178px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      border-radius: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      transition: 0.23s ease;
     }
 
-    .destination-card::after {
-      content: "";
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: rgba(56,189,248,.16);
-      left: -50px;
-      bottom: -50px;
-      filter: blur(2px);
+    .destination-card:hover {
+      transform: translateY(-5px);
+      background: var(--card-strong);
+      border-color: rgba(111,183,255,0.42);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.22);
     }
 
-    .destination-card:hover,
-    .destination-card.active {
-      transform: translateY(-4px);
-      border-color: rgba(186,230,253,.55);
-      background: linear-gradient(135deg, rgba(15,23,42,1), rgba(14,116,144,.62));
-    }
-
-    .badge {
-      display: inline-flex;
-      background: rgba(255,255,255,.1);
-      color: #e0f2fe;
-      border: 1px solid rgba(255,255,255,.08);
+    .tag {
+      width: fit-content;
+      color: #07111f;
+      background: linear-gradient(135deg, var(--silver), var(--blue));
+      font-size: 0.75rem;
+      font-weight: 900;
+      padding: 5px 9px;
       border-radius: 999px;
-      padding: 7px 10px;
-      font-size: 12px;
-      margin-bottom: 30px;
+      direction: ltr;
     }
 
     .destination-card h3 {
-      position: relative;
-      margin: 0;
-      font-size: 28px;
-      letter-spacing: -.035em;
+      margin-top: 24px;
+      font-size: 1.55rem;
+      letter-spacing: -0.6px;
     }
 
-    .destination-card .country {
-      position: relative;
-      color: var(--muted);
-      font-size: 14px;
-      margin-top: 5px;
-    }
-
-    .destination-card .vibe {
-      position: relative;
-      color: #cbd5e1;
-      line-height: 1.6;
-      font-size: 14px;
-      margin-top: 16px;
-    }
-
-    .detail-card {
-      margin-top: 34px;
-      border: 1px solid var(--border);
-      border-radius: 36px;
-      overflow: hidden;
-      background: rgba(255,255,255,.045);
-      box-shadow: 0 28px 90px rgba(0,0,0,.35);
-    }
-
-    .detail-hero {
-      background:
-        radial-gradient(circle at top left, rgba(186,230,253,.22), transparent 30%),
-        linear-gradient(135deg, #020617, #0c4a6e 60%, #0f172a);
-      padding: 44px;
-    }
-
-    .url {
-      color: var(--accent);
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      font-size: 13px;
-      margin-bottom: 12px;
+    .destination-card .english {
+      color: var(--blue);
       direction: ltr;
       text-align: right;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
     }
 
-    .detail-hero h2 { font-size: clamp(38px, 5vw, 66px); }
-    .detail-hero p { color: #dbeafe; line-height: 1.9; max-width: 860px; font-size: 17px; }
+    .destination-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
 
-    .detail-body {
+    .deal-section {
+      border-top: 1px solid var(--line);
+    }
+
+    .deal-box {
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
+      padding: 28px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.20);
     }
 
-    .detail-main, .affiliate-panel { padding: 36px; }
-    .affiliate-panel { border-right: 1px solid var(--border); background: rgba(2,6,23,.5); }
-
-    .info-title { font-size: 24px; font-weight: 800; margin: 0 0 16px; }
-
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 30px;
+    .deal-info h2 {
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -1.5px;
+      margin-bottom: 12px;
     }
 
-    .mini-item {
-      background: rgba(255,255,255,.055);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 18px;
-      padding: 16px;
-      color: #e2e8f0;
-      line-height: 1.5;
+    .deal-info p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 14px 0 18px;
+    }
+
+    .chip {
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(111,183,255,0.10);
+      border: 1px solid rgba(111,183,255,0.22);
+      color: var(--silver);
+      font-weight: 700;
+      font-size: 0.9rem;
     }
 
     .tip {
-      border: 1px solid rgba(56,189,248,.26);
-      background: rgba(56,189,248,.1);
-      border-radius: 24px;
-      padding: 20px;
-      color: #e0f2fe;
-      line-height: 1.8;
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(111,183,255,0.10);
+      border: 1px solid rgba(111,183,255,0.23);
+      color: var(--silver);
+      margin-top: 16px;
     }
 
-    .affiliate-panel p { color: var(--muted); line-height: 1.7; }
+    .affiliate-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
 
-    .affiliate-links { display: grid; gap: 12px; margin-top: 22px; }
-
-    .affiliate-link {
+    .affiliate-card {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      border: 1px solid rgba(255,255,255,.11);
-      background: rgba(255,255,255,.055);
-      border-radius: 20px;
-      padding: 16px;
-      transition: .18s ease;
+      gap: 12px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--line);
+      transition: 0.2s ease;
     }
 
-    .affiliate-link:hover { background: rgba(255,255,255,.1); border-color: rgba(186,230,253,.45); }
-    .affiliate-label strong { display: block; margin-bottom: 3px; }
-    .affiliate-label span { color: var(--muted); font-size: 13px; }
-    .icon-box {
-      width: 44px;
-      height: 44px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: rgba(255,255,255,.1);
-      color: var(--accent);
-      flex: none;
+    .affiliate-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(111,183,255,0.48);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .affiliate-card .icon {
+      font-size: 1.45rem;
+    }
+
+    .affiliate-card strong {
+      display: block;
+      font-size: 1rem;
+    }
+
+    .affiliate-card span {
+      color: var(--muted);
+      font-size: 0.85rem;
+      direction: ltr;
+      display: block;
+      text-align: right;
+    }
+
+    .arrow {
+      color: var(--blue);
+      font-weight: 900;
+      direction: ltr;
     }
 
     .disclosure {
-      margin-top: 20px;
-      border-radius: 20px;
-      background: white;
-      color: #0f172a;
-      padding: 18px;
-      line-height: 1.65;
-      font-size: 14px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 16px;
     }
 
-    .home-block {
-      margin-top: 42px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.055);
-      border-radius: 28px;
-      padding: 26px;
+    .homepage-block {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(111,183,255,0.12), rgba(255,255,255,0.05));
+      padding: 34px;
+      text-align: center;
+      box-shadow: var(--shadow);
     }
 
-    .city-pills {
+    .homepage-block h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      letter-spacing: -1.2px;
+      margin-bottom: 10px;
+    }
+
+    .homepage-block p {
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 auto 20px;
+    }
+
+    .quick-links {
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 18px;
     }
 
-    .city-pills button {
-      color: white;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      border-radius: 999px;
+    .quick-links a {
       padding: 10px 14px;
-      cursor: pointer;
-      transition: .18s ease;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.07);
+      color: var(--silver);
+      transition: 0.2s ease;
     }
 
-    .city-pills button:hover { background: rgba(255,255,255,.13); }
+    .quick-links a:hover {
+      background: rgba(111,183,255,0.14);
+      border-color: rgba(111,183,255,0.36);
+    }
 
     footer {
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--line);
       color: var(--muted);
-      padding: 34px 0;
+      padding: 28px 0 40px;
       text-align: center;
-      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    .hidden-by-search {
+      display: none !important;
     }
 
     @media (max-width: 980px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-      .detail-body { grid-template-columns: 1fr; }
-      .affiliate-panel { border-right: 0; border-top: 1px solid var(--border); }
-      .section-head { align-items: stretch; flex-direction: column; }
-      .search-wrap { width: 100%; }
+      .hero-grid,
+      .deal-box {
+        grid-template-columns: 1fr;
+      }
+
+      .destinations-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
     }
 
     @media (max-width: 620px) {
-      .nav { height: auto; padding: 14px 0; align-items: flex-start; flex-direction: column; }
-      .nav-links { flex-wrap: wrap; }
-      .hero { padding: 56px 0 42px; }
-      .grid { grid-template-columns: 1fr; }
-      .mini-grid { grid-template-columns: 1fr; }
-      .detail-hero, .detail-main, .affiliate-panel { padding: 24px; }
-      .hero-actions { flex-direction: column; }
-      .btn { width: 100%; }
+      .hero {
+        padding-top: 46px;
+      }
+
+      .hero-copy,
+      .hero-card,
+      .deal-box,
+      .homepage-block {
+        padding: 22px;
+      }
+
+      .destinations-grid,
+      .affiliate-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -1.6px;
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="container nav">
-      <a href="#top" class="brand" aria-label="Voltescape home">
-        <span class="logo"></span>
+      <a href="#top" class="logo" aria-label="Voltescape home">
+        <span class="logo-mark"></span>
         <span>Voltescape</span>
       </a>
-      <nav class="nav-links" aria-label="Main navigation">
+
+      <nav class="nav-links" aria-label="ניווט ראשי">
         <a href="#destinations">יעדים</a>
-        <a href="#deal">דיל נבחר</a>
-        <a href="#home-block">עמוד הבית</a>
+        <a href="#berlin">דיל נבחר</a>
+        <a href="#homepage-block">בלוק הבית</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
-      <div class="container hero-content">
-        <div class="pill">✦ Voltescape Deals by Destination</div>
-        <h1>
-          Voltescape finds the deal.
-          <span class="gradient-text">You choose the destination.</span>
-        </h1>
-        <p>
-          לא רק טיסה. כל יעד מקבל חבילת חופשה חכמה: טיסות, מלונות, אטרקציות, eSIM והסעה מהשדה — כדי לבדוק אם הדיל באמת משתלם לפני שסוגרים.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#destinations">גלה דילים לפי יעד ←</a>
-          <a class="btn btn-secondary" href="#deal">ראה דוגמת עמוד יעד</a>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">✦ Voltescape Deals by Destination</div>
+          <h1>
+            Voltescape finds the deal.<br />
+            <span class="gradient-text">You choose the destination.</span>
+          </h1>
+          <p>
+            לא רק טיסה. כל יעד מקבל חבילת חופשה חכמה: טיסות, מלונות, אטרקציות, eSIM והסעה מהשדה — כדי לבדוק אם הדיל באמת משתלם לפני שסוגרים.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#destinations">גלה דילים לפי יעד ←</a>
+            <a class="btn btn-secondary" href="#berlin">ראה דוגמת עמוד יעד</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="תצוגה מקדימה של חבילת יעד">
+          <div class="deal-preview">
+            <div class="mini-card">
+              <strong>✈️ Flights</strong>
+              <span>קישור אפיליאייט לטיסות לפי יעד</span>
+            </div>
+            <div class="mini-card">
+              <strong>🏨 Hotels</strong>
+              <span>מלונות רלוונטיים לפי עיר ואזור</span>
+            </div>
+            <div class="mini-card">
+              <strong>🎟️ Activities</strong>
+              <span>אטרקציות שמגדילות רווח סביב אותו יעד</span>
+            </div>
+            <div class="mini-card">
+              <strong>📱 eSIM + 🚕 Transfer</strong>
+              <span>עוד נקודות רווח לפני שהלקוח סוגר</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="destinations">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>גלה דילים לפי יעד</h2>
+            <p>כל כרטיס קופץ לאזור יעד בתוך אותו עמוד — לכן אין 404. בהמשך אפשר להפוך כל יעד לעמוד SEO נפרד.</p>
+          </div>
+        </div>
+
+        <div class="search-box">
+          <span>⌕</span>
+          <input id="destinationSearch" type="search" placeholder="חפש יעד: ברלין, אתונה, פריז..." />
+        </div>
+
+        <div class="destinations-grid" id="destinationGrid">
+          <a class="destination-card" href="#athens" data-search="אתונה athens greece quick escape cheap weekend sea food vintage">
+            <span class="tag">Best for quick escape</span>
+            <div>
+              <h3>אתונה</h3>
+              <div class="english">Athens, Greece</div>
+              <p>סופ״ש זול, וינטג׳, אוכל יווני וים</p>
+            </div>
+          </a>
+
+          <a class="destination-card" href="#berlin" data-search="ברלין berlin germany vintage nightlife culture young city">
+            <span class="tag">Best for vintage</span>
+            <div>
+              <h3>ברלין</h3>
+              <div class="english">Berlin, Germany</div>
+              <p>וינטג׳, תרבות, חיי לילה ועיר צעירה</p>
+            </div>
+          </a>
+
+          <a class="destination-card" href="#budapest" data-search="בודפשט budapest hungary value spa river bars cheap">
+            <span class="tag">Best value</span>
+            <div>
+              <h3>בודפשט</h3>
+              <div class="english">Budapest, Hungary</div>
+              <p>ספא, נהר, ברים וחופשה משתלמת</p>
+            </div>
+          </a>
+
+          <a class="destination-card" href="#bucharest" data-search="בוקרשט bucharest romania budget malls nightlife food cheap">
+            <span class="tag">Budget pick</span>
+            <div>
+              <h3>בוקרשט</h3>
+              <div class="english">Bucharest, Romania</div>
+              <p>קניונים, אוכל, חיי לילה ומחירים נוחים</p>
+            </div>
+          </a>
+
+          <a class="destination-card" href="#warsaw" data-search="ורשה warsaw poland underrated shopping clean smart deal">
+            <span class="tag">Underrated</span>
+            <div>
+              <h3>ורשה</h3>
+              <div class="english">Warsaw, Poland</div>
+              <p>שופינג, קניונים, עיר נקייה ודיל חכם</p>
+            </div>
+          </a>
+
+          <a class="destination-card" href="#prague" data-search="פראג prague czech romantic classic weekend beautiful">
+            <span class="tag">Romantic escape</span>
+            <div>
+              <h3>פראג</h3>
+              <div class="english">Prague, Czech Republic</div>
+              <p>עיר יפה, רומנטית וקלאסית לסופ״ש</p>
+            </div>
+          </a>
+
+          <a class="destination-card" href="#sofia" data-search="סופיה sofia bulgaria low cost cheap short easy close">
+            <span class="tag">Low cost</span>
+            <div>
+              <h3>סופיה</h3>
+              <div class="english">Sofia, Bulgaria</div>
+              <p>זול, קצר, קליל וקרוב</p>
+            </div>
+          </a>
+
+          <a class="destination-card" href="#milan" data-search="מילאנו milan italy fashion shopping outlets style">
+            <span class="tag">Fashion city</span>
+            <div>
+              <h3>מילאנו</h3>
+              <div class="english">Milan, Italy</div>
+              <p>אופנה, שופינג, אאוטלטים וסטייל</p>
+            </div>
+          </a>
+
+          <a class="destination-card" href="#paris" data-search="פריז paris france luxury fashion museums smart planning">
+            <span class="tag">Luxury classic</span>
+            <div>
+              <h3>פריז</h3>
+              <div class="english">Paris, France</div>
+              <p>יוקרה, אופנה, מוזיאונים וחופשה שצריך לתכנן חכם</p>
+            </div>
+          </a>
+
+          <a class="destination-card" href="#rome" data-search="רומא rome italy italian weekend food history beautiful streets">
+            <span class="tag">Italian weekend</span>
+            <div>
+              <h3>רומא</h3>
+              <div class="english">Rome, Italy</div>
+              <p>אוכל, היסטוריה, רחובות יפים ואווירה איטלקית</p>
+            </div>
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="destinations">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">Destination pages</div>
-            <h2>גלה דילים לפי יעד</h2>
-            <p class="section-copy">
-              כל כרטיס הוא בסיס לעמוד יעד באתר. בכל עמוד יש טיסות, מלונות, אטרקציות, eSIM והסעה — כדי להפוך כל יעד לחנות קטנה שמרוויחה מכמה כיוונים.
-            </p>
-          </div>
-          <div class="search-wrap">
-            <span class="search-icon">⌕</span>
-            <input id="search" type="search" placeholder="חפש יעד..." autocomplete="off" />
-          </div>
+    <section id="athens" class="deal-section">
+      <div class="container deal-box">
+        <div class="deal-info">
+          <span class="eyebrow">/deals/athens</span>
+          <h2>דילים לאתונה</h2>
+          <p>אתונה מתאימה לסופ״ש קצר, אוכל טוב, וינטג׳, חופים קרובים ואווירה קלילה. הדיל משתלם במיוחד כשמוצאים טיסה קצרה ומלון באזור מרכזי.</p>
+          <div class="chips"><span class="chip">וינטג׳</span><span class="chip">אוכל יווני</span><span class="chip">סופ״ש קצר</span><span class="chip">ים</span></div>
+          <div class="tip">טיפ Voltescape: באתונה עדיף מלון קרוב למטרו או למונסטיראקי כדי לחסוך זמן וכסף.</div>
         </div>
+        <div>
+          <AffiliateLinks city="ATHENS" country="GREECE"></AffiliateLinks>
+        </div>
+      </div>
+    </section>
 
-        <div class="grid" id="destinationGrid"></div>
+    <section id="berlin" class="deal-section">
+      <div class="container deal-box">
+        <div class="deal-info">
+          <span class="eyebrow">/deals/berlin</span>
+          <h2>דילים לברלין</h2>
+          <p>ברלין מושלמת למי שאוהב עיר גדולה, וינטג׳, אוכל, מוזיאונים, חיי לילה ותחבורה ציבורית חזקה. הדיל משתלם במיוחד כשבוחרים מלון ליד רכבת.</p>
+          <div class="chips"><span class="chip">וינטג׳</span><span class="chip">חיי לילה</span><span class="chip">טיול לבד</span><span class="chip">בתי קפה ותרבות</span></div>
+          <div class="tip">טיפ Voltescape: בברלין עדיף לשלם קצת יותר על מיקום טוב מאשר לבזבז זמן וכסף בנסיעות ארוכות.</div>
+        </div>
+        <div>
+          <AffiliateLinks city="BERLIN" country="GERMANY"></AffiliateLinks>
+        </div>
+      </div>
+    </section>
 
-        <article class="detail-card" id="deal">
-          <div class="detail-hero">
-            <div class="url" id="detailUrl">/deals/athens</div>
-            <h2 id="detailTitle">דילים לאתונה</h2>
-            <p id="detailIntro"></p>
-          </div>
-          <div class="detail-body">
-            <div class="detail-main">
-              <h3 class="info-title">למי היעד מתאים?</h3>
-              <div class="mini-grid" id="bestFor"></div>
+    <section id="budapest" class="deal-section">
+      <div class="container deal-box">
+        <div class="deal-info">
+          <span class="eyebrow">/deals/budapest</span>
+          <h2>דילים לבודפשט</h2>
+          <p>בודפשט היא יעד משתלם עם ספא, נהר, ברים, אוכל טוב ומחירים נוחים יחסית. מתאימה לזוגות, חברים וסופ״ש לא יקר.</p>
+          <div class="chips"><span class="chip">ספא</span><span class="chip">ברים</span><span class="chip">Value</span><span class="chip">זוגות</span></div>
+          <div class="tip">טיפ Voltescape: בדוק מלון בצד Pest אם חשוב לך להיות קרוב למסעדות, ברים וקניות.</div>
+        </div>
+        <div>
+          <AffiliateLinks city="BUDAPEST" country="HUNGARY"></AffiliateLinks>
+        </div>
+      </div>
+    </section>
 
-              <h3 class="info-title">מה לבדוק לפני שסוגרים?</h3>
-              <div class="mini-grid" id="checks"></div>
+    <section id="bucharest" class="deal-section">
+      <div class="container deal-box">
+        <div class="deal-info">
+          <span class="eyebrow">/deals/bucharest</span>
+          <h2>דילים לבוקרשט</h2>
+          <p>בוקרשט מתאימה למי שרוצה חופשה זולה יחסית עם קניונים, מסעדות, חיי לילה ומלונות במחירים נוחים.</p>
+          <div class="chips"><span class="chip">Budget</span><span class="chip">קניונים</span><span class="chip">חיי לילה</span><span class="chip">אוכל</span></div>
+          <div class="tip">טיפ Voltescape: בחר מלון עם גישה נוחה למרכז כדי לא לבזבז את החיסכון על מוניות.</div>
+        </div>
+        <div>
+          <AffiliateLinks city="BUCHAREST" country="ROMANIA"></AffiliateLinks>
+        </div>
+      </div>
+    </section>
 
-              <div class="tip" id="tip"></div>
-            </div>
+    <section id="warsaw" class="deal-section">
+      <div class="container deal-box">
+        <div class="deal-info">
+          <span class="eyebrow">/deals/warsaw</span>
+          <h2>דילים לוורשה</h2>
+          <p>ורשה היא יעד אנדרייטד לשופינג, קניונים, אוכל טוב וחופשה נקייה ומסודרת במחיר חכם.</p>
+          <div class="chips"><span class="chip">שופינג</span><span class="chip">קניונים</span><span class="chip">Underrated</span><span class="chip">עיר נקייה</span></div>
+          <div class="tip">טיפ Voltescape: ורשה טובה במיוחד כשמחפשים מלון מודרני במחיר נמוך יחסית למערב אירופה.</div>
+        </div>
+        <div>
+          <AffiliateLinks city="WARSAW" country="POLAND"></AffiliateLinks>
+        </div>
+      </div>
+    </section>
 
-            <aside class="affiliate-panel">
-              <h3 class="info-title">כפתורי אפיליאייט</h3>
-              <p>
-                כאן הלקוח בוחר מה הוא צריך. ככל שיש יותר אפשרויות סביב אותו יעד — יש לך יותר נקודות רווח.
-              </p>
-              <div class="affiliate-links" id="affiliateLinks"></div>
-              <div class="disclosure">
-                <strong>שקיפות:</strong> חלק מהקישורים באתר הם קישורי שותפים. אם תתבצע הזמנה דרך אחד הקישורים, Voltescape עשוי לקבל עמלה קטנה — ללא עלות נוספת למשתמש.
-              </div>
-            </aside>
-          </div>
-        </article>
+    <section id="prague" class="deal-section">
+      <div class="container deal-box">
+        <div class="deal-info">
+          <span class="eyebrow">/deals/prague</span>
+          <h2>דילים לפראג</h2>
+          <p>פראג יפה, רומנטית וקלאסית לסופ״ש. מתאימה למי שרוצה עיר אירופאית מרשימה בלי להסתבך יותר מדי.</p>
+          <div class="chips"><span class="chip">רומנטי</span><span class="chip">קלאסי</span><span class="chip">סופ״ש</span><span class="chip">עיר יפה</span></div>
+          <div class="tip">טיפ Voltescape: בדוק שהמלון לא רחוק מדי מהעיר העתיקה כדי ליהנות מהאווירה בלי נסיעות מיותרות.</div>
+        </div>
+        <div>
+          <AffiliateLinks city="PRAGUE" country="CZECH"></AffiliateLinks>
+        </div>
+      </div>
+    </section>
 
-        <section class="home-block" id="home-block">
-          <div class="eyebrow">Homepage block</div>
+    <section id="sofia" class="deal-section">
+      <div class="container deal-box">
+        <div class="deal-info">
+          <span class="eyebrow">/deals/sofia</span>
+          <h2>דילים לסופיה</h2>
+          <p>סופיה היא יעד זול, קצר וקליל. מתאימה למי שרוצה חופשה פשוטה, קרובה ולא יקרה.</p>
+          <div class="chips"><span class="chip">Low cost</span><span class="chip">קרוב</span><span class="chip">קליל</span><span class="chip">זול</span></div>
+          <div class="tip">טיפ Voltescape: בסופיה שווה לבדוק גם מלון וגם הסעה מראש, כי לפעמים חבילה מסודרת חוסכת כאב ראש.</div>
+        </div>
+        <div>
+          <AffiliateLinks city="SOFIA" country="BULGARIA"></AffiliateLinks>
+        </div>
+      </div>
+    </section>
+
+    <section id="milan" class="deal-section">
+      <div class="container deal-box">
+        <div class="deal-info">
+          <span class="eyebrow">/deals/milan</span>
+          <h2>דילים למילאנו</h2>
+          <p>מילאנו מתאימה לאופנה, שופינג, אאוטלטים, סטייל וקפיצה איטלקית קצרה. חשוב לבדוק את המחיר הכולל כי העיר יכולה להיות יקרה.</p>
+          <div class="chips"><span class="chip">אופנה</span><span class="chip">שופינג</span><span class="chip">אאוטלטים</span><span class="chip">סטייל</span></div>
+          <div class="tip">טיפ Voltescape: אם המטרה היא שופינג, בדוק אטרקציות או הסעות לאאוטלטים מראש.</div>
+        </div>
+        <div>
+          <AffiliateLinks city="MILAN" country="ITALY"></AffiliateLinks>
+        </div>
+      </div>
+    </section>
+
+    <section id="paris" class="deal-section">
+      <div class="container deal-box">
+        <div class="deal-info">
+          <span class="eyebrow">/deals/paris</span>
+          <h2>דילים לפריז</h2>
+          <p>פריז היא יעד יוקרתי וקלאסי לאופנה, מוזיאונים, קפה, רחובות יפים ושופינג. כאן חשוב במיוחד לבדוק שהדיל באמת משתלם.</p>
+          <div class="chips"><span class="chip">יוקרה</span><span class="chip">אופנה</span><span class="chip">מוזיאונים</span><span class="chip">קלאסי</span></div>
+          <div class="tip">טיפ Voltescape: בפריז מיקום המלון קריטי. מלון זול מדי בקצה העיר יכול להפוך את החופשה לפחות משתלמת.</div>
+        </div>
+        <div>
+          <AffiliateLinks city="PARIS" country="FRANCE"></AffiliateLinks>
+        </div>
+      </div>
+    </section>
+
+    <section id="rome" class="deal-section">
+      <div class="container deal-box">
+        <div class="deal-info">
+          <span class="eyebrow">/deals/rome</span>
+          <h2>דילים לרומא</h2>
+          <p>רומא מתאימה לאוכל, היסטוריה, רחובות יפים ואווירה איטלקית. יעד מעולה לסופ״ש אבל כדאי לתכנן אזור לינה נכון.</p>
+          <div class="chips"><span class="chip">אוכל</span><span class="chip">היסטוריה</span><span class="chip">איטליה</span><span class="chip">סופ״ש</span></div>
+          <div class="tip">טיפ Voltescape: ברומא עדיף להיות קרוב לאזורי הטיול כדי ללכת הרבה ברגל ולחסוך זמן.</div>
+        </div>
+        <div>
+          <AffiliateLinks city="ROME" country="ITALY"></AffiliateLinks>
+        </div>
+      </div>
+    </section>
+
+    <section id="homepage-block">
+      <div class="container">
+        <div class="homepage-block">
           <h2>בלוק מוכן לעמוד הבית</h2>
-          <p class="section-copy">
+          <p>
             ב־Voltescape אנחנו לא מציגים רק טיסה. אנחנו בונים לך תמונה מלאה של החופשה: טיסה, מלון, אינטרנט, אטרקציות והסעה — כדי שתדע אם הדיל באמת משתלם.
           </p>
-          <div class="city-pills" id="cityPills"></div>
-        </section>
+          <div class="quick-links">
+            <a href="#athens">אתונה</a>
+            <a href="#berlin">ברלין</a>
+            <a href="#budapest">בודפשט</a>
+            <a href="#bucharest">בוקרשט</a>
+            <a href="#warsaw">ורשה</a>
+            <a href="#prague">פראג</a>
+            <a href="#sofia">סופיה</a>
+            <a href="#milan">מילאנו</a>
+            <a href="#paris">פריז</a>
+            <a href="#rome">רומא</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container">
-      © 2026 Voltescape. Deals by destination.<br />
-      City-specific template: replace every PASTE_... placeholder with its matching Travelpayouts affiliate link.
+      <p>© 2026 Voltescape. Deals by destination.</p>
+      <p>שקיפות: חלק מהקישורים באתר הם קישורי שותפים. אם תתבצע הזמנה דרך אחד הקישורים, Voltescape עשוי לקבל עמלה קטנה — ללא עלות נוספת למשתמש.</p>
     </div>
   </footer>
 
+  <template id="affiliate-template">
+    <div class="affiliate-grid">
+      <a class="affiliate-card flights" href="#" target="_blank" rel="nofollow sponsored noopener">
+        <div><span class="icon">✈️</span><strong>טיסות</strong><span>Flights</span></div><div class="arrow">←</div>
+      </a>
+      <a class="affiliate-card hotels" href="#" target="_blank" rel="nofollow sponsored noopener">
+        <div><span class="icon">🏨</span><strong>מלונות</strong><span>Hotels</span></div><div class="arrow">←</div>
+      </a>
+      <a class="affiliate-card activities" href="#" target="_blank" rel="nofollow sponsored noopener">
+        <div><span class="icon">🎟️</span><strong>אטרקציות</strong><span>Activities</span></div><div class="arrow">←</div>
+      </a>
+      <a class="affiliate-card esim" href="#" target="_blank" rel="nofollow sponsored noopener">
+        <div><span class="icon">📱</span><strong>אינטרנט</strong><span>eSIM</span></div><div class="arrow">←</div>
+      </a>
+      <a class="affiliate-card transfer" href="#" target="_blank" rel="nofollow sponsored noopener">
+        <div><span class="icon">🚕</span><strong>הסעה</strong><span>Airport transfer</span></div><div class="arrow">←</div>
+      </a>
+    </div>
+    <p class="disclosure">קישורי הטיסות נבנים אוטומטית כהלוך־חזור: יציאה בעוד 30 יום וחזרה אחרי 7 ימים. המשתמש עדיין יכול לשנות תאריכים ב־Aviasales.</p>
+  </template>
+
   <script>
-    const destinations = [
-      {
-        city: "Athens", hebrew: "אתונה", slug: "athens", country: "Greece", vibe: "סופ״ש זול, וינטג׳, אוכל יווני וים", badge: "Best for quick escape",
-        intro: "אתונה היא יעד חכם לחופשה קצרה: טיסה יחסית קצרה, אוכל טוב, שווקים, וינטג׳, ים והיסטוריה. לפני שסוגרים דיל, בודקים לא רק את מחיר הטיסה אלא גם מלון, תחבורה ואטרקציות.",
-        bestFor: ["סופ״ש קצר", "וינטג׳ ושווקים", "אוכל טוב", "טיול לבד או עם חברים"],
-        checks: ["שעת נחיתה", "מזוודה כלולה", "מיקום ליד מטרו", "עלות הגעה מהשדה"],
-        tip: "טיפ Voltescape: אם הנחיתה בלילה, בדוק מראש כמה עולה להגיע מהשדה למלון. לפעמים טיסה זולה מתייקרת בגלל מונית יקרה.",
-        links: { flights: "PASTE_ATHENS_FLIGHTS_LINK", hotels: "PASTE_ATHENS_HOTELS_LINK", activities: "PASTE_ATHENS_ACTIVITIES_LINK", esim: "PASTE_GREECE_ESIM_LINK", transfer: "PASTE_ATHENS_TRANSFER_LINK" }
-      },
-      {
-        city: "Berlin", hebrew: "ברלין", slug: "berlin", country: "Germany", vibe: "וינטג׳, תרבות, חיי לילה ועיר צעירה", badge: "Best for vintage",
-        intro: "ברלין מושלמת למי שאוהב עיר גדולה, וינטג׳, אוכל, מוזיאונים, חיי לילה ותחבורה ציבורית חזקה. הדיל משתלם במיוחד כשבוחרים מלון ליד רכבת.",
-        bestFor: ["וינטג׳", "חיי לילה", "טיול לבד", "בתי קפה ותרבות"],
-        checks: ["קרבה ל־U-Bahn", "מזג אוויר", "אזורי שופינג", "עלות תחבורה"],
-        tip: "טיפ Voltescape: בברלין עדיף לשלם קצת יותר על מיקום טוב מאשר לבזבז זמן וכסף בנסיעות ארוכות.",
-        links: { flights: "PASTE_BERLIN_FLIGHTS_LINK", hotels: "PASTE_BERLIN_HOTELS_LINK", activities: "PASTE_BERLIN_ACTIVITIES_LINK", esim: "PASTE_GERMANY_ESIM_LINK", transfer: "PASTE_BERLIN_TRANSFER_LINK" }
-      },
-      {
-        city: "Budapest", hebrew: "בודפשט", slug: "budapest", country: "Hungary", vibe: "ספא, נהר, ברים וחופשה משתלמת", badge: "Best value",
-        intro: "בודפשט נותנת תחושה אירופאית חזקה במחיר נוח יחסית: ספא, נהר, ברים, אוכל, ארכיטקטורה וחופשה שמתאימה גם לזוגות וגם לחברים.",
-        bestFor: ["זוגות", "ספא", "ברים", "חופשה משתלמת"],
-        checks: ["מיקום בפשט", "כרטיסי ספא", "שייט בדנובה", "הגעה מהשדה"],
-        tip: "טיפ Voltescape: אטרקציות כמו ספא ושייט עדיף לסגור מראש כדי לא להיתקע עם מחירים גבוהים או תורים.",
-        links: { flights: "PASTE_BUDAPEST_FLIGHTS_LINK", hotels: "PASTE_BUDAPEST_HOTELS_LINK", activities: "PASTE_BUDAPEST_ACTIVITIES_LINK", esim: "PASTE_HUNGARY_ESIM_LINK", transfer: "PASTE_BUDAPEST_TRANSFER_LINK" }
-      },
-      {
-        city: "Bucharest", hebrew: "בוקרשט", slug: "bucharest", country: "Romania", vibe: "קניונים, אוכל, חיי לילה ומחירים נוחים", badge: "Budget pick",
-        intro: "בוקרשט מתאימה לחופשה קצרה וזולה יחסית עם קניונים גדולים, בתי קפה, מסעדות וחיי לילה. הבחירה במלון מרכזי עושה הבדל ענק.",
-        bestFor: ["שופינג", "קניונים", "סופ״ש קצר", "תקציב נמוך"],
-        checks: ["קרבה לעיר העתיקה", "מרחק מקניונים", "מזג אוויר", "תחבורה מהשדה"],
-        tip: "טיפ Voltescape: אל תחסוך יותר מדי על מלון רחוק — בבוקרשט מיקום טוב יכול לחסוך הרבה מוניות.",
-        links: { flights: "PASTE_BUCHAREST_FLIGHTS_LINK", hotels: "PASTE_BUCHAREST_HOTELS_LINK", activities: "PASTE_BUCHAREST_ACTIVITIES_LINK", esim: "PASTE_ROMANIA_ESIM_LINK", transfer: "PASTE_BUCHAREST_TRANSFER_LINK" }
-      },
-      {
-        city: "Warsaw", hebrew: "ורשה", slug: "warsaw", country: "Poland", vibe: "שופינג, קניונים, עיר נקייה ודיל חכם", badge: "Underrated",
-        intro: "ורשה היא יעד אנדרייטד: קניונים, אוכל, עיר נקייה, מחירים יחסית נוחים ואווירה אירופאית בלי עומס תיירותי מוגזם.",
-        bestFor: ["שופינג", "קניונים", "חופשה רגועה", "מחירים נוחים"],
-        checks: ["מרכז העיר", "קניונים קרובים", "חורף קר", "הגעה מהשדה"],
-        tip: "טיפ Voltescape: ורשה מעולה למי שרוצה חופשה נוחה ולא יקרה מדי, במיוחד אם המלון קרוב לתחבורה ציבורית.",
-        links: { flights: "PASTE_WARSAW_FLIGHTS_LINK", hotels: "PASTE_WARSAW_HOTELS_LINK", activities: "PASTE_WARSAW_ACTIVITIES_LINK", esim: "PASTE_POLAND_ESIM_LINK", transfer: "PASTE_WARSAW_TRANSFER_LINK" }
-      },
-      {
-        city: "Prague", hebrew: "פראג", slug: "prague", country: "Czech Republic", vibe: "עיר יפה, רומנטית וקלאסית לסופ״ש", badge: "Romantic escape",
-        intro: "פראג היא יעד קלאסי: עיר יפה, רומנטית, נוחה לטיול ברגל, עם גשרים, תצפיות, אוכל ואווירה מיוחדת.",
-        bestFor: ["זוגות", "סופ״ש", "טיולים רגליים", "עיר אירופאית קלאסית"],
-        checks: ["עיר עתיקה", "עומס תיירים", "מזג אוויר", "סיורים מראש"],
-        tip: "טיפ Voltescape: בפראג מיקום מרכזי חוסך המון זמן והופך את הטיול להרבה יותר קל.",
-        links: { flights: "PASTE_PRAGUE_FLIGHTS_LINK", hotels: "PASTE_PRAGUE_HOTELS_LINK", activities: "PASTE_PRAGUE_ACTIVITIES_LINK", esim: "PASTE_CZECHIA_ESIM_LINK", transfer: "PASTE_PRAGUE_TRANSFER_LINK" }
-      },
-      {
-        city: "Sofia", hebrew: "סופיה", slug: "sofia", country: "Bulgaria", vibe: "זול, קצר, קליל וקרוב", badge: "Low cost",
-        intro: "סופיה מתאימה למי שרוצה חופשה קצרה וזולה יחסית, אוכל, קניונים, טבע קרוב ואווירה רגועה.",
-        bestFor: ["תקציב נמוך", "קניונים", "חופשה קלילה", "טיול קצר"],
-        checks: ["מלון מרכזי", "מזג אוויר", "טיול יום", "תחבורה מהשדה"],
-        tip: "טיפ Voltescape: סופיה היא דיל טוב למי שבא בראש נכון: לא הכי נוצצת, אבל יכולה להיות מאוד משתלמת.",
-        links: { flights: "PASTE_SOFIA_FLIGHTS_LINK", hotels: "PASTE_SOFIA_HOTELS_LINK", activities: "PASTE_SOFIA_ACTIVITIES_LINK", esim: "PASTE_BULGARIA_ESIM_LINK", transfer: "PASTE_SOFIA_TRANSFER_LINK" }
-      },
-      {
-        city: "Milan", hebrew: "מילאנו", slug: "milan", country: "Italy", vibe: "אופנה, שופינג, אאוטלטים וסטייל", badge: "Fashion city",
-        intro: "מילאנו היא יעד חזק לאופנה, מותגים, אאוטלטים, קפה ועיר אלגנטית. היא לא תמיד הכי זולה, אבל עם תכנון נכון היא יכולה להיות דיל שווה.",
-        bestFor: ["אופנה", "מותגים", "אאוטלטים", "אוכל איטלקי"],
-        checks: ["איזה שדה תעופה", "הגעה לעיר", "מלון ליד מטרו", "סיילים"],
-        tip: "טיפ Voltescape: במילאנו חשוב לבדוק מאיזה שדה נוחתים. טיסה זולה לשדה רחוק יכולה לעלות ביוקר בזמן ובתחבורה.",
-        links: { flights: "PASTE_MILAN_FLIGHTS_LINK", hotels: "PASTE_MILAN_HOTELS_LINK", activities: "PASTE_MILAN_ACTIVITIES_LINK", esim: "PASTE_ITALY_ESIM_LINK", transfer: "PASTE_MILAN_TRANSFER_LINK" }
-      },
-      {
-        city: "Paris", hebrew: "פריז", slug: "paris", country: "France", vibe: "יוקרה, אופנה, מוזיאונים וחופשה שצריך לתכנן חכם", badge: "Luxury classic",
-        intro: "פריז היא יעד חלומי, אבל יכולה להיות יקרה אם לא מתכננים נכון. צריך לבדוק מלון, מיקום, תחבורה, אטרקציות ועלויות יומיות.",
-        bestFor: ["זוגות", "אופנה", "מוזיאונים", "שופינג יוקרתי"],
-        checks: ["מלון ליד מטרו", "אטרקציות מראש", "שדה תעופה", "אזורי שופינג"],
-        tip: "טיפ Voltescape: בפריז לא חייבים להיות הכי במרכז, אבל חייבים להיות ליד מטרו. זה משנה את כל החופשה.",
-        links: { flights: "PASTE_PARIS_FLIGHTS_LINK", hotels: "PASTE_PARIS_HOTELS_LINK", activities: "PASTE_PARIS_ACTIVITIES_LINK", esim: "PASTE_FRANCE_ESIM_LINK", transfer: "PASTE_PARIS_TRANSFER_LINK" }
-      },
-      {
-        city: "Rome", hebrew: "רומא", slug: "rome", country: "Italy", vibe: "אוכל, היסטוריה, רחובות יפים ואווירה איטלקית", badge: "Italian weekend",
-        intro: "רומא מושלמת למי שרוצה אוכל איטלקי, היסטוריה, רחובות יפים, קפה, שופינג ואווירה. עם תכנון נכון אפשר להפוך אותה לדיל חכם.",
-        bestFor: ["אוכל", "היסטוריה", "זוגות", "טיול רגלי"],
-        checks: ["מלון במרכז ההיסטורי", "כרטיסים מראש", "עומס תיירים", "הגעה מהשדה"],
-        tip: "טיפ Voltescape: ברומא כדאי לסגור כרטיסים לאטרקציות מרכזיות מראש. זה חוסך תורים ולפעמים גם כסף.",
-        links: { flights: "PASTE_ROME_FLIGHTS_LINK", hotels: "PASTE_ROME_HOTELS_LINK", activities: "PASTE_ROME_ACTIVITIES_LINK", esim: "PASTE_ITALY_ESIM_LINK", transfer: "PASTE_ROME_TRANSFER_LINK" }
-      }
-    ];
+    const flightDestinations = {
+      ATHENS: { iata: 'ATH', subId: 'flights-athens' },
+      BERLIN: { iata: 'BER', subId: 'flights-berlin' },
+      BUDAPEST: { iata: 'BUD', subId: 'flights-budapest' },
+      BUCHAREST: { iata: 'OTP', subId: 'flights-bucharest' },
+      WARSAW: { iata: 'WAW', subId: 'flights-warsaw' },
+      PRAGUE: { iata: 'PRG', subId: 'flights-prague' },
+      SOFIA: { iata: 'SOF', subId: 'flights-sofia' },
+      MILAN: { iata: 'MIL', subId: 'flights-milan' },
+      PARIS: { iata: 'PAR', subId: 'flights-paris' },
+      ROME: { iata: 'ROM', subId: 'flights-rome' }
+    };
 
-    const actions = [
-      { key: "flights", icon: "✈️", label: "טיסות", sub: "Flights" },
-      { key: "hotels", icon: "🏨", label: "מלונות", sub: "Hotels" },
-      { key: "activities", icon: "🎟️", label: "אטרקציות", sub: "Activities" },
-      { key: "esim", icon: "📱", label: "אינטרנט", sub: "eSIM" },
-      { key: "transfer", icon: "🚕", label: "הסעה", sub: "Airport transfer" }
-    ];
-
-    const grid = document.getElementById("destinationGrid");
-    const search = document.getElementById("search");
-    const cityPills = document.getElementById("cityPills");
-    let selectedSlug = "athens";
-
-    function renderGrid(items) {
-      grid.innerHTML = items.map(d => `
-        <button class="destination-card ${d.slug === selectedSlug ? "active" : ""}" data-slug="${d.slug}" aria-label="דילים ל${d.hebrew}">
-          <span class="badge">${d.badge}</span>
-          <h3>${d.hebrew}</h3>
-          <div class="country">${d.city}, ${d.country}</div>
-          <div class="vibe">${d.vibe}</div>
-        </button>
-      `).join("");
-
-      document.querySelectorAll(".destination-card").forEach(card => {
-        card.addEventListener("click", () => selectDestination(card.dataset.slug, true));
-      });
+    function formatDate(date) {
+      return date.toISOString().slice(0, 10);
     }
 
-    function renderPills() {
-      cityPills.innerHTML = destinations.map(d => `
-        <button data-slug="${d.slug}">${d.hebrew}</button>
-      `).join("");
+    function buildRoundTripFlightLink(cityKey) {
+      const city = flightDestinations[cityKey];
+      const departDate = new Date();
+      departDate.setDate(departDate.getDate() + 30);
 
-      cityPills.querySelectorAll("button").forEach(button => {
-        button.addEventListener("click", () => selectDestination(button.dataset.slug, true));
-      });
+      const returnDate = new Date(departDate);
+      returnDate.setDate(returnDate.getDate() + 7);
+
+      const aviasalesSearchUrl = new URL('https://search.aviasales.com/flights/');
+      aviasalesSearchUrl.searchParams.set('origin_iata', 'TLV');
+      aviasalesSearchUrl.searchParams.set('destination_iata', city.iata);
+      aviasalesSearchUrl.searchParams.set('depart_date', formatDate(departDate));
+      aviasalesSearchUrl.searchParams.set('return_date', formatDate(returnDate));
+      aviasalesSearchUrl.searchParams.set('adults', '1');
+      aviasalesSearchUrl.searchParams.set('children', '0');
+      aviasalesSearchUrl.searchParams.set('infants', '0');
+      aviasalesSearchUrl.searchParams.set('trip_class', '0');
+      aviasalesSearchUrl.searchParams.set('locale', 'en');
+      aviasalesSearchUrl.searchParams.set('one_way', 'false');
+
+      return 'https://tp.media/r?marker=734712.' + city.subId +
+        '&trs=534983&p=4114&u=' + encodeURIComponent(aviasalesSearchUrl.toString()) +
+        '&campaign_id=100';
     }
 
-    function selectDestination(slug, scrollToDetail = false) {
-      const d = destinations.find(item => item.slug === slug) || destinations[0];
-      selectedSlug = d.slug;
+    const affiliateLinks = {};
 
-      document.getElementById("detailUrl").textContent = `/deals/${d.slug}`;
-      document.getElementById("detailTitle").textContent = `דילים ל${d.hebrew}`;
-      document.getElementById("detailIntro").textContent = d.intro;
-      document.getElementById("bestFor").innerHTML = d.bestFor.map(item => `<div class="mini-item">${item}</div>`).join("");
-      document.getElementById("checks").innerHTML = d.checks.map(item => `<div class="mini-item">${item}</div>`).join("");
-      document.getElementById("tip").textContent = d.tip;
-
-      document.getElementById("affiliateLinks").innerHTML = actions.map(action => {
-        const href = d.links[action.key] || "#";
-        return `
-          <a class="affiliate-link" href="${href}" target="_blank" rel="nofollow sponsored noopener">
-            <span class="icon-box">${action.icon}</span>
-            <span class="affiliate-label">
-              <strong>${action.label}</strong>
-              <span>${action.sub}</span>
-            </span>
-            <span>←</span>
-          </a>
-        `;
-      }).join("");
-
-      const q = search.value.toLowerCase().trim();
-      const filtered = !q ? destinations : destinations.filter(d => [d.city, d.hebrew, d.country, d.vibe, d.badge].join(" ").toLowerCase().includes(q));
-      renderGrid(filtered);
-
-      if (scrollToDetail) document.getElementById("deal").scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-
-    search.addEventListener("input", () => {
-      const q = search.value.toLowerCase().trim();
-      const filtered = !q ? destinations : destinations.filter(d => [d.city, d.hebrew, d.country, d.vibe, d.badge].join(" ").toLowerCase().includes(q));
-      renderGrid(filtered);
+    Object.keys(flightDestinations).forEach((cityKey) => {
+      affiliateLinks[cityKey] = {
+        flights: buildRoundTripFlightLink(cityKey),
+        hotels: 'https://klook.tpo.lu/D9kaX1Le',
+        activities: 'https://klook.tpo.lu/D9kaX1Le',
+        esim: 'https://yesim.tpo.lu/AU9x5GjB',
+        transfer: 'https://kiwitaxi.tpo.lu/wnzjfyjy'
+      };
     });
 
-    renderGrid(destinations);
-    renderPills();
-    selectDestination("athens");
+    document.querySelectorAll('AffiliateLinks').forEach((placeholder) => {
+      const city = placeholder.getAttribute('city');
+      const template = document.getElementById('affiliate-template').content.cloneNode(true);
+      const links = affiliateLinks[city];
+
+      if (links) {
+        Object.keys(links).forEach((type) => {
+          const card = template.querySelector('.' + type);
+          if (card) card.href = links[type];
+        });
+      }
+
+      placeholder.replaceWith(template);
+    });
+
+    const searchInput = document.getElementById('destinationSearch');
+    const cards = document.querySelectorAll('.destination-card');
+
+    searchInput.addEventListener('input', () => {
+      const value = searchInput.value.trim().toLowerCase();
+      cards.forEach((card) => {
+        const searchText = card.dataset.search.toLowerCase();
+        card.classList.toggle('hidden-by-search', value && !searchText.includes(value));
+      });
+    });
   </script>
 </body>
 </html>
