@@ -12,6 +12,10 @@ const allowedHosts = [
   "www.yesim.app",
   "kiwitaxi.com",
   "www.kiwitaxi.com",
+  "klook.tpo.lu",
+  "yesim.tpo.lu",
+  "kiwitaxi.tpo.lu",
+  "aviasales.tpo.lu",
 ];
 
 function safeUrl(value: string | null) {
