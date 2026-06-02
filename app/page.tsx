@@ -70,7 +70,7 @@ export default async function HomePage() {
               <span className="panel-label">הדיל החם</span>
               <strong>תל אביב ← {top.destination}</strong>
               <div className="panel-price">
-                {top.livePrice ? `החל מ-€${top.livePrice}` : `בסביבות €${top.targetRange[0]}-${top.targetRange[1]}`}
+                {top.livePrice ? `החל מ-₪${top.livePrice}` : `בסביבות ₪${top.targetRange[0]}-${top.targetRange[1]}`}
               </div>
               <p className="deal-meta">{top.dealTag} · {top.urgencyLabel}</p>
               <div className="meter" aria-label={`ציון דיל ${top.score} מתוך 100`}>
@@ -94,7 +94,7 @@ export default async function HomePage() {
                 <a className="strip-card" href={deal.affiliateUrl} target="_blank" rel="nofollow sponsored noopener" key={deal.iata}>
                   <strong>TLV → {deal.iata}</strong>
                   <span>
-                    {deal.destination} · {deal.livePrice ? `מ-€${deal.livePrice}` : `בסביבות €${deal.targetRange[0]}-${deal.targetRange[1]}`} · {deal.dealTag} · ציון {deal.score}
+                    {deal.destination} · {deal.livePrice ? `מ-₪${deal.livePrice}` : `בסביבות ₪${deal.targetRange[0]}-${deal.targetRange[1]}`} · {deal.dealTag} · ציון {deal.score}
                   </span>
                 </a>
               ))}
@@ -115,7 +115,7 @@ export default async function HomePage() {
               <a className="board-row" href={deal.affiliateUrl} target="_blank" rel="nofollow sponsored noopener" key={deal.iata}>
                 <span>#{index + 1}</span>
                 <strong>TLV → {deal.destination}</strong>
-                <em>{deal.livePrice ? `החל מ-€${deal.livePrice}` : `בסביבות €${deal.targetRange[0]}-${deal.targetRange[1]}`}</em>
+                <em>{deal.livePrice ? `החל מ-₪${deal.livePrice}` : `בסביבות ₪${deal.targetRange[0]}-${deal.targetRange[1]}`}</em>
                 <small>{deal.dealTag} · ציון {deal.score}</small>
               </a>
             ))}
@@ -166,7 +166,7 @@ export default async function HomePage() {
                 <div className="row">
                   <span className="chip">{city.iata}</span>
                   <span className="chip">
-                    בסביבות €{city.targetRange[0]}-{city.targetRange[1]}
+                    בסביבות ₪{city.targetRange[0]}-{city.targetRange[1]}
                   </span>
                 </div>
                 <h3>{city.name}</h3>
@@ -257,7 +257,7 @@ export default async function HomePage() {
           destinations={destinations}
           defaultDestination={topDestination.iata}
           topDealUrl={top.affiliateUrl}
-          topDealLabel={top.livePrice ? `${top.destination} החל מ-€${top.livePrice}` : `בדוק דיל ל${top.destination}`}
+          topDealLabel={top.livePrice ? `${top.destination} החל מ-₪${top.livePrice}` : `בדוק דיל ל${top.destination}`}
         />
       </main>
       <Footer />
