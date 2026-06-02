@@ -233,16 +233,18 @@ export async function getRouteDeal(input: { origin?: string; destination: string
   const currency = input.currency || DEFAULT_CURRENCY;
   const candidates = await fetchLiveCandidates(destination, origin, currency, 8).catch(() => []);
   const deal = buildDeal(destination, origin, currency, candidates[0] ?? null);
+  const bookingUrl = aviasalesUrl(destination, {
+    origin,
+    currency,
+    departDate: input.departDate || deal.departDate,
+    returnDate: input.returnDate || deal.returnDate,
+  });
 
   return {
     ...deal,
     departDate: input.departDate || deal.departDate,
     returnDate: input.returnDate || deal.returnDate,
-    bookingUrl: aviasalesUrl(destination, {
-      origin,
-      currency,
-      departDate: input.departDate || deal.departDate,
-      returnDate: input.returnDate || deal.returnDate,
-    }),
+    affiliateUrl: bookingUrl,
+    bookingUrl,
   };
 }

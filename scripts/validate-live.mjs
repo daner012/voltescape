@@ -70,6 +70,9 @@ async function assertSearchApi() {
 
   assert(payload.departDate === departDate, "Search API must preserve departDate");
   assert(payload.returnDate === expectedReturn, "Search API must auto-generate a 3-day returnDate");
+  assert(payload.affiliateUrl.includes("depart_date=2026-07-10"), "Search affiliateUrl must include selected depart_date");
+  assert(payload.affiliateUrl.includes("return_date=2026-07-13"), "Search affiliateUrl must include generated return_date");
+  assert(payload.affiliateUrl.includes("search.aviasales.com/flights/"), "Search affiliateUrl must use Aviasales flights deep link");
 
   const decodedBookingUrl = decodeURIComponent(payload.bookingUrl || "");
   assert(decodedBookingUrl.includes("/api/redirect?partner=aviasales"), "Search bookingUrl must use /api/redirect");
