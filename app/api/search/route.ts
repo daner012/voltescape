@@ -3,12 +3,37 @@ import { trackedUrl } from "@/lib/affiliate";
 import { getDestination, ORIGIN } from "@/lib/destinations";
 import { getRouteDeal } from "@/lib/travelpayouts";
 
+function isoDate(offsetDays: number) {
+  const date = new Date();
+  date.setDate(date.getDate() + offsetDays);
+  return date.toISOString().slice(0, 10);
+}
+
+function addDays(value: string, days: number) {
+  const date = new Date(`${value}T12:00:00Z`);
+  date.setUTCDate(date.getUTCDate() + days);
+  return date.toISOString().slice(0, 10);
+}
+
+function validIsoDate(value: string | null) {
+  if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+  const date = new Date(`${value}T12:00:00Z`);
+  return Number.isNaN(date.getTime()) ? null : value;
+}
+
+function roundTripDates(departDateParam: string | null, returnDateParam: string | null) {
+  const departDate = validIsoDate(departDateParam) || isoDate(18);
+  const requestedReturn = validIsoDate(returnDateParam);
+  const returnDate = requestedReturn && requestedReturn > departDate ? requestedReturn : addDays(departDate, 3);
+
+  return { departDate, returnDate };
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const origin = searchParams.get("origin") || ORIGIN;
   const destinationCode = searchParams.get("destination");
-  const departDate = searchParams.get("departDate") || undefined;
-  const returnDate = searchParams.get("returnDate") || undefined;
+  const { departDate, returnDate } = roundTripDates(searchParams.get("departDate"), searchParams.get("returnDate"));
 
   if (!destinationCode) {
     return NextResponse.json({ error: "destination is required" }, { status: 400 });
@@ -26,6 +51,8 @@ export async function GET(request: Request) {
 
   return NextResponse.json({
     ...deal,
+    departDate,
+    returnDate,
     bookingUrl: trackedUrl({
       partner: "aviasales",
       destination,

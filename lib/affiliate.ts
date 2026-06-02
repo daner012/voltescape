@@ -2,7 +2,7 @@ import { DEFAULT_CURRENCY, ORIGIN, type Destination } from "./destinations";
 
 export type Partner = "aviasales" | "klook" | "yesim" | "kiwitaxi";
 
-function marker() {
+export function affiliateMarker() {
   return process.env.TRAVELPAYOUTS_MARKER || "734712";
 }
 
@@ -14,10 +14,11 @@ export function aviasalesUrl(destination: Pick<Destination, "iata">, options: { 
     children: "0",
     infants: "0",
     trip_class: "0",
+    one_way: "false",
     oneway: "0",
     locale: "en-us",
     currency: options.currency || DEFAULT_CURRENCY,
-    marker: marker(),
+    marker: affiliateMarker(),
   });
 
   if (options.departDate) params.set("depart_date", options.departDate);

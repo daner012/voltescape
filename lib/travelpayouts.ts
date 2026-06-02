@@ -236,6 +236,8 @@ export async function getRouteDeal(input: { origin?: string; destination: string
 
   return {
     ...deal,
+    departDate: input.departDate || deal.departDate,
+    returnDate: input.returnDate || deal.returnDate,
     bookingUrl: aviasalesUrl(destination, {
       origin,
       currency,
