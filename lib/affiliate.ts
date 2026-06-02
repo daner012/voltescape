@@ -18,26 +18,27 @@ function addDays(value: string, days: number) {
   return date.toISOString().slice(0, 10);
 }
 
+function ddmm(value: string) {
+  const [, month, day] = value.split("-");
+  return `${day}${month}`;
+}
+
 export function aviasalesUrl(destination: Pick<Destination, "iata">, options: { departDate?: string; returnDate?: string; origin?: string; currency?: string } = {}) {
   const departDate = options.departDate || isoDate(18);
   const returnDate = options.returnDate || addDays(departDate, 3);
+  const origin = options.origin || ORIGIN;
+  const currency = (options.currency || DEFAULT_CURRENCY).toLowerCase();
+
+  // English, round-trip deep link on the international Aviasales domain.
+  // Route encodes a round trip: ORIGIN + departDDMM + DESTINATION + returnDDMM + passengers.
+  const route = `${origin}${ddmm(departDate)}${destination.iata}${ddmm(returnDate)}1`;
   const params = new URLSearchParams({
-    origin_iata: options.origin || ORIGIN,
-    destination_iata: destination.iata,
-    depart_date: departDate,
-    return_date: returnDate,
-    adults: "1",
-    children: "0",
-    infants: "0",
-    trip_class: "0",
-    one_way: "false",
-    oneway: "0",
-    locale: "en",
-    currency: options.currency || DEFAULT_CURRENCY,
     marker: affiliateMarker(),
+    currency,
+    locale: "en",
   });
 
-  return `https://search.aviasales.com/flights/?${params.toString()}`;
+  return `https://www.aviasales.com/search/${route}?${params.toString()}`;
 }
 
 export function partnerUrl(partner: Exclude<Partner, "aviasales">, destination: Destination) {
