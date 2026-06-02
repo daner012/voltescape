@@ -17,12 +17,15 @@ Copy `.env.example` to `.env.local` and fill:
 
 - `TRAVELPAYOUTS_TOKEN`
 - `TRAVELPAYOUTS_MARKER`
+- `NEXT_PUBLIC_META_PIXEL_ID`
 - `NEXT_PUBLIC_SITE_URL`
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 - `SUPABASE_SERVICE_ROLE_KEY`
 
 `TRAVELPAYOUTS_TOKEN` is used only in server routes. Do not expose it in client code.
+
+`NEXT_PUBLIC_META_PIXEL_ID` enables Meta Pixel tracking for page views, affiliate clicks, flight searches, quiz deal opens and price-alert leads.
 
 ## Supabase
 

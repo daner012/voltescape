@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Destination } from "@/lib/destinations";
+import { trackMetaEvent, trackMetaLead } from "@/lib/meta-pixel";
 
 type AlertFormProps = {
   destinations: Destination[];
@@ -70,6 +71,7 @@ export function AlertForm({ destinations, defaultDestination, source = "voltesca
       });
       const data = (await response.json()) as { ok: boolean; error?: string; fallback?: "local"; mode?: "cloud" };
       if (data.ok) {
+        trackMetaLead({ destination, source, mode: data.mode || "cloud", budgetEur: budgetEur ? Number(budgetEur) : null });
         setStatus(labels.success || "Alert saved. We will route you back when the fare moves.");
         setEmail("");
         setBudgetEur("");
@@ -77,6 +79,7 @@ export function AlertForm({ destinations, defaultDestination, source = "voltesca
       }
       if (data.fallback === "local") {
         saveLocalAlert();
+        trackMetaEvent("PriceAlertSavedLocal", { destination, source, budgetEur: budgetEur ? Number(budgetEur) : null });
         setStatus(labels.fallback || "Saved on this device. Email alerts will activate soon.");
         setEmail("");
         setBudgetEur("");
@@ -85,6 +88,7 @@ export function AlertForm({ destinations, defaultDestination, source = "voltesca
       setStatus(data.error || "Could not save this alert right now. Please try again soon.");
     } catch {
       saveLocalAlert();
+      trackMetaEvent("PriceAlertSavedLocal", { destination, source, budgetEur: budgetEur ? Number(budgetEur) : null });
       setStatus(labels.fallback || "Saved on this device. Please check live prices before booking.");
       setEmail("");
       setBudgetEur("");

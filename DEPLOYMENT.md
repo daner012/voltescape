@@ -10,6 +10,7 @@ Use Vercel for hosting and Supabase for alerts/click tracking, as defined in the
 4. Add environment variables:
    - `TRAVELPAYOUTS_TOKEN`
    - `TRAVELPAYOUTS_MARKER`
+   - `NEXT_PUBLIC_META_PIXEL_ID`
    - `NEXT_PUBLIC_SITE_URL=https://voltescape.com`
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
@@ -32,6 +33,18 @@ The app writes:
 - `price_alerts`
 - `affiliate_clicks`
 - `deal_snapshots`
+
+## Meta Pixel Setup
+
+Add `NEXT_PUBLIC_META_PIXEL_ID` in Vercel to enable:
+
+- `PageView`
+- `VoltescapePageView`
+- `AffiliateClick`
+- `FlightDealClick`
+- `FlightSearch`
+- `QuizDealOpen`
+- `Lead`
 
 ## If You Mean MongoDB Atlas
 

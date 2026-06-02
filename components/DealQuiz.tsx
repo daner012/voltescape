@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Destination } from "@/lib/destinations";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 import { AlertForm } from "./AlertForm";
 
 type QuizState = {
@@ -48,6 +49,13 @@ export function DealQuiz({ destinations }: { destinations: Destination[] }) {
     const response = await fetch(`/api/search?${params.toString()}`);
     const data = (await response.json()) as { bookingUrl?: string; error?: string };
     if (data.bookingUrl) {
+      trackMetaEvent("QuizDealOpen", {
+        origin: "TLV",
+        destination: result.iata,
+        tripStyle: state.tripStyle,
+        timing: state.timing,
+        direct: state.direct,
+      });
       window.open(data.bookingUrl, "_blank", "noopener,noreferrer");
       setStatus(`${result.name} opened through Voltescape tracking.`);
       return;

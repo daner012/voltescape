@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { Destination } from "@/lib/destinations";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 
 function isoDate(offsetDays: number) {
   const date = new Date();
@@ -37,7 +38,20 @@ export function DealSearch({ destinations }: { destinations: Destination[] }) {
     const response = await fetch(`/api/search?${params.toString()}`);
     const data = (await response.json()) as { bookingUrl?: string; error?: string };
     if (data.bookingUrl) {
-      const recent = JSON.parse(localStorage.getItem("voltescape_recent") || "[]") as unknown[];
+      trackMetaEvent("FlightSearch", {
+        origin: "TLV",
+        destination,
+        departDate,
+        returnDate,
+        source: "deal-search",
+      });
+      let recent: unknown[] = [];
+      try {
+        const parsed = JSON.parse(localStorage.getItem("voltescape_recent") || "[]") as unknown;
+        recent = Array.isArray(parsed) ? parsed : [];
+      } catch {
+        recent = [];
+      }
       localStorage.setItem(
         "voltescape_recent",
         JSON.stringify([{ destination, departDate, returnDate, at: new Date().toISOString() }, ...recent].slice(0, 10)),

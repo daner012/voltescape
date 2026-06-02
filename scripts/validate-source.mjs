@@ -7,6 +7,7 @@ const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 const destinations = read("lib/destinations.ts");
 const affiliate = read("lib/affiliate.ts");
 const travelpayouts = read("lib/travelpayouts.ts");
+const metaPixel = read("components/MetaPixel.tsx");
 const pages = [
   "app/page.tsx",
   "app/[slug]/page.tsx",
@@ -67,6 +68,9 @@ const assertions = [
   [read("app/api/redirect/route.ts").includes("safeAviasalesUrl"), "Redirect must validate Aviasales affiliate URLs"],
   [travelpayouts.includes("process.env.TRAVELPAYOUTS_TOKEN"), "Travelpayouts token must be server-side env"],
   [!read("components/DealSearch.tsx").includes("TRAVELPAYOUTS_TOKEN"), "Client components must not reference Travelpayouts token"],
+  [metaPixel.includes("NEXT_PUBLIC_META_PIXEL_ID"), "Meta Pixel must be controlled by NEXT_PUBLIC_META_PIXEL_ID"],
+  [metaPixel.includes("AffiliateClick"), "Meta Pixel must track affiliate clicks"],
+  [metaPixel.includes("FlightDealClick"), "Meta Pixel must track flight deal clicks"],
   [pages.every((file) => fs.existsSync(path.join(root, file))), "Expected app pages and API routes to exist"],
 ];
 
