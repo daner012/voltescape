@@ -4,8 +4,6 @@ import { insertSupabase } from "@/lib/supabase";
 
 const partners = new Set<Partner>(["aviasales", "klook", "yesim", "kiwitaxi"]);
 const allowedHosts = [
-  "www.aviasales.com",
-  "aviasales.com",
   "search.aviasales.com",
   "www.klook.com",
   "klook.com",
@@ -35,14 +33,19 @@ function safeAviasalesUrl(url: URL, requestParams: URLSearchParams) {
   const locale = url.searchParams.get("locale");
   const oneWay = url.searchParams.get("one_way");
   const legacyOneWay = url.searchParams.get("oneway");
+  const departDate = url.searchParams.get("depart_date");
+  const returnDate = url.searchParams.get("return_date");
 
+  if (url.hostname !== "search.aviasales.com") return false;
+  if (url.pathname !== "/flights/") return false;
   if (marker !== affiliateMarker()) return false;
   if (origin !== (requestParams.get("origin") || "TLV")) return false;
   if (destination !== requestParams.get("destination")) return false;
   if (currency !== "EUR") return false;
-  if (locale !== "en-us") return false;
+  if (locale !== "en") return false;
   if (oneWay !== "false") return false;
   if (legacyOneWay !== "0") return false;
+  if (!departDate || !returnDate) return false;
 
   return true;
 }

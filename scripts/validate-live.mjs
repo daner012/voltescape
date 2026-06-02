@@ -19,7 +19,7 @@ function requiredFlightParams(url, destination) {
     ["destination_iata", destination],
     ["one_way", "false"],
     ["oneway", "0"],
-    ["locale", "en-us"],
+    ["locale", "en"],
     ["currency", "EUR"],
     ["marker", marker],
   ].every(([key, value]) => url.searchParams.get(key) === value);
@@ -42,6 +42,8 @@ async function assertHomepage() {
   assert(html.includes("Hot Deals strip"), "Homepage must render Hot Deals strip");
   assert(html.includes("api/redirect?partner=aviasales"), "Homepage Aviasales CTAs must use /api/redirect");
   assert(!html.includes('href="https://www.aviasales.com'), "Homepage must not link directly to Aviasales");
+  assert(!html.includes('href="https://search.aviasales.com'), "Homepage must not link directly to Aviasales search");
+  assert(html.includes("search.aviasales.com%2Fflights"), "Homepage CTAs must use Aviasales search deep links");
   assert(html.includes("one_way%3Dfalse"), "Homepage Aviasales CTAs must include round-trip one_way=false");
   assert(html.includes(`marker%3D${marker}`), "Homepage Aviasales CTAs must include affiliate marker");
 }
@@ -53,7 +55,10 @@ async function assertDealsApi() {
 
   for (const deal of deals) {
     const url = new URL(deal.affiliateUrl);
-    assert(url.hostname === "www.aviasales.com", `${deal.iata} must use English Aviasales host`);
+    assert(url.hostname === "search.aviasales.com", `${deal.iata} must use Aviasales search host`);
+    assert(url.pathname === "/flights/", `${deal.iata} must use Aviasales flights deep-link path`);
+    assert(url.searchParams.has("depart_date"), `${deal.iata} must include depart_date`);
+    assert(url.searchParams.has("return_date"), `${deal.iata} must include return_date`);
     assert(requiredFlightParams(url, deal.iata), `${deal.iata} must include locked affiliate round-trip params`);
   }
 }
@@ -72,11 +77,13 @@ async function assertSearchApi() {
   assert(decodedBookingUrl.includes("depart_date=2026-07-10"), "Search bookingUrl must include depart_date");
   assert(decodedBookingUrl.includes("return_date=2026-07-13"), "Search bookingUrl must include generated return_date");
   assert(decodedBookingUrl.includes("one_way=false"), "Search bookingUrl must include one_way=false");
+  assert(decodedBookingUrl.includes("locale=en"), "Search bookingUrl must include English locale");
+  assert(decodedBookingUrl.includes("search.aviasales.com/flights/"), "Search bookingUrl must use Aviasales flights deep link");
   assert(decodedBookingUrl.includes(`marker=${marker}`), "Search bookingUrl must include affiliate marker");
 }
 
 async function assertRedirects() {
-  const goodUrl = new URL("https://www.aviasales.com/");
+  const goodUrl = new URL("https://search.aviasales.com/flights/");
   goodUrl.searchParams.set("origin_iata", "TLV");
   goodUrl.searchParams.set("destination_iata", "ATH");
   goodUrl.searchParams.set("adults", "1");
@@ -85,7 +92,7 @@ async function assertRedirects() {
   goodUrl.searchParams.set("trip_class", "0");
   goodUrl.searchParams.set("one_way", "false");
   goodUrl.searchParams.set("oneway", "0");
-  goodUrl.searchParams.set("locale", "en-us");
+  goodUrl.searchParams.set("locale", "en");
   goodUrl.searchParams.set("currency", "EUR");
   goodUrl.searchParams.set("marker", marker);
   goodUrl.searchParams.set("depart_date", "2026-07-10");
@@ -97,7 +104,7 @@ async function assertRedirects() {
   );
   const goodLocation = good.headers.get("location") || "";
   assert([307, 308].includes(good.status), `Good redirect must return 307/308, got ${good.status}`);
-  assert(goodLocation.startsWith("https://www.aviasales.com/"), "Good redirect must open English Aviasales");
+  assert(goodLocation.startsWith("https://search.aviasales.com/flights/"), "Good redirect must open Aviasales search deep link");
   assert(requiredFlightParams(new URL(goodLocation), "ATH"), "Good redirect must preserve affiliate round-trip params");
 
   const badUrl = new URL(goodUrl);

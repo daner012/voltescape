@@ -63,7 +63,7 @@ After deploy:
 4. Run `node scripts/validate-live.mjs`.
 5. Open `https://voltescape.com`.
 6. Click a homepage flight deal.
-7. Confirm it opens Aviasales with `origin_iata=TLV`, a destination IATA, `one_way=false`, `oneway=0`, `currency=EUR`, `locale=en-us`, and `marker=734712`.
+7. Confirm it opens `search.aviasales.com/flights/` with `origin_iata=TLV`, a destination IATA, `one_way=false`, `oneway=0`, `currency=EUR`, `locale=en`, and `marker=734712`.
 8. Submit a price alert.
 9. Confirm Supabase received one `price_alerts` row when Supabase env vars are configured.
 10. Confirm Supabase received one `affiliate_clicks` row when Supabase env vars are configured.
