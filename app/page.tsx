@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { AlertForm } from "@/components/AlertForm";
+import { ConversionCapture } from "@/components/ConversionCapture";
 import { DealCards } from "@/components/DealCards";
+import { DealQuiz } from "@/components/DealQuiz";
 import { DealSearch } from "@/components/DealSearch";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -54,6 +56,9 @@ export default async function HomePage() {
                 <Link className="button secondary" href="#search">
                   Build a trip
                 </Link>
+                <Link className="button secondary" href="/today-best-deals">
+                  Today&apos;s best
+                </Link>
               </div>
               <div className="trust" aria-label="Platform highlights">
                 <span>TLV origin</span>
@@ -97,6 +102,32 @@ export default async function HomePage() {
           </div>
         </section>
 
+        <section className="shell" id="today-best-deals" aria-labelledby="today-title">
+          <div className="section-head">
+            <span className="kicker">Today&apos;s best deals</span>
+            <h2 id="today-title">A cleaner daily board for paid traffic.</h2>
+            <p>
+              Send ads to a sharper deal page when you want one focused conversion path: top route, target price, score
+              and tracked CTA.
+            </p>
+          </div>
+          <div className="deal-board">
+            {deals.slice(0, 4).map((deal, index) => (
+              <a className="board-row" href={deal.affiliateUrl} target="_blank" rel="nofollow sponsored noopener" key={deal.iata}>
+                <span>#{index + 1}</span>
+                <strong>TLV → {deal.destination}</strong>
+                <em>{deal.livePrice ? `Live from €${deal.livePrice}` : `Target €${deal.targetRange[0]}-${deal.targetRange[1]}`}</em>
+                <small>{deal.dealTag} · score {deal.score}</small>
+              </a>
+            ))}
+          </div>
+          <div className="section-actions">
+            <Link className="button secondary" href="/today-best-deals">
+              Open full deal board
+            </Link>
+          </div>
+        </section>
+
         <section className="shell" id="search" aria-labelledby="search-title">
           <div className="section-head">
             <span className="kicker">Search engine</span>
@@ -107,6 +138,10 @@ export default async function HomePage() {
             </p>
           </div>
           <DealSearch destinations={destinations} />
+        </section>
+
+        <section className="shell" id="quiz" aria-labelledby="quiz-title">
+          <DealQuiz destinations={destinations} />
         </section>
 
         <section className="shell" id="cheapest-flights" aria-labelledby="cheapest-title">
@@ -219,11 +254,12 @@ export default async function HomePage() {
           </section>
         </section>
 
-        <div className="sticky-mobile-cta">
-          <a className="button primary" href={top.affiliateUrl} target="_blank" rel="nofollow sponsored noopener">
-            {top.livePrice ? `View ${top.destination} from €${top.livePrice}` : `Check ${top.destination} live deal`}
-          </a>
-        </div>
+        <ConversionCapture
+          destinations={destinations}
+          defaultDestination={topDestination.iata}
+          topDealUrl={top.affiliateUrl}
+          topDealLabel={top.livePrice ? `View ${top.destination} from €${top.livePrice}` : `Check ${top.destination} live deal`}
+        />
       </main>
       <Footer />
     </>

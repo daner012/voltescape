@@ -7,6 +7,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   return [
     { url: siteUrl, lastModified: now, changeFrequency: "daily", priority: 1 },
+    { url: `${siteUrl}/today-best-deals`, lastModified: now, changeFrequency: "daily", priority: 0.94 },
+    { url: `${siteUrl}/he/cheap-flights-from-israel`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
     ...seoPages.map((page) => ({
       url: `${siteUrl}/${page.slug}`,
       lastModified: now,
