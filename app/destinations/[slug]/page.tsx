@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const destination = getDestination(slug);
   if (!destination) return {};
   return {
-    title: `Cheap Flights to ${destination.name} From Tel Aviv`,
-    description: `${destination.description} Check live Aviasales results and premium Voltescape trip add-ons.`,
+    title: `טיסות זולות מתל אביב ל${destination.name}`,
+    description: `${destination.description} בדוק מחירים חיים ב-Aviasales ותוספות טיול של Voltescape.`,
     alternates: { canonical: `/destinations/${destination.slug}` },
   };
 }
@@ -44,11 +44,11 @@ export default async function DestinationPage({ params }: Props) {
       <main>
         <section className="shell page-hero">
           <span className="kicker">TLV → {destination.iata}</span>
-          <h1>Cheap flights to {destination.name} from Tel Aviv</h1>
+          <h1>טיסות זולות מתל אביב ל{destination.name}</h1>
           <p className="lead">{destination.description}</p>
           <div className="actions">
             <a className="button primary" href={flightUrl} target="_blank" rel="nofollow sponsored noopener">
-              {routeDeal?.livePrice ? `View live fare from €${routeDeal.livePrice}` : "Check live deal"}
+              {routeDeal?.livePrice ? `מחיר חי החל מ-₪${routeDeal.livePrice}` : "בדוק את הדיל"}
             </a>
             <a
               className="button secondary"
@@ -62,7 +62,7 @@ export default async function DestinationPage({ params }: Props) {
               target="_blank"
               rel="nofollow sponsored noopener"
             >
-              Hotels + activities
+              מלונות ופעילויות
             </a>
           </div>
         </section>
@@ -70,17 +70,17 @@ export default async function DestinationPage({ params }: Props) {
         <section className="shell">
           <div className="stats-grid">
             <article className="stat-card">
-              <span className="kicker">Price signal</span>
-              <h3>{routeDeal?.livePrice ? `Live from €${routeDeal.livePrice}` : `Target €${destination.targetRange[0]}-${destination.targetRange[1]}`}</h3>
-              <p>{routeDeal ? `${routeDeal.dealTag}. ${routeDeal.savingsSignal}.` : "Fallback target range. Verify current fare on Aviasales."}</p>
+              <span className="kicker">מחיר</span>
+              <h3>{routeDeal?.livePrice ? `החל מ-₪${routeDeal.livePrice}` : `בסביבות ₪${destination.targetRange[0]}-${destination.targetRange[1]}`}</h3>
+              <p>{routeDeal ? `${routeDeal.dealTag}. ${routeDeal.savingsSignal}.` : "טווח יעד. אמת את המחיר העדכני ב-Aviasales."}</p>
             </article>
             <article className="stat-card">
-              <span className="kicker">Flight shape</span>
-              <h3>{destination.direct ? "Direct preferred" : "Flexible routing"}</h3>
-              <p>{destination.flightTime} typical trip feel. {routeDeal?.urgencyLabel || "Availability changes by season and airline."}</p>
+              <span className="kicker">סוג הטיסה</span>
+              <h3>{destination.direct ? "עדיף ישיר" : "מסלול גמיש"}</h3>
+              <p>זמן טיסה {destination.flightTime}. {routeDeal?.urgencyLabel || "הזמינות משתנה לפי עונה וחברה."}</p>
             </article>
             <article className="stat-card">
-              <span className="kicker">Deal score</span>
+              <span className="kicker">ציון דיל</span>
               <h3>{destination.score}/100</h3>
               <div className="meter">
                 <span style={{ width: `${destination.score}%` }} />
@@ -91,8 +91,8 @@ export default async function DestinationPage({ params }: Props) {
 
         <section className="shell">
           <div className="section-head">
-            <span className="kicker">Trip intelligence</span>
-            <h2>{destination.name} travel tips</h2>
+            <span className="kicker">טוב לדעת</span>
+            <h2>טיפים לטיול ל{destination.name}</h2>
           </div>
           <article className="guide-card">
             <p>{destination.mood}</p>
@@ -103,7 +103,7 @@ export default async function DestinationPage({ params }: Props) {
             </ul>
             <div className="city-actions">
               <a href={flightUrl} target="_blank" rel="nofollow sponsored noopener">
-                Flight deal
+                דיל טיסה
               </a>
               <a
                 href={trackedUrl({
@@ -129,7 +129,7 @@ export default async function DestinationPage({ params }: Props) {
                 target="_blank"
                 rel="nofollow sponsored noopener"
               >
-                Transfer
+                הסעה
               </a>
             </div>
           </article>
@@ -137,8 +137,8 @@ export default async function DestinationPage({ params }: Props) {
 
         <section className="shell">
           <div className="section-head">
-            <span className="kicker">FAQ</span>
-            <h2>Before you book {destination.name}</h2>
+            <span className="kicker">שאלות נפוצות</span>
+            <h2>לפני שמזמינים את {destination.name}</h2>
           </div>
           <div className="faq-grid">
             {destination.faq.map((item) => (
@@ -152,16 +152,16 @@ export default async function DestinationPage({ params }: Props) {
 
         <section className="shell alert-box" id="alerts">
           <div>
-            <span className="kicker">Price alerts</span>
-            <h2>Watch TLV → {destination.name}</h2>
-            <p>Save the route now and return through Voltescape when the fare is worth checking.</p>
+            <span className="kicker">התראות מחיר</span>
+            <h2>עקוב אחרי תל אביב ← {destination.name}</h2>
+            <p>שמור את המסלול עכשיו ונחזיר אותך כשהמחיר שווה בדיקה.</p>
           </div>
           <AlertForm destinations={destinations} defaultDestination={destination.iata} />
         </section>
 
         <div className="sticky-mobile-cta">
           <a className="button primary" href={flightUrl} target="_blank" rel="nofollow sponsored noopener">
-            Check {destination.name} live deal
+            בדוק דיל ל{destination.name}
           </a>
         </div>
       </main>
