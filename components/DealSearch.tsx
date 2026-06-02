@@ -14,7 +14,7 @@ export function DealSearch({ destinations }: { destinations: Destination[] }) {
   const [destination, setDestination] = useState(destinations[0]?.iata || "ATH");
   const [departDate, setDepartDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
-  const [status, setStatus] = useState("Round-trip default · cheapest-first");
+  const [status, setStatus] = useState("הלוך-ושוב כברירת מחדל · קודם הזול ביותר");
 
   useEffect(() => {
     setDepartDate(isoDate(18));
@@ -28,7 +28,7 @@ export function DealSearch({ destinations }: { destinations: Destination[] }) {
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus("Opening tracked live search...");
+    setStatus("פותח חיפוש חי...");
     const params = new URLSearchParams({
       origin: "TLV",
       destination,
@@ -57,20 +57,20 @@ export function DealSearch({ destinations }: { destinations: Destination[] }) {
         JSON.stringify([{ destination, departDate, returnDate, at: new Date().toISOString() }, ...recent].slice(0, 10)),
       );
       window.open(data.bookingUrl, "_blank", "noopener,noreferrer");
-      setStatus(`${selected.name} opened in Aviasales`);
+      setStatus(`${selected.name} נפתח ב-Aviasales`);
       return;
     }
-    setStatus(data.error || "Could not open live search");
+    setStatus(data.error || "לא הצלחנו לפתוח חיפוש");
   }
 
   return (
     <form className="search-box" id="dealSearch" onSubmit={submit}>
       <label>
-        <span>From</span>
-        <input value="Tel Aviv (TLV)" disabled />
+        <span>מ-</span>
+        <input value="תל אביב (TLV)" disabled />
       </label>
       <label>
-        <span>To</span>
+        <span>אל</span>
         <select value={destination} onChange={(event) => setDestination(event.target.value)}>
           {destinations.map((city) => (
             <option key={city.iata} value={city.iata}>
@@ -80,33 +80,33 @@ export function DealSearch({ destinations }: { destinations: Destination[] }) {
         </select>
       </label>
       <label>
-        <span>Depart</span>
+        <span>יציאה</span>
         <input value={departDate} onChange={(event) => setDepartDate(event.target.value)} type="date" />
       </label>
       <label>
-        <span>Return</span>
+        <span>חזרה</span>
         <input value={returnDate} onChange={(event) => setReturnDate(event.target.value)} type="date" />
       </label>
       <div className="toggles" aria-label="Search preferences">
         <label className="toggle">
           <input type="checkbox" defaultChecked />
-          <span>Weekend</span>
+          <span>סופ״ש</span>
         </label>
         <label className="toggle">
           <input type="checkbox" defaultChecked />
-          <span>Carry-on</span>
+          <span>כבודת יד</span>
         </label>
         <label className="toggle">
           <input type="checkbox" />
-          <span>Direct</span>
+          <span>ישיר</span>
         </label>
         <label className="toggle">
           <input type="checkbox" />
-          <span>No early AM</span>
+          <span>בלי טיסות לפנות בוקר</span>
         </label>
       </div>
       <button className="button primary search-submit" type="submit">
-        Search Aviasales
+        חפש ב-Aviasales
       </button>
       <p aria-live="polite">{status}</p>
     </form>

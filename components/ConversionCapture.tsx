@@ -52,20 +52,19 @@ export function ConversionCapture({
           {topDealLabel}
         </a>
         <button className="button secondary sticky-alert-button" onClick={() => setOpen(true)} type="button">
-          Price alert
+          התראת מחיר
         </button>
       </div>
       {open && !dismissed && (
         <div className="capture-backdrop" role="presentation">
           <section className="capture-modal" aria-labelledby="capture-title" role="dialog" aria-modal="true">
-            <button className="capture-close" onClick={close} type="button" aria-label="Close price alert">
-              x
+            <button className="capture-close" onClick={close} type="button" aria-label="סגור התראת מחיר">
+              ✕
             </button>
-            <span className="kicker">Before you go</span>
-            <h2 id="capture-title">Let Voltescape watch the fare.</h2>
+            <span className="kicker">לפני שאתה הולך</span>
+            <h2 id="capture-title">תן ל-Voltescape לעקוב אחרי המחיר.</h2>
             <p>
-              Save a route, budget and email. When you come back, your trip is ready to check again with the latest
-              partner prices.
+              שמור מסלול, תקציב ואימייל. כשתחזור, הטיול שלך מוכן לבדיקה מחדש עם המחירים העדכניים של השותפים.
             </p>
             <AlertForm destinations={destinations} defaultDestination={defaultDestination} source="exit-capture" compact />
           </section>

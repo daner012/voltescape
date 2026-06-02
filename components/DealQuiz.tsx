@@ -39,7 +39,7 @@ export function DealQuiz({ destinations }: { destinations: Destination[] }) {
   const returnDate = state.timing === "weekend" ? isoDate(27) : isoDate(31);
 
   async function openResult() {
-    setStatus("Opening tracked round-trip search...");
+    setStatus("פותח חיפוש הלוך-ושוב...");
     const params = new URLSearchParams({
       origin: "TLV",
       destination: result.iata,
@@ -57,26 +57,26 @@ export function DealQuiz({ destinations }: { destinations: Destination[] }) {
         direct: state.direct,
       });
       window.open(data.bookingUrl, "_blank", "noopener,noreferrer");
-      setStatus(`${result.name} opened through Voltescape tracking.`);
+      setStatus(`${result.name} נפתח דרך Voltescape.`);
       return;
     }
-    setStatus(data.error || "Could not open search");
+    setStatus(data.error || "לא הצלחנו לפתוח חיפוש");
   }
 
   return (
     <div className="quiz-grid">
       <div className="quiz-panel">
         <div className="section-head compact">
-          <span className="kicker">Find my next trip</span>
-          <h2>Answer three signals. Get one sharp route.</h2>
-          <p>Built for fast paid-social traffic: no heavy form, just a strong destination match and a tracked flight CTA.</p>
+          <span className="kicker">מצא את הטיול הבא</span>
+          <h2>ענה על שלוש שאלות. קבל יעד אחד מנצח.</h2>
+          <p>בנוי למהירות: בלי טופס כבד, רק התאמת יעד חזקה וקישור טיסה ישיר.</p>
         </div>
         <fieldset className="choice-group">
-          <legend>Trip style</legend>
+          <legend>סוג הטיול</legend>
           {[
-            ["cheapest", "Lowest fare"],
-            ["weekend", "Weekend city break"],
-            ["luxury", "Premium value"],
+            ["cheapest", "הכי זול"],
+            ["weekend", "חופשת סופ״ש"],
+            ["luxury", "יוקרה משתלמת"],
           ].map(([value, label]) => (
             <button
               className={state.tripStyle === value ? "choice active" : "choice"}
@@ -89,11 +89,11 @@ export function DealQuiz({ destinations }: { destinations: Destination[] }) {
           ))}
         </fieldset>
         <fieldset className="choice-group">
-          <legend>Timing</legend>
+          <legend>מתי</legend>
           {[
-            ["now", "Soon"],
-            ["weekend", "Weekend"],
-            ["flexible", "Flexible"],
+            ["now", "בקרוב"],
+            ["weekend", "סופ״ש"],
+            ["flexible", "גמיש"],
           ].map(([value, label]) => (
             <button
               className={state.timing === value ? "choice active" : "choice"}
@@ -107,25 +107,25 @@ export function DealQuiz({ destinations }: { destinations: Destination[] }) {
         </fieldset>
         <label className="toggle quiz-toggle">
           <input checked={state.direct} onChange={(event) => setState((current) => ({ ...current, direct: event.target.checked }))} type="checkbox" />
-          <span>Prefer direct flights from TLV</span>
+          <span>מעדיף טיסות ישירות מתל אביב</span>
         </label>
       </div>
       <aside className="quiz-result" aria-live="polite">
-        <span className="live-badge">Your match</span>
+        <span className="live-badge">ההתאמה שלך</span>
         <h3>TLV → {result.name}</h3>
-        <div className="price">Target €{result.targetRange[0]}-{result.targetRange[1]}</div>
+        <div className="price">בסביבות €{result.targetRange[0]}-{result.targetRange[1]}</div>
         <p>{result.mood}</p>
         <div className="row">
-          <span className="chip">{result.direct ? "Direct preferred" : "Flexible route"}</span>
+          <span className="chip">{result.direct ? "עדיף ישיר" : "מסלול גמיש"}</span>
           <span className="chip">{result.flightTime}</span>
-          <span className="chip">Score {result.score}/100</span>
+          <span className="chip">ציון {result.score}/100</span>
         </div>
         <button className="button primary" onClick={openResult} type="button">
-          View tracked deal
+          לדיל
         </button>
         <p className="deal-meta">{status}</p>
         <div className="quiz-alert">
-          <h4>Watch this route</h4>
+          <h4>עקוב אחרי המסלול</h4>
           <AlertForm destinations={destinations} defaultDestination={result.iata} source="quiz-result" compact />
         </div>
       </aside>
