@@ -113,7 +113,7 @@ function dealTag(destination: Destination, candidate: PriceCandidate | null) {
 }
 
 function urgencyLabel(destination: Destination, candidate: PriceCandidate | null) {
-  if (!candidate) return "אמת מחיר חי";
+  if (!candidate) return "מחיר עדכני";
   if (candidate.livePrice <= destination.targetRange[0]) return "מחיר נמוך נדיר";
   if (isWeekendTrip(candidate.departDate, candidate.returnDate)) return "חלון סופ״ש";
   return "נבדק עכשיו";
