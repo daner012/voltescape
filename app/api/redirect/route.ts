@@ -4,7 +4,8 @@ import { insertSupabase } from "@/lib/supabase";
 
 const partners = new Set<Partner>(["aviasales", "klook", "yesim", "kiwitaxi"]);
 const allowedHosts = [
-  "search.aviasales.com",
+  "www.aviasales.com",
+  "aviasales.com",
   "www.klook.com",
   "klook.com",
   "yesim.app",
@@ -27,25 +28,23 @@ function safeUrl(value: string | null) {
 
 function safeAviasalesUrl(url: URL, requestParams: URLSearchParams) {
   const marker = url.searchParams.get("marker");
-  const origin = url.searchParams.get("origin_iata");
-  const destination = url.searchParams.get("destination_iata");
   const currency = url.searchParams.get("currency");
   const locale = url.searchParams.get("locale");
-  const oneWay = url.searchParams.get("one_way");
-  const legacyOneWay = url.searchParams.get("oneway");
-  const departDate = url.searchParams.get("depart_date");
-  const returnDate = url.searchParams.get("return_date");
+  const origin = requestParams.get("origin") || "TLV";
+  const destination = requestParams.get("destination");
 
-  if (url.hostname !== "search.aviasales.com") return false;
-  if (url.pathname !== "/flights/") return false;
+  if (url.hostname !== "www.aviasales.com") return false;
+  if (!url.pathname.startsWith("/search/")) return false;
   if (marker !== affiliateMarker()) return false;
-  if (origin !== (requestParams.get("origin") || "TLV")) return false;
-  if (destination !== requestParams.get("destination")) return false;
-  if (currency !== "EUR") return false;
+  if (!currency) return false;
   if (locale !== "en") return false;
-  if (oneWay !== "false") return false;
-  if (legacyOneWay !== "0") return false;
-  if (!departDate || !returnDate) return false;
+
+  // The round-trip route is ORIGIN + departDDMM + DESTINATION + returnDDMM + passengers.
+  const route = url.pathname.slice("/search/".length);
+  if (!route.startsWith(origin)) return false;
+  if (destination && !route.includes(destination)) return false;
+  // origin(3) + ddmm(4) + dest(3) + ddmm(4) + pax(1) = 15 chars; two date blocks => round trip.
+  if (route.length < 14) return false;
 
   return true;
 }
