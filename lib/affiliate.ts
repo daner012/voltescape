@@ -41,13 +41,12 @@ export function aviasalesUrl(destination: Pick<Destination, "iata">, options: { 
   return `https://www.aviasales.com/search/${route}?${params.toString()}`;
 }
 
-export function partnerUrl(partner: Exclude<Partner, "aviasales">, destination: Destination) {
-  const campaign = `utm_source=voltescape&utm_medium=affiliate&utm_campaign=${destination.slug}`;
-  const query = encodeURIComponent(destination.name);
+export function partnerUrl(partner: Exclude<Partner, "aviasales">, _destination: Destination) {
+  // Monetized Travelpayouts affiliate deep links (marker 734712 via tp.media short links).
   const urls = {
-    klook: `https://www.klook.com/en-US/search/result/?query=${query}&${campaign}`,
-    yesim: `https://yesim.app/?${campaign}`,
-    kiwitaxi: `https://kiwitaxi.com/en/search?to=${query}&${campaign}`,
+    klook: "https://klook.tpo.lu/D9kaX1Le",
+    yesim: "https://yesim.tpo.lu/AU9x5GjB",
+    kiwitaxi: "https://kiwitaxi.tpo.lu/wnzjfyjy",
   };
   return urls[partner];
 }
