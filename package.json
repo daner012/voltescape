@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "validate": "node scripts/validate-source.mjs"
+    "validate": "node scripts/validate-source.mjs",
+    "validate:live": "node scripts/validate-live.mjs",
+    "release:check": "node scripts/validate-source.mjs && git diff --check && node scripts/validate-live.mjs"
   },
   "dependencies": {
     "next": "^15.0.0",

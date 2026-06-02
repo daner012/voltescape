@@ -57,11 +57,35 @@ Then open `http://localhost:3000`.
 
 After deploy:
 
-1. Open `https://voltescape.com`.
-2. Click a homepage flight deal.
-3. Confirm it opens Aviasales with `origin_iata=TLV`, a destination IATA, `currency=EUR`, and `marker`.
-4. Submit a price alert.
-5. Confirm Supabase received one `price_alerts` row.
-6. Confirm Supabase received one `affiliate_clicks` row.
-7. Open `/sitemap.xml`.
-8. Open `/robots.txt`.
+1. Run `node scripts/validate-source.mjs`.
+2. Run `git diff --check`.
+3. Push to `main` and wait for Vercel status `success`.
+4. Run `node scripts/validate-live.mjs`.
+5. Open `https://voltescape.com`.
+6. Click a homepage flight deal.
+7. Confirm it opens Aviasales with `origin_iata=TLV`, a destination IATA, `one_way=false`, `oneway=0`, `currency=EUR`, `locale=en-us`, and `marker=734712`.
+8. Submit a price alert.
+9. Confirm Supabase received one `price_alerts` row when Supabase env vars are configured.
+10. Confirm Supabase received one `affiliate_clicks` row when Supabase env vars are configured.
+11. Open `/sitemap.xml`.
+12. Open `/robots.txt`.
+
+## Mandatory Release Flow
+
+Every future change follows this path:
+
+1. Update the Next.js app locally.
+2. Run source validation and whitespace checks.
+3. Commit with a clear message.
+4. Push to GitHub `main`.
+5. Wait for Vercel deployment success.
+6. Run the live validation script.
+7. Smoke test the visible site.
+
+Flight-related changes must preserve all affiliate constraints:
+
+- Aviasales CTAs go through `/api/redirect`.
+- No direct Aviasales `href` bypasses click tracking.
+- Outbound Aviasales URLs include `marker=734712`.
+- Outbound Aviasales URLs include `one_way=false` and `oneway=0`.
+- Missing return dates are generated automatically by `/api/search`.

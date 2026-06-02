@@ -27,3 +27,24 @@ Copy `.env.example` to `.env.local` and fill:
 ## Supabase
 
 Run `supabase/schema.sql` in your Supabase SQL editor.
+
+## Release Guard
+
+Every production change should keep the affiliate path locked:
+
+```bash
+npm run validate
+npm run validate:live
+```
+
+`validate` checks source-level rules: 23 destinations, server-only Travelpayouts token usage, English Aviasales host, round-trip flags, and marker fallback `734712`.
+
+`validate:live` checks the deployed site: homepage status, Hot Deals rendering, destination-specific Aviasales links, auto-generated return dates, good redirect behavior, and blocking Aviasales redirects that are missing the affiliate marker.
+
+When `npm` is unavailable in this environment, run the same checks directly:
+
+```bash
+node scripts/validate-source.mjs
+git diff --check
+node scripts/validate-live.mjs
+```
