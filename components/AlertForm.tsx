@@ -66,7 +66,7 @@ export function AlertForm({ destinations, defaultDestination, source = "voltesca
           budgetEur: budgetEur ? Number(budgetEur) : undefined,
           departDate: departDate || undefined,
           returnDate: returnDate || undefined,
-          preferences: { source, currency: "EUR", consent: "marketing-price-alert" },
+          preferences: { source, currency: "ILS", consent: "marketing-price-alert" },
         }),
       });
       const data = (await response.json()) as { ok: boolean; error?: string; fallback?: "local"; mode?: "cloud" };
@@ -112,7 +112,7 @@ export function AlertForm({ destinations, defaultDestination, source = "voltesca
         </select>
       </label>
       <label>
-        <span>{labels.budget || "תקציב €"}</span>
+        <span>{labels.budget || "תקציב ₪"}</span>
         <input value={budgetEur} onChange={(event) => setBudgetEur(event.target.value)} type="number" min="20" max="2000" placeholder="120" />
       </label>
       {!compact && (

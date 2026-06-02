@@ -21,8 +21,8 @@ function pickDestination(destinations: Destination[], state: QuizState) {
   const scored = destinations.map((destination) => {
     let score = destination.score;
     if (state.tripStyle === "cheapest") score += Math.max(0, 120 - destination.targetRange[0]);
-    if (state.tripStyle === "weekend") score += destination.tags.some((tag) => ["Weekend", "Fast escape", "Food"].includes(tag)) ? 28 : 0;
-    if (state.tripStyle === "luxury") score += destination.tags.some((tag) => ["Luxury", "Fashion", "Design", "Hotels"].includes(tag)) ? 34 : 0;
+    if (state.tripStyle === "weekend") score += destination.tags.some((tag) => ["סופ״ש", "בריחה מהירה", "אוכל"].includes(tag)) ? 28 : 0;
+    if (state.tripStyle === "luxury") score += destination.tags.some((tag) => ["יוקרה", "אופנה", "עיצוב", "מלונות"].includes(tag)) ? 34 : 0;
     if (state.timing === "weekend" && destination.flightTime.includes("2h")) score += 14;
     if (state.direct && destination.direct) score += 18;
     if (state.direct && !destination.direct) score -= 22;
@@ -113,7 +113,7 @@ export function DealQuiz({ destinations }: { destinations: Destination[] }) {
       <aside className="quiz-result" aria-live="polite">
         <span className="live-badge">ההתאמה שלך</span>
         <h3>TLV → {result.name}</h3>
-        <div className="price">בסביבות €{result.targetRange[0]}-{result.targetRange[1]}</div>
+        <div className="price">בסביבות ₪{result.targetRange[0]}-{result.targetRange[1]}</div>
         <p>{result.mood}</p>
         <div className="row">
           <span className="chip">{result.direct ? "עדיף ישיר" : "מסלול גמיש"}</span>

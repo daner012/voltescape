@@ -2,8 +2,8 @@ import Link from "next/link";
 import type { DealCard } from "@/lib/travelpayouts";
 
 function priceLabel(deal: DealCard) {
-  if (deal.livePrice) return `החל מ-€${deal.livePrice}`;
-  return `בסביבות €${deal.targetRange[0]}-${deal.targetRange[1]}`;
+  if (deal.livePrice) return `החל מ-₪${deal.livePrice}`;
+  return `בסביבות ₪${deal.targetRange[0]}-${deal.targetRange[1]}`;
 }
 
 function sourceLabel(deal: DealCard) {
