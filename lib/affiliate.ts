@@ -15,7 +15,7 @@ export function aviasalesUrl(destination: Pick<Destination, "iata">, options: { 
     infants: "0",
     trip_class: "0",
     oneway: "0",
-    locale: "en",
+    locale: "en-us",
     currency: options.currency || DEFAULT_CURRENCY,
     marker: marker(),
   });
@@ -23,7 +23,7 @@ export function aviasalesUrl(destination: Pick<Destination, "iata">, options: { 
   if (options.departDate) params.set("depart_date", options.departDate);
   if (options.returnDate) params.set("return_date", options.returnDate);
 
-  return `https://search.aviasales.com/flights/?${params.toString()}`;
+  return `https://www.aviasales.com/?${params.toString()}`;
 }
 
 export function partnerUrl(partner: Exclude<Partner, "aviasales">, destination: Destination) {

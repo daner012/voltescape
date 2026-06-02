@@ -5,7 +5,7 @@ import { AlertForm } from "@/components/AlertForm";
 import { DealCards } from "@/components/DealCards";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { aviasalesUrl, trackedUrl } from "@/lib/affiliate";
+import { trackedUrl } from "@/lib/affiliate";
 import { destinations } from "@/lib/destinations";
 import { getSeoPage, seoPages } from "@/lib/seo-pages";
 import { getDeals } from "@/lib/travelpayouts";
@@ -43,7 +43,7 @@ export default async function SeoLandingPage({ params }: Props) {
         destination,
         ctaId: `seo-${page.slug}-${destination.slug}`,
         pagePath: `/${page.slug}`,
-        outboundUrl: aviasalesUrl(destination),
+        outboundUrl: deal.affiliateUrl,
       }),
     };
   });

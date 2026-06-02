@@ -4,6 +4,8 @@ import { insertSupabase } from "@/lib/supabase";
 
 const partners = new Set<Partner>(["aviasales", "klook", "yesim", "kiwitaxi"]);
 const allowedHosts = [
+  "www.aviasales.com",
+  "aviasales.com",
   "search.aviasales.com",
   "www.klook.com",
   "klook.com",

@@ -21,14 +21,40 @@ const pages = [
 const cityNames = [...destinations.matchAll(/name: "([^"]+)"/g)].map((match) => match[1]);
 const iatas = [...destinations.matchAll(/iata: "([^"]+)"/g)].map((match) => match[1]);
 
-const requiredCities = ["Athens", "Berlin", "Budapest", "Bucharest", "Warsaw", "Prague", "Sofia", "Milan", "Paris", "Rome"];
+const requiredCities = [
+  "Athens",
+  "Berlin",
+  "Budapest",
+  "Bucharest",
+  "Warsaw",
+  "Prague",
+  "Sofia",
+  "Milan",
+  "Paris",
+  "Rome",
+  "Larnaca",
+  "Vienna",
+  "Krakow",
+  "Thessaloniki",
+  "Belgrade",
+  "Tirana",
+  "Naples",
+  "Barcelona",
+  "Madrid",
+  "Istanbul",
+  "Tbilisi",
+  "Yerevan",
+  "Batumi",
+];
 const missingCities = requiredCities.filter((city) => !cityNames.includes(city));
 
 const assertions = [
   [missingCities.length === 0, `Missing cities: ${missingCities.join(", ")}`],
-  [new Set(iatas).size === 10, "Expected 10 unique destination IATA codes"],
+  [new Set(iatas).size === requiredCities.length, `Expected ${requiredCities.length} unique destination IATA codes`],
+  [affiliate.includes("https://www.aviasales.com/"), "Aviasales URL must use English www.aviasales.com host"],
   [affiliate.includes("origin_iata"), "Aviasales URL must include origin_iata"],
   [affiliate.includes("destination_iata"), "Aviasales URL must include destination_iata"],
+  [affiliate.includes("en-us"), "Aviasales URL must force English locale"],
   [affiliate.includes("currency"), "Aviasales URL must include currency"],
   [affiliate.includes("marker"), "Aviasales URL must include marker"],
   [travelpayouts.includes("process.env.TRAVELPAYOUTS_TOKEN"), "Travelpayouts token must be server-side env"],

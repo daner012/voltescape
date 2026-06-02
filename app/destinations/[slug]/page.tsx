@@ -72,12 +72,12 @@ export default async function DestinationPage({ params }: Props) {
             <article className="stat-card">
               <span className="kicker">Price signal</span>
               <h3>{routeDeal?.livePrice ? `Live from €${routeDeal.livePrice}` : `Target €${destination.targetRange[0]}-${destination.targetRange[1]}`}</h3>
-              <p>{routeDeal?.livePrice ? "Verified through Travelpayouts cache." : "Fallback target range. Verify current fare on Aviasales."}</p>
+              <p>{routeDeal ? `${routeDeal.dealTag}. ${routeDeal.savingsSignal}.` : "Fallback target range. Verify current fare on Aviasales."}</p>
             </article>
             <article className="stat-card">
               <span className="kicker">Flight shape</span>
               <h3>{destination.direct ? "Direct preferred" : "Flexible routing"}</h3>
-              <p>{destination.flightTime} typical trip feel. Availability changes by season and airline.</p>
+              <p>{destination.flightTime} typical trip feel. {routeDeal?.urgencyLabel || "Availability changes by season and airline."}</p>
             </article>
             <article className="stat-card">
               <span className="kicker">Deal score</span>

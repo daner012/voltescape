@@ -268,6 +268,331 @@ export const destinations: Destination[] = [
       },
     ],
   },
+  {
+    name: "Larnaca",
+    slug: "larnaca",
+    iata: "LCA",
+    airportHint: "Larnaca International",
+    targetRange: [39, 89],
+    score: 97,
+    direct: true,
+    flightTime: "1h 05m",
+    mood: "Fastest beach reset with almost no planning friction.",
+    description:
+      "Larnaca is the ultra-short escape from Tel Aviv: low fares, beach energy, easy transfers and a simple weekend conversion path.",
+    tags: ["Beach", "Cheapest", "Fast"],
+    tips: ["Use carry-on only.", "Compare Larnaca with Paphos if dates are flexible.", "Book a sea-view stay early on weekends."],
+    faq: [
+      {
+        question: "Why is Larnaca a strong deal route?",
+        answer: "The route is short, often direct, and can price low enough to create fast click intent.",
+      },
+      {
+        question: "Is Larnaca good for a same-week escape?",
+        answer: "Yes. It is one of the easiest short-notice beach trips from Tel Aviv.",
+      },
+    ],
+  },
+  {
+    name: "Vienna",
+    slug: "vienna",
+    iata: "VIE",
+    airportHint: "Vienna International",
+    targetRange: [79, 159],
+    score: 90,
+    direct: true,
+    flightTime: "3h 45m",
+    mood: "Polished culture, cafes, museums and premium hotel value.",
+    description:
+      "Vienna brings a refined city-break signal: elegant hotels, museums, clean transit and a high-quality feel without Paris-level spend.",
+    tags: ["Culture", "Cafes", "Premium"],
+    tips: ["Use airport rail into the center.", "Book opera or museum slots ahead.", "Stay near Innere Stadt for first visits."],
+    faq: [
+      {
+        question: "Is Vienna a premium-value destination?",
+        answer: "Yes. It has a luxury feel, strong culture and often more controlled trip costs than bigger Western capitals.",
+      },
+      {
+        question: "Does Vienna work for weekends?",
+        answer: "Three nights is ideal, but a focused two-night trip can work with direct flights.",
+      },
+    ],
+  },
+  {
+    name: "Krakow",
+    slug: "krakow",
+    iata: "KRK",
+    airportHint: "Krakow John Paul II",
+    targetRange: [69, 139],
+    score: 91,
+    direct: true,
+    flightTime: "3h 35m",
+    mood: "Old town value, food, history and compact walking routes.",
+    description:
+      "Krakow is a strong low-spend city break with boutique hotels, walkable streets and a route profile that can surface sharp fares.",
+    tags: ["Value", "Old town", "Food"],
+    tips: ["Stay close to the Old Town or Kazimierz.", "Reserve popular cellar restaurants.", "Use the train from the airport."],
+    faq: [
+      {
+        question: "Why add Krakow to Voltescape deals?",
+        answer: "It combines low ground costs, strong city-break appeal and attractive target ranges from Tel Aviv.",
+      },
+      {
+        question: "Is Krakow good for first-time Poland travel?",
+        answer: "Yes. It is compact, atmospheric and easier to scan than larger cities.",
+      },
+    ],
+  },
+  {
+    name: "Thessaloniki",
+    slug: "thessaloniki",
+    iata: "SKG",
+    airportHint: "Thessaloniki Airport",
+    targetRange: [49, 109],
+    score: 95,
+    direct: true,
+    flightTime: "2h 15m",
+    mood: "Greek food, waterfront nights and low-friction weekend energy.",
+    description:
+      "Thessaloniki is a smart Greece deal route: short, social, food-led and often cheaper than more obvious island plays.",
+    tags: ["Food", "Weekend", "Value"],
+    tips: ["Stay near the waterfront.", "Use the city as a base for northern Greece.", "Book Friday departures early."],
+    faq: [
+      {
+        question: "Is Thessaloniki better than Athens for value?",
+        answer: "It can be, especially for food, nightlife and short breaks with lower total trip cost.",
+      },
+      {
+        question: "Does Thessaloniki fit Voltescape luxury?",
+        answer: "Yes when positioned as smart Mediterranean value with boutique stays and excellent food.",
+      },
+    ],
+  },
+  {
+    name: "Belgrade",
+    slug: "belgrade",
+    iata: "BEG",
+    airportHint: "Belgrade Nikola Tesla",
+    targetRange: [69, 139],
+    score: 92,
+    direct: true,
+    flightTime: "3h 00m",
+    mood: "Nightlife, riverside energy and underrated hotel value.",
+    description:
+      "Belgrade is a high-conversion value route for travelers who want nightlife, food, design bars and a less obvious Europe escape.",
+    tags: ["Nightlife", "Value", "Direct"],
+    tips: ["Stay around Dorcol or Savamala.", "Reserve river venues in summer.", "Use ride apps from the airport."],
+    faq: [
+      {
+        question: "Why is Belgrade a hot deal candidate?",
+        answer: "It is direct-friendly, affordable on the ground and has strong weekend appeal.",
+      },
+      {
+        question: "Who should choose Belgrade?",
+        answer: "Travelers who want nightlife, food and a sharper alternative to standard capitals.",
+      },
+    ],
+  },
+  {
+    name: "Tirana",
+    slug: "tirana",
+    iata: "TIA",
+    airportHint: "Tirana International",
+    targetRange: [59, 129],
+    score: 90,
+    direct: true,
+    flightTime: "3h 00m",
+    mood: "New Europe energy, low spend and Albania add-on potential.",
+    description:
+      "Tirana is an emerging value pick with low ground costs, colorful city energy and easy extensions toward the Albanian coast.",
+    tags: ["Emerging", "Value", "Coast"],
+    tips: ["Use Tirana as a base or coastal gateway.", "Book boutique hotels near Blloku.", "Check baggage rules carefully."],
+    faq: [
+      {
+        question: "Is Tirana a good deal destination?",
+        answer: "Yes. It can deliver low total trip cost and a fresh alternative to classic city breaks.",
+      },
+      {
+        question: "Is Tirana suitable for premium travelers?",
+        answer: "It works for smart luxury-value travelers who prefer boutique stays and emerging destinations.",
+      },
+    ],
+  },
+  {
+    name: "Naples",
+    slug: "naples",
+    iata: "NAP",
+    airportHint: "Naples International",
+    targetRange: [69, 149],
+    score: 89,
+    direct: true,
+    flightTime: "3h 20m",
+    mood: "Pizza, Amalfi access and raw Italian city drama.",
+    description:
+      "Naples is a high-emotion Italy route with food, coast access, strong activities and premium add-on potential around Amalfi.",
+    tags: ["Italy", "Food", "Coast"],
+    tips: ["Use Naples for Amalfi or Capri add-ons.", "Book transfers if arriving late.", "Stay central for first trips."],
+    faq: [
+      {
+        question: "Why include Naples in flight deals?",
+        answer: "It can unlock Italy at lower prices while monetizing well through transfers, activities and hotels.",
+      },
+      {
+        question: "Is Naples a weekend route?",
+        answer: "Yes for the city itself. Add more nights for Amalfi, Capri or Pompeii.",
+      },
+    ],
+  },
+  {
+    name: "Barcelona",
+    slug: "barcelona",
+    iata: "BCN",
+    airportHint: "Barcelona El Prat",
+    targetRange: [109, 219],
+    score: 86,
+    direct: true,
+    flightTime: "4h 40m",
+    mood: "Beach-city blend, design hotels and high activity intent.",
+    description:
+      "Barcelona is a premium conversion route: strong flight intent, hotels, food, architecture, beaches and activity clicks.",
+    tags: ["Beach city", "Design", "Activities"],
+    tips: ["Book Sagrada Familia ahead.", "Choose neighborhood by trip style.", "Avoid overpacking the itinerary."],
+    faq: [
+      {
+        question: "Is Barcelona usually cheap from TLV?",
+        answer: "Not always, but when it moves near target range it is a strong high-intent deal.",
+      },
+      {
+        question: "Why does Barcelona monetize well?",
+        answer: "It has strong demand across flights, hotels, activities, transfers and repeat travel.",
+      },
+    ],
+  },
+  {
+    name: "Madrid",
+    slug: "madrid",
+    iata: "MAD",
+    airportHint: "Adolfo Suarez Madrid-Barajas",
+    targetRange: [99, 209],
+    score: 84,
+    direct: true,
+    flightTime: "5h 00m",
+    mood: "Late dinners, museums, rooftops and polished hotel value.",
+    description:
+      "Madrid is a larger premium city play with strong food, museums, nightlife and hotel value when fares drop into range.",
+    tags: ["Museums", "Food", "Rooftops"],
+    tips: ["Stay near Salamanca, Chueca or Las Letras.", "Book Prado windows.", "Use Madrid as a Spain hub."],
+    faq: [
+      {
+        question: "When is Madrid a strong deal?",
+        answer: "When flights come close to the lower target range because the destination has strong premium intent.",
+      },
+      {
+        question: "Is Madrid better than Barcelona for hotels?",
+        answer: "Madrid can offer excellent premium hotel value, especially outside major event dates.",
+      },
+    ],
+  },
+  {
+    name: "Istanbul",
+    slug: "istanbul",
+    iata: "IST",
+    airportHint: "Istanbul Airport",
+    targetRange: [79, 159],
+    score: 88,
+    direct: true,
+    flightTime: "2h 15m",
+    mood: "Grand bazaar energy, design hotels and fast premium contrast.",
+    description:
+      "Istanbul is a short, high-sensory route with strong hotels, food, shopping and transfer monetization potential.",
+    tags: ["Short haul", "Hotels", "Food"],
+    tips: ["Track airport and airline carefully.", "Book a central transfer.", "Choose hotel location around trip style."],
+    faq: [
+      {
+        question: "Why is Istanbul useful for Voltescape?",
+        answer: "It is close, high-intent and can convert across flights, hotels and transfers.",
+      },
+      {
+        question: "Is Istanbul premium enough?",
+        answer: "Yes. The city has strong luxury hotel inventory and premium food and shopping appeal.",
+      },
+    ],
+  },
+  {
+    name: "Tbilisi",
+    slug: "tbilisi",
+    iata: "TBS",
+    airportHint: "Tbilisi International",
+    targetRange: [69, 149],
+    score: 93,
+    direct: true,
+    flightTime: "2h 35m",
+    mood: "Wine, design stays, mountains and excellent trip value.",
+    description:
+      "Tbilisi is a strong near-Europe deal route with low ground costs, wine, boutique stays and mountain add-on energy.",
+    tags: ["Wine", "Value", "Mountains"],
+    tips: ["Add Kazbegi if you have more nights.", "Book sulfur baths ahead.", "Use transfers for mountain days."],
+    faq: [
+      {
+        question: "Why is Tbilisi a strong deal route?",
+        answer: "It combines low total trip cost, short flight time and high destination character.",
+      },
+      {
+        question: "Does Tbilisi work for luxury-value travel?",
+        answer: "Yes. Boutique stays, wine and private day trips can feel premium without high spend.",
+      },
+    ],
+  },
+  {
+    name: "Yerevan",
+    slug: "yerevan",
+    iata: "EVN",
+    airportHint: "Zvartnots International",
+    targetRange: [69, 149],
+    score: 90,
+    direct: true,
+    flightTime: "2h 40m",
+    mood: "Warm city break, food, culture and low-cost discovery.",
+    description:
+      "Yerevan is a compact value escape with food, culture, easy planning and a route profile that can surface attractive fares.",
+    tags: ["Culture", "Value", "Food"],
+    tips: ["Book central stays near Republic Square.", "Add Garni and Geghard.", "Use private transfers for day trips."],
+    faq: [
+      {
+        question: "Is Yerevan a good short escape?",
+        answer: "Yes. It is compact, friendly and works well for a two or three night reset.",
+      },
+      {
+        question: "Why add Yerevan to the deal engine?",
+        answer: "It can offer strong value and clear destination intent from Tel Aviv.",
+      },
+    ],
+  },
+  {
+    name: "Batumi",
+    slug: "batumi",
+    iata: "BUS",
+    airportHint: "Batumi International",
+    targetRange: [79, 169],
+    score: 88,
+    direct: true,
+    flightTime: "2h 30m",
+    mood: "Black Sea, casinos, coast and fast summer energy.",
+    description:
+      "Batumi is a seasonal coast play with short flight time, beach-city energy and strong weekend or summer click potential.",
+    tags: ["Coast", "Summer", "Fast"],
+    tips: ["Check seasonality before booking.", "Compare hotels along the boulevard.", "Use private transfer for late arrivals."],
+    faq: [
+      {
+        question: "When is Batumi strongest?",
+        answer: "It performs best as a summer or warm-weather deal when direct options and hotel demand line up.",
+      },
+      {
+        question: "Is Batumi a cheap flight candidate?",
+        answer: "It can be, especially when direct summer fares drop near the lower target range.",
+      },
+    ],
+  },
 ];
 
 export function getDestination(slugOrIata: string) {

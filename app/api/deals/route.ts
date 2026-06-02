@@ -6,6 +6,8 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const origin = searchParams.get("origin") || ORIGIN;
   const currency = searchParams.get("currency") || DEFAULT_CURRENCY;
-  const deals = await getDeals(origin, currency);
+  const requestedLimit = Number(searchParams.get("limit") || 24);
+  const limit = Number.isFinite(requestedLimit) ? Math.min(Math.max(requestedLimit, 1), 48) : 24;
+  const deals = await getDeals(origin, currency, limit);
   return NextResponse.json({ deals });
 }

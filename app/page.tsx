@@ -21,7 +21,7 @@ export default async function HomePage() {
         destination,
         ctaId: `home-deal-${destination.slug}`,
         pagePath: "/",
-        outboundUrl: aviasalesUrl(destination),
+        outboundUrl: deal.affiliateUrl,
       }),
     };
   });
@@ -65,8 +65,9 @@ export default async function HomePage() {
               <span className="panel-label">Top signal</span>
               <strong>Tel Aviv → {top.destination}</strong>
               <div className="panel-price">
-                {top.livePrice ? `from €${top.livePrice}` : `target €${top.targetRange[0]}-${top.targetRange[1]}`}
+                {top.livePrice ? `Live from €${top.livePrice}` : `Target €${top.targetRange[0]}-${top.targetRange[1]}`}
               </div>
+              <p className="deal-meta">{top.dealTag} · {top.urgencyLabel}</p>
               <div className="meter" aria-label={`Deal score ${top.score} out of 100`}>
                 <span style={{ width: `${top.score}%` }} />
               </div>
@@ -81,14 +82,14 @@ export default async function HomePage() {
           <div className="shell">
             <div>
               <span className="kicker">Trending now</span>
-              <h2>Top deals strip</h2>
+              <h2>Hot Deals strip</h2>
             </div>
             <div className="strip-track">
               {deals.slice(0, 6).map((deal) => (
                 <a className="strip-card" href={deal.affiliateUrl} target="_blank" rel="nofollow sponsored noopener" key={deal.iata}>
                   <strong>TLV → {deal.iata}</strong>
                   <span>
-                    {deal.destination} · {deal.livePrice ? `from €${deal.livePrice}` : `target €${deal.targetRange[0]}-${deal.targetRange[1]}`} · score {deal.score}
+                    {deal.destination} · {deal.livePrice ? `from €${deal.livePrice}` : `target €${deal.targetRange[0]}-${deal.targetRange[1]}`} · {deal.dealTag} · score {deal.score}
                   </span>
                 </a>
               ))}
@@ -111,10 +112,10 @@ export default async function HomePage() {
         <section className="shell" id="cheapest-flights" aria-labelledby="cheapest-title">
           <div className="section-head">
             <span className="kicker">Cheapest flights from Israel</span>
-            <h2 id="cheapest-title">TLV → Europe deal engine</h2>
+            <h2 id="cheapest-title">TLV → hot Europe deal engine</h2>
             <p>
-              Live prices are used when Travelpayouts returns a route result. If not, Voltescape shows a labeled target
-              range and routes the click to a live partner check.
+              The strongest routes rise first by price signal, direct-flight shape, weekend potential and target-range
+              value. Every click opens a destination-specific Aviasales search in English.
             </p>
           </div>
           <DealCards deals={deals} />
