@@ -53,12 +53,12 @@ export default async function SeoLandingPage({ params }: Props) {
       <Header />
       <main>
         <section className="shell page-hero">
-          <span className="kicker">Voltescape SEO route</span>
+          <span className="kicker">Cheap flights from Tel Aviv</span>
           <h1>{page.heading}</h1>
           <p className="lead">{page.body}</p>
           <div className="actions">
             <a className="button primary" href="#deals">
-              View live checks
+              View deals
             </a>
             <a className="button secondary" href="#alerts">
               Save price alert
@@ -69,16 +69,16 @@ export default async function SeoLandingPage({ params }: Props) {
         <section className="shell" id="deals">
           <div className="section-head">
             <span className="kicker">Route picks</span>
-            <h2>Live checks and target ranges</h2>
-            <p>Every primary CTA routes through a tracked Aviasales link with TLV origin and destination prefill.</p>
+            <h2>Live fares and target prices</h2>
+            <p>Every deal opens a flight search from Tel Aviv with your destination already filled in.</p>
           </div>
           <DealCards deals={trackedDeals} />
         </section>
 
         <section className="shell">
           <div className="section-head">
-            <span className="kicker">Internal links</span>
-            <h2>Explore related city pages</h2>
+            <span className="kicker">More destinations</span>
+            <h2>Explore related city guides</h2>
           </div>
           <div className="city-grid">
             {relevantDestinations.map((destination) => (
@@ -105,9 +105,9 @@ export default async function SeoLandingPage({ params }: Props) {
 
         <section className="shell alert-box" id="alerts">
           <div>
-            <span className="kicker">Capture demand</span>
-            <h2>Get the next Voltescape signal</h2>
-            <p>Save a route and come back through a tracked deal path when the price moves.</p>
+            <span className="kicker">Price alerts</span>
+            <h2>Get notified when the price drops</h2>
+            <p>Save a route and we&apos;ll email you when the fare is worth booking.</p>
           </div>
           <AlertForm destinations={destinations} />
         </section>

@@ -54,7 +54,7 @@ export const destinations: Destination[] = [
     flightTime: "4h 20m",
     mood: "Creative sprawl, serious nightlife, galleries and records.",
     description:
-      "Berlin is a bigger urban reset: design hotels, vintage shopping, late cafes and a high-intent route for culture-driven travelers.",
+      "Berlin is a bigger urban reset: design hotels, vintage shopping, late cafes and a favorite for culture-driven travelers.",
     tags: ["Nightlife", "Art", "Direct"],
     tips: ["Pick neighborhood first, hotel second.", "Reserve clubs and restaurants smartly.", "Use airport rail into Mitte."],
     faq: [
@@ -85,7 +85,7 @@ export const destinations: Destination[] = [
     faq: [
       {
         question: "Why does Budapest score highly?",
-        answer: "It combines lower trip costs, strong weekend appeal and a route that often produces attractive fare signals.",
+        answer: "It combines lower trip costs, strong weekend appeal and a route that often shows attractive fares.",
       },
       {
         question: "Is Budapest good for couples?",
@@ -113,8 +113,8 @@ export const destinations: Destination[] = [
         answer: "Yes. Hotels, food and rides often price lower than major Western European capitals.",
       },
       {
-        question: "What makes Bucharest convert well?",
-        answer: "Short flight time, low trip cost and spa/nightlife intent make the route easy to act on.",
+        question: "What makes Bucharest worth it?",
+        answer: "Short flight time, low trip cost and great spa and nightlife make it an easy yes.",
       },
     ],
   },
@@ -154,7 +154,7 @@ export const destinations: Destination[] = [
     flightTime: "4h+",
     mood: "Cinematic streets, crisp beer and polished old-world stays.",
     description:
-      "Prague is highly scannable and conversion-friendly: romantic visuals, compact walking routes and a strong hotel story.",
+      "Prague is an easy yes: romantic views, compact walking routes and great hotels.",
     tags: ["Romantic", "Beer", "Walkable"],
     tips: ["Cross Charles Bridge before 8 AM.", "Stay Mala Strana for calm.", "Book castle entries online."],
     faq: [
@@ -188,8 +188,8 @@ export const destinations: Destination[] = [
         answer: "It often has one of the lowest target ranges from Tel Aviv and keeps ground costs low after arrival.",
       },
       {
-        question: "Is Sofia premium enough for Voltescape?",
-        answer: "Yes when framed correctly: boutique stays, mountain access and low spend make it a smart luxury-value escape.",
+        question: "Is Sofia worth it for a nicer trip?",
+        answer: "Yes. Boutique stays, mountain access and low spend make it a smart value escape.",
       },
     ],
   },
@@ -204,7 +204,7 @@ export const destinations: Destination[] = [
     flightTime: "3h 55m",
     mood: "Fashion, aperitivo, design hotels and Lake Como exits.",
     description:
-      "Milan gives Voltescape its fashion signal: espresso, galleries, design retail, premium hotels and optional Lake Como extensions.",
+      "Milan is all about style: espresso, galleries, design shopping, premium hotels and optional Lake Como trips.",
     tags: ["Fashion", "Design", "Como"],
     tips: ["Track airport: MXP, LIN or BGY.", "Book Last Supper far ahead.", "Use train links for Como."],
     faq: [
@@ -229,13 +229,13 @@ export const destinations: Destination[] = [
     flightTime: "4h 50m",
     mood: "Luxury benchmark city with endless micro-neighborhoods.",
     description:
-      "Paris is the premium benchmark: not always the cheapest, but high-intent and perfect for fashion, food and hotel conversion.",
+      "Paris is the premium benchmark: not always the cheapest, but perfect for fashion, food and a memorable hotel stay.",
     tags: ["Luxury", "Museums", "Fashion"],
     tips: ["Choose arrondissement by trip style.", "Reserve restaurants earlier than feels normal.", "Use carry-on for short stays."],
     faq: [
       {
         question: "Why include Paris if it is not always cheap?",
-        answer: "It is high-intent and monetizes well across flights, hotels, activities, transfers and eSIMs.",
+        answer: "It is always in demand and easy to build a full trip around: flights, hotels, activities, transfers and eSIM.",
       },
       {
         question: "What price is attractive for Paris from Tel Aviv?",
@@ -254,13 +254,13 @@ export const destinations: Destination[] = [
     flightTime: "3h 40m",
     mood: "Big-ticket romance with neighborhood-level discovery.",
     description:
-      "Rome is the classic conversion city: food, romance, history, boutique hotels and endless reasons to add activities.",
+      "Rome is the classic city break: food, romance, history, boutique hotels and endless things to do.",
     tags: ["Classic", "Food", "Luxury"],
     tips: ["Book Vatican and Colosseum windows early.", "Base in Monti or Trastevere.", "Avoid airport taxi surprises."],
     faq: [
       {
-        question: "Is Rome better for flights or activities monetization?",
-        answer: "Both. The flight click is high-intent, and Rome has unusually strong activities and transfer potential.",
+        question: "Is Rome better for the flight or the things to do?",
+        answer: "Both. The flight is a great deal, and Rome has loads of activities and easy transfers.",
       },
       {
         question: "How many days should I plan for Rome?",
@@ -279,12 +279,12 @@ export const destinations: Destination[] = [
     flightTime: "1h 05m",
     mood: "Fastest beach reset with almost no planning friction.",
     description:
-      "Larnaca is the ultra-short escape from Tel Aviv: low fares, beach energy, easy transfers and a simple weekend conversion path.",
+      "Larnaca is the ultra-short escape from Tel Aviv: low fares, beach energy, easy transfers and a simple weekend getaway.",
     tags: ["Beach", "Cheapest", "Fast"],
     tips: ["Use carry-on only.", "Compare Larnaca with Paphos if dates are flexible.", "Book a sea-view stay early on weekends."],
     faq: [
       {
-        question: "Why is Larnaca a strong deal route?",
+        question: "Why is Larnaca such a good deal?",
         answer: "The route is short, often direct, and can price low enough to create fast click intent.",
       },
       {
@@ -304,7 +304,7 @@ export const destinations: Destination[] = [
     flightTime: "3h 45m",
     mood: "Polished culture, cafes, museums and premium hotel value.",
     description:
-      "Vienna brings a refined city-break signal: elegant hotels, museums, clean transit and a high-quality feel without Paris-level spend.",
+      "Vienna brings a refined city break: elegant hotels, museums, clean transit and a premium feel without Paris-level spend.",
     tags: ["Culture", "Cafes", "Premium"],
     tips: ["Use airport rail into the center.", "Book opera or museum slots ahead.", "Stay near Innere Stadt for first visits."],
     faq: [
@@ -329,13 +329,13 @@ export const destinations: Destination[] = [
     flightTime: "3h 35m",
     mood: "Old town value, food, history and compact walking routes.",
     description:
-      "Krakow is a strong low-spend city break with boutique hotels, walkable streets and a route profile that can surface sharp fares.",
+      "Krakow is a strong low-spend city break with boutique hotels, walkable streets and prices that can drop to sharp deals.",
     tags: ["Value", "Old town", "Food"],
     tips: ["Stay close to the Old Town or Kazimierz.", "Reserve popular cellar restaurants.", "Use the train from the airport."],
     faq: [
       {
-        question: "Why add Krakow to Voltescape deals?",
-        answer: "It combines low ground costs, strong city-break appeal and attractive target ranges from Tel Aviv.",
+        question: "Why pick Krakow?",
+        answer: "It combines low costs on the ground, strong city-break appeal and good prices from Tel Aviv.",
       },
       {
         question: "Is Krakow good for first-time Poland travel?",
@@ -354,7 +354,7 @@ export const destinations: Destination[] = [
     flightTime: "2h 15m",
     mood: "Greek food, waterfront nights and low-friction weekend energy.",
     description:
-      "Thessaloniki is a smart Greece deal route: short, social, food-led and often cheaper than more obvious island plays.",
+      "Thessaloniki is a smart Greece deal: short, social, food-led and often cheaper than the more obvious islands.",
     tags: ["Food", "Weekend", "Value"],
     tips: ["Stay near the waterfront.", "Use the city as a base for northern Greece.", "Book Friday departures early."],
     faq: [
@@ -363,8 +363,8 @@ export const destinations: Destination[] = [
         answer: "It can be, especially for food, nightlife and short breaks with lower total trip cost.",
       },
       {
-        question: "Does Thessaloniki fit Voltescape luxury?",
-        answer: "Yes when positioned as smart Mediterranean value with boutique stays and excellent food.",
+        question: "Can Thessaloniki feel like a special trip?",
+        answer: "Yes. Smart Mediterranean value with boutique stays and excellent food.",
       },
     ],
   },
@@ -379,12 +379,12 @@ export const destinations: Destination[] = [
     flightTime: "3h 00m",
     mood: "Nightlife, riverside energy and underrated hotel value.",
     description:
-      "Belgrade is a high-conversion value route for travelers who want nightlife, food, design bars and a less obvious Europe escape.",
+      "Belgrade is a great-value pick for travelers who want nightlife, food, design bars and a less obvious Europe escape.",
     tags: ["Nightlife", "Value", "Direct"],
     tips: ["Stay around Dorcol or Savamala.", "Reserve river venues in summer.", "Use ride apps from the airport."],
     faq: [
       {
-        question: "Why is Belgrade a hot deal candidate?",
+        question: "Why is Belgrade a great deal?",
         answer: "It is direct-friendly, affordable on the ground and has strong weekend appeal.",
       },
       {
@@ -429,13 +429,13 @@ export const destinations: Destination[] = [
     flightTime: "3h 20m",
     mood: "Pizza, Amalfi access and raw Italian city drama.",
     description:
-      "Naples is a high-emotion Italy route with food, coast access, strong activities and premium add-on potential around Amalfi.",
+      "Naples is full-on Italy: food, coast access, great activities and easy Amalfi add-ons.",
     tags: ["Italy", "Food", "Coast"],
     tips: ["Use Naples for Amalfi or Capri add-ons.", "Book transfers if arriving late.", "Stay central for first trips."],
     faq: [
       {
-        question: "Why include Naples in flight deals?",
-        answer: "It can unlock Italy at lower prices while monetizing well through transfers, activities and hotels.",
+        question: "Why pick Naples?",
+        answer: "It can unlock Italy at lower prices, with easy transfers, activities and hotels.",
       },
       {
         question: "Is Naples a weekend route?",
@@ -454,7 +454,7 @@ export const destinations: Destination[] = [
     flightTime: "4h 40m",
     mood: "Beach-city blend, design hotels and high activity intent.",
     description:
-      "Barcelona is a premium conversion route: strong flight intent, hotels, food, architecture, beaches and activity clicks.",
+      "Barcelona has it all: easy flights, hotels, food, architecture, beaches and plenty to do.",
     tags: ["Beach city", "Design", "Activities"],
     tips: ["Book Sagrada Familia ahead.", "Choose neighborhood by trip style.", "Avoid overpacking the itinerary."],
     faq: [
@@ -463,8 +463,8 @@ export const destinations: Destination[] = [
         answer: "Not always, but when it moves near target range it is a strong high-intent deal.",
       },
       {
-        question: "Why does Barcelona monetize well?",
-        answer: "It has strong demand across flights, hotels, activities, transfers and repeat travel.",
+        question: "Why is Barcelona so popular?",
+        answer: "It is in demand across flights, hotels, activities and transfers, and people keep coming back.",
       },
     ],
   },
@@ -504,13 +504,13 @@ export const destinations: Destination[] = [
     flightTime: "2h 15m",
     mood: "Grand bazaar energy, design hotels and fast premium contrast.",
     description:
-      "Istanbul is a short, high-sensory route with strong hotels, food, shopping and transfer monetization potential.",
+      "Istanbul is a short, high-sensory trip with great hotels, food, shopping and easy transfers.",
     tags: ["Short haul", "Hotels", "Food"],
     tips: ["Track airport and airline carefully.", "Book a central transfer.", "Choose hotel location around trip style."],
     faq: [
       {
-        question: "Why is Istanbul useful for Voltescape?",
-        answer: "It is close, high-intent and can convert across flights, hotels and transfers.",
+        question: "Why pick Istanbul?",
+        answer: "It is close, always popular and easy to plan across flights, hotels and transfers.",
       },
       {
         question: "Is Istanbul premium enough?",
@@ -554,7 +554,7 @@ export const destinations: Destination[] = [
     flightTime: "2h 40m",
     mood: "Warm city break, food, culture and low-cost discovery.",
     description:
-      "Yerevan is a compact value escape with food, culture, easy planning and a route profile that can surface attractive fares.",
+      "Yerevan is a compact value escape with food, culture, easy planning and prices that can drop to attractive deals.",
     tags: ["Culture", "Value", "Food"],
     tips: ["Book central stays near Republic Square.", "Add Garni and Geghard.", "Use private transfers for day trips."],
     faq: [
@@ -563,8 +563,8 @@ export const destinations: Destination[] = [
         answer: "Yes. It is compact, friendly and works well for a two or three night reset.",
       },
       {
-        question: "Why add Yerevan to the deal engine?",
-        answer: "It can offer strong value and clear destination intent from Tel Aviv.",
+        question: "Why pick Yerevan?",
+        answer: "It offers strong value and a clear reason to go from Tel Aviv.",
       },
     ],
   },
@@ -579,7 +579,7 @@ export const destinations: Destination[] = [
     flightTime: "2h 30m",
     mood: "Black Sea, casinos, coast and fast summer energy.",
     description:
-      "Batumi is a seasonal coast play with short flight time, beach-city energy and strong weekend or summer click potential.",
+      "Batumi is a seasonal coast trip with short flight time, beach-city energy and great weekend or summer appeal.",
     tags: ["Coast", "Summer", "Fast"],
     tips: ["Check seasonality before booking.", "Compare hotels along the boulevard.", "Use private transfer for late arrivals."],
     faq: [
