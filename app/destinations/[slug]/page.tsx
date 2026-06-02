@@ -72,7 +72,7 @@ export default async function DestinationPage({ params }: Props) {
             <article className="stat-card">
               <span className="kicker">מחיר</span>
               <h3>{routeDeal?.livePrice ? `החל מ-₪${routeDeal.livePrice}` : `בסביבות ₪${destination.targetRange[0]}-${destination.targetRange[1]}`}</h3>
-              <p>{routeDeal ? `${routeDeal.dealTag}. ${routeDeal.savingsSignal}.` : "טווח יעד. אמת את המחיר העדכני ב-Aviasales."}</p>
+              <p>{routeDeal ? `${routeDeal.dealTag}. ${routeDeal.savingsSignal}.` : "טווח יעד. המחיר העדכני זמין ב-Aviasales."}</p>
             </article>
             <article className="stat-card">
               <span className="kicker">סוג הטיסה</span>
