@@ -3,12 +3,11 @@ export function Footer() {
     <footer className="shell disclosure">
       <div>
         <strong>Voltescape</strong>
-        <p>Luxury + smart travel discovery from Tel Aviv to Europe.</p>
+        <p>גילוי טיסות וחופשות חכמות מתל אביב לאירופה.</p>
       </div>
       <p>
-        Disclosure: Voltescape may earn commissions from affiliate partners including Aviasales, Klook, Yesim and
-        KiwiTaxi when users click or book. Flight prices are live when available; target ranges are labeled fallback
-        signals and must be verified on the partner site.
+        גילוי נאות: Voltescape עשויה לקבל עמלה משותפים (Aviasales, Klook, Yesim ו-KiwiTaxi) כאשר משתמשים לוחצים או
+        מזמינים. מחירי הטיסות הם בזמן אמת כשהדבר זמין; טווחי המחיר הם הערכה ויש לאמת אותם באתר השותף לפני הזמנה.
       </p>
     </footer>
   );
