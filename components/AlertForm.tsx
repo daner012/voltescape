@@ -54,7 +54,7 @@ export function AlertForm({ destinations, defaultDestination, source = "voltesca
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus(labels.saving || "Saving alert...");
+    setStatus(labels.saving || "שומר התראה...");
     try {
       const response = await fetch("/api/alerts", {
         method: "POST",
@@ -66,13 +66,13 @@ export function AlertForm({ destinations, defaultDestination, source = "voltesca
           budgetEur: budgetEur ? Number(budgetEur) : undefined,
           departDate: departDate || undefined,
           returnDate: returnDate || undefined,
-          preferences: { source, currency: "EUR", consent: "marketing-price-alert" },
+          preferences: { source, currency: "ILS", consent: "marketing-price-alert" },
         }),
       });
       const data = (await response.json()) as { ok: boolean; error?: string; fallback?: "local"; mode?: "cloud" };
       if (data.ok) {
         trackMetaLead({ destination, source, mode: data.mode || "cloud", budgetEur: budgetEur ? Number(budgetEur) : null });
-        setStatus(labels.success || "Alert saved. We will route you back when the fare moves.");
+        setStatus(labels.success || "ההתראה נשמרה. נחזיר אותך כשהמחיר ישתנה.");
         setEmail("");
         setBudgetEur("");
         return;
@@ -80,16 +80,16 @@ export function AlertForm({ destinations, defaultDestination, source = "voltesca
       if (data.fallback === "local") {
         saveLocalAlert();
         trackMetaEvent("PriceAlertSavedLocal", { destination, source, budgetEur: budgetEur ? Number(budgetEur) : null });
-        setStatus(labels.fallback || "Saved on this device. Email alerts will activate soon.");
+        setStatus(labels.fallback || "נשמר במכשיר הזה. התראות מייל יופעלו בקרוב.");
         setEmail("");
         setBudgetEur("");
         return;
       }
-      setStatus(data.error || "Could not save this alert right now. Please try again soon.");
+      setStatus(data.error || "לא הצלחנו לשמור את ההתראה כרגע. נסה שוב בקרוב.");
     } catch {
       saveLocalAlert();
       trackMetaEvent("PriceAlertSavedLocal", { destination, source, budgetEur: budgetEur ? Number(budgetEur) : null });
-      setStatus(labels.fallback || "Saved on this device. Please check live prices before booking.");
+      setStatus(labels.fallback || "נשמר במכשיר הזה. בדוק מחירים לפני הזמנה.");
       setEmail("");
       setBudgetEur("");
     }
@@ -98,11 +98,11 @@ export function AlertForm({ destinations, defaultDestination, source = "voltesca
   return (
     <form className={compact ? "alert-form compact-alert" : "alert-form"} onSubmit={submit}>
       <label>
-        <span>{labels.email || "Email"}</span>
-        <input value={email} onChange={(event) => setEmail(event.target.value)} type="email" placeholder={labels.placeholder || "you@example.com"} required />
+        <span>{labels.email || "אימייל"}</span>
+        <input value={email} onChange={(event) => setEmail(event.target.value)} type="email" placeholder={labels.placeholder || "name@email.com"} required />
       </label>
       <label>
-        <span>{labels.route || "Route"}</span>
+        <span>{labels.route || "מסלול"}</span>
         <select value={destination} onChange={(event) => setDestination(event.target.value)}>
           {destinations.map((city) => (
             <option key={city.iata} value={city.iata}>
@@ -112,23 +112,23 @@ export function AlertForm({ destinations, defaultDestination, source = "voltesca
         </select>
       </label>
       <label>
-        <span>{labels.budget || "Budget EUR"}</span>
+        <span>{labels.budget || "תקציב ₪"}</span>
         <input value={budgetEur} onChange={(event) => setBudgetEur(event.target.value)} type="number" min="20" max="2000" placeholder="120" />
       </label>
       {!compact && (
         <>
           <label>
-            <span>{labels.depart || "Depart"}</span>
+            <span>{labels.depart || "יציאה"}</span>
             <input value={departDate} onChange={(event) => setDepartDate(event.target.value)} type="date" />
           </label>
           <label>
-            <span>{labels.return || "Return"}</span>
+            <span>{labels.return || "חזרה"}</span>
             <input value={returnDate} onChange={(event) => setReturnDate(event.target.value)} type="date" />
           </label>
         </>
       )}
       <button className="button secondary" type="submit">
-        {labels.button || "Save alert"}
+        {labels.button || "שמור התראה"}
       </button>
       <p aria-live="polite">{status}</p>
     </form>

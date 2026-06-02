@@ -42,42 +42,42 @@ export default async function HomePage() {
             <div>
               <div className="eyebrow">
                 <span className="pulse" />
-                Europe deals from Tel Aviv, updated all the time
+                דילים לאירופה מתל אביב, מתעדכנים כל הזמן
               </div>
               <h1>VOLTESCAPE</h1>
               <p className="lead">
-                We scan hundreds of routes to show you the cheapest dates to Europe — flights, hotels, activities,
-                eSIMs and airport transfers, all in one simple flow.
+                סורקים מאות מסלולים ומראים לך את התאריכים הזולים ביותר לאירופה — טיסות, מלונות, פעילויות, eSIM
+                והסעות, הכל בזרימה אחת פשוטה.
               </p>
               <div className="actions">
                 <Link className="button primary" href="#cheapest-flights">
-                  View hot deals
+                  לדילים החמים
                 </Link>
                 <Link className="button secondary" href="#search">
-                  Build a trip
+                  בנה טיול
                 </Link>
                 <Link className="button secondary" href="/today-best-deals">
-                  Today&apos;s best
+                  הכי שווה היום
                 </Link>
               </div>
               <div className="trust" aria-label="Platform highlights">
-                <span>Departs Tel Aviv</span>
-                <span>Prices updated</span>
-                <span>Cheapest dates first</span>
+                <span>יוצא מתל אביב</span>
+                <span>מחירים מתעדכנים</span>
+                <span>קודם הזול ביותר</span>
               </div>
             </div>
             <aside className="hero-panel" aria-label="Featured deal snapshot">
-              <span className="panel-label">Top deal</span>
-              <strong>Tel Aviv → {top.destination}</strong>
+              <span className="panel-label">הדיל החם</span>
+              <strong>תל אביב ← {top.destination}</strong>
               <div className="panel-price">
-                {top.livePrice ? `Live from €${top.livePrice}` : `Target €${top.targetRange[0]}-${top.targetRange[1]}`}
+                {top.livePrice ? `החל מ-₪${top.livePrice}` : `בסביבות ₪${top.targetRange[0]}-${top.targetRange[1]}`}
               </div>
               <p className="deal-meta">{top.dealTag} · {top.urgencyLabel}</p>
-              <div className="meter" aria-label={`Deal score ${top.score} out of 100`}>
+              <div className="meter" aria-label={`ציון דיל ${top.score} מתוך 100`}>
                 <span style={{ width: `${top.score}%` }} />
               </div>
               <a className="small-link" href={top.affiliateUrl} target="_blank" rel="nofollow sponsored noopener">
-                {top.livePrice ? "Open live flight deal" : "Check live deal"}
+                {top.livePrice ? "לדיל הטיסה" : "בדוק את הדיל"}
               </a>
             </aside>
           </div>
@@ -86,15 +86,15 @@ export default async function HomePage() {
         <section className="top-strip" aria-label="Trending deals">
           <div className="shell">
             <div>
-              <span className="kicker">Trending now</span>
-              <h2>Hot Deals this week</h2>
+              <span className="kicker">חם עכשיו</span>
+              <h2>הדילים החמים השבוע</h2>
             </div>
             <div className="strip-track">
               {deals.slice(0, 6).map((deal) => (
                 <a className="strip-card" href={deal.affiliateUrl} target="_blank" rel="nofollow sponsored noopener" key={deal.iata}>
                   <strong>TLV → {deal.iata}</strong>
                   <span>
-                    {deal.destination} · {deal.livePrice ? `from €${deal.livePrice}` : `target €${deal.targetRange[0]}-${deal.targetRange[1]}`} · {deal.dealTag} · score {deal.score}
+                    {deal.destination} · {deal.livePrice ? `מ-₪${deal.livePrice}` : `בסביבות ₪${deal.targetRange[0]}-${deal.targetRange[1]}`} · {deal.dealTag} · ציון {deal.score}
                   </span>
                 </a>
               ))}
@@ -104,11 +104,10 @@ export default async function HomePage() {
 
         <section className="shell" id="today-best-deals" aria-labelledby="today-title">
           <div className="section-head">
-            <span className="kicker">Today&apos;s best deals</span>
-            <h2 id="today-title">The best deals we found today.</h2>
+            <span className="kicker">הדילים הכי שווים היום</span>
+            <h2 id="today-title">הדילים הכי שווים שמצאנו היום.</h2>
             <p>
-              One focused page with the strongest route of the day: top destination, target price, deal score and a
-              direct link to book.
+              עמוד אחד ממוקד עם המסלול החזק של היום: היעד המוביל, מחיר היעד, ציון הדיל וקישור ישיר להזמנה.
             </p>
           </div>
           <div className="deal-board">
@@ -116,25 +115,25 @@ export default async function HomePage() {
               <a className="board-row" href={deal.affiliateUrl} target="_blank" rel="nofollow sponsored noopener" key={deal.iata}>
                 <span>#{index + 1}</span>
                 <strong>TLV → {deal.destination}</strong>
-                <em>{deal.livePrice ? `Live from €${deal.livePrice}` : `Target €${deal.targetRange[0]}-${deal.targetRange[1]}`}</em>
-                <small>{deal.dealTag} · score {deal.score}</small>
+                <em>{deal.livePrice ? `החל מ-₪${deal.livePrice}` : `בסביבות ₪${deal.targetRange[0]}-${deal.targetRange[1]}`}</em>
+                <small>{deal.dealTag} · ציון {deal.score}</small>
               </a>
             ))}
           </div>
           <div className="section-actions">
             <Link className="button secondary" href="/today-best-deals">
-              Open full deal board
+              לכל הדילים
             </Link>
           </div>
         </section>
 
         <section className="shell" id="search" aria-labelledby="search-title">
           <div className="section-head">
-            <span className="kicker">Flight search</span>
-            <h2 id="search-title">Find your next trip</h2>
+            <span className="kicker">חיפוש טיסות</span>
+            <h2 id="search-title">מצא את הטיול הבא שלך</h2>
             <p>
-              Round-trip by default, cheapest dates first. Add a weekend or carry-on-only preference, and we&apos;ll open
-              the cheapest results for your destination on Aviasales.
+              חיפוש הלוך-ושוב כברירת מחדל, מציג קודם את התאריכים הזולים. סמן "סופ״ש" אם אתה גמיש או "כבודת יד" אם
+              אתה נוסע קל — ונפתח לך את התוצאות הזולות ביותר ליעד שבחרת ב-Aviasales.
             </p>
           </div>
           <DealSearch destinations={destinations} />
@@ -146,11 +145,11 @@ export default async function HomePage() {
 
         <section className="shell" id="cheapest-flights" aria-labelledby="cheapest-title">
           <div className="section-head">
-            <span className="kicker">Cheapest flights from Israel</span>
-            <h2 id="cheapest-title">Popular routes from Tel Aviv</h2>
+            <span className="kicker">הטיסות הזולות מישראל</span>
+            <h2 id="cheapest-title">מסלולים פופולריים מתל אביב</h2>
             <p>
-              The best routes rise to the top by price, direct-flight options, weekend potential and overall value. Every
-              click opens a destination-specific Aviasales search in English.
+              המסלולים הטובים ביותר עולים לראש לפי מחיר, טיסות ישירות, פוטנציאל לסופ״ש וערך כולל. כל לחיצה פותחת
+              חיפוש Aviasales ליעד שבחרת — הלוך-ושוב ובאנגלית.
             </p>
           </div>
           <DealCards deals={deals} />
@@ -158,8 +157,8 @@ export default async function HomePage() {
 
         <section className="shell" id="destinations" aria-labelledby="destinations-title">
           <div className="section-head">
-            <span className="kicker">Destinations</span>
-            <h2 id="destinations-title">Perfect cities for a short break</h2>
+            <span className="kicker">יעדים</span>
+            <h2 id="destinations-title">ערים מושלמות לחופשה קצרה</h2>
           </div>
           <div className="city-grid">
             {destinations.map((city) => (
@@ -167,7 +166,7 @@ export default async function HomePage() {
                 <div className="row">
                   <span className="chip">{city.iata}</span>
                   <span className="chip">
-                    target €{city.targetRange[0]}-{city.targetRange[1]}
+                    בסביבות ₪{city.targetRange[0]}-{city.targetRange[1]}
                   </span>
                 </div>
                 <h3>{city.name}</h3>
@@ -180,7 +179,7 @@ export default async function HomePage() {
                   ))}
                 </div>
                 <div className="city-actions">
-                  <Link href={`/destinations/${city.slug}`}>Guide</Link>
+                  <Link href={`/destinations/${city.slug}`}>מדריך</Link>
                   <a
                     href={trackedUrl({
                       partner: "aviasales",
@@ -192,7 +191,7 @@ export default async function HomePage() {
                     target="_blank"
                     rel="nofollow sponsored noopener"
                   >
-                    Flights
+                    טיסות
                   </a>
                   <a
                     href={trackedUrl({
@@ -215,39 +214,39 @@ export default async function HomePage() {
 
         <section className="shell" id="deals" aria-labelledby="affiliate-title">
           <div className="section-head">
-            <span className="kicker">Everything in one place</span>
-            <h2 id="affiliate-title">Flights, stays, activities, eSIM, transfers</h2>
+            <span className="kicker">הכל במקום אחד</span>
+            <h2 id="affiliate-title">טיסות, מלונות, פעילויות, eSIM והסעות</h2>
           </div>
           <div className="affiliate-grid">
             <article className="affiliate-card">
               <span className="icon">✈</span>
-              <h3>Flights</h3>
-              <p>Compare every flight from Tel Aviv and jump straight to the cheapest dates for your destination.</p>
+              <h3>טיסות</h3>
+              <p>השוואת מחירים על כל הטיסות מתל אביב, ישר לתאריכים הזולים ביותר ליעד שלך.</p>
             </article>
             <article className="affiliate-card">
               <span className="icon">⌂</span>
-              <h3>Hotels + Activities</h3>
-              <p>Hotels, tours and attractions for every destination — booked ahead at a good price, no surprises.</p>
+              <h3>מלונות ופעילויות</h3>
+              <p>מלונות, סיורים ואטרקציות בכל יעד — להזמין מראש במחיר טוב, בלי הפתעות.</p>
             </article>
             <article className="affiliate-card">
               <span className="icon">▣</span>
               <h3>eSIM</h3>
-              <p>An eSIM for data abroad. Activate it before your flight, no hunting for a shop at the airport.</p>
+              <p>כרטיס eSIM לאינטרנט בחו״ל. מפעילים לפני הטיסה, בלי לחפש חנות בשדה.</p>
             </article>
             <article className="affiliate-card">
               <span className="icon">▻</span>
-              <h3>Airport Transfer</h3>
-              <p>A booked-ahead ride from the airport to your hotel at a price you know in advance.</p>
+              <h3>הסעה מהשדה</h3>
+              <p>הסעה מסודרת מהשדה אל המלון, מוזמנת מראש במחיר ידוע.</p>
             </article>
           </div>
 
           <section className="alert-box" id="alerts" aria-labelledby="alerts-title">
             <div>
-              <span className="kicker">Price alerts</span>
-              <h2 id="alerts-title">Price alerts that bring you back at the right time</h2>
+              <span className="kicker">התראות מחיר</span>
+              <h2 id="alerts-title">התראות מחיר שמחזירות אותך בדיוק בזמן</h2>
               <p>
-                Not ready to book yet? We&apos;ll save your route and email you the moment the price drops — so you
-                catch the deal before it&apos;s gone.
+                עדיין לא מוכן להזמין? נשמור לך את המסלול ונשלח לך מייל ברגע שהמחיר יורד — ככה תתפוס את הדיל לפני
+                שהוא נעלם.
               </p>
             </div>
             <AlertForm destinations={destinations} defaultDestination={topDestination.iata} />
@@ -258,7 +257,7 @@ export default async function HomePage() {
           destinations={destinations}
           defaultDestination={topDestination.iata}
           topDealUrl={top.affiliateUrl}
-          topDealLabel={top.livePrice ? `View ${top.destination} from €${top.livePrice}` : `Check ${top.destination} live deal`}
+          topDealLabel={top.livePrice ? `${top.destination} החל מ-₪${top.livePrice}` : `בדוק דיל ל${top.destination}`}
         />
       </main>
       <Footer />

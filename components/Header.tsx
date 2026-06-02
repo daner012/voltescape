@@ -8,16 +8,15 @@ export function Header() {
         <span>Voltescape</span>
       </Link>
       <nav className="links" aria-label="Main menu">
-        <Link href="/#deals">Deals</Link>
-        <Link href="/today-best-deals">Today</Link>
-        <Link href="/#search">Search</Link>
-        <Link href="/#quiz">Quiz</Link>
-        <Link href="/#destinations">Cities</Link>
-        <Link href="/he/cheap-flights-from-israel">עברית</Link>
-        <Link href="/#alerts">Alerts</Link>
+        <Link href="/#deals">דילים</Link>
+        <Link href="/today-best-deals">היום</Link>
+        <Link href="/#search">חיפוש</Link>
+        <Link href="/#quiz">קוויז</Link>
+        <Link href="/#destinations">יעדים</Link>
+        <Link href="/#alerts">התראות</Link>
       </nav>
       <Link className="nav-cta" href="/#cheapest-flights">
-        Cheapest from TLV
+        הזולות מתל אביב
       </Link>
     </header>
   );

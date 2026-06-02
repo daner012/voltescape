@@ -53,32 +53,32 @@ export default async function SeoLandingPage({ params }: Props) {
       <Header />
       <main>
         <section className="shell page-hero">
-          <span className="kicker">Cheap flights from Tel Aviv</span>
+          <span className="kicker">טיסות זולות מתל אביב</span>
           <h1>{page.heading}</h1>
           <p className="lead">{page.body}</p>
           <div className="actions">
             <a className="button primary" href="#deals">
-              View deals
+              לדילים
             </a>
             <a className="button secondary" href="#alerts">
-              Save price alert
+              שמור התראת מחיר
             </a>
           </div>
         </section>
 
         <section className="shell" id="deals">
           <div className="section-head">
-            <span className="kicker">Route picks</span>
-            <h2>Live fares and target prices</h2>
-            <p>Every deal opens a flight search from Tel Aviv with your destination already filled in.</p>
+            <span className="kicker">מסלולים נבחרים</span>
+            <h2>מחירים חיים וטווחי יעד</h2>
+            <p>כל דיל פותח חיפוש טיסה מתל אביב עם היעד שלך כבר ממולא.</p>
           </div>
           <DealCards deals={trackedDeals} />
         </section>
 
         <section className="shell">
           <div className="section-head">
-            <span className="kicker">More destinations</span>
-            <h2>Explore related city guides</h2>
+            <span className="kicker">עוד יעדים</span>
+            <h2>מדריכי ערים נוספים</h2>
           </div>
           <div className="city-grid">
             {relevantDestinations.map((destination) => (
@@ -86,7 +86,7 @@ export default async function SeoLandingPage({ params }: Props) {
                 <div className="row">
                   <span className="chip">{destination.iata}</span>
                   <span className="chip">
-                    target €{destination.targetRange[0]}-{destination.targetRange[1]}
+                    בסביבות ₪{destination.targetRange[0]}-{destination.targetRange[1]}
                   </span>
                 </div>
                 <h3>{destination.name}</h3>
@@ -105,9 +105,9 @@ export default async function SeoLandingPage({ params }: Props) {
 
         <section className="shell alert-box" id="alerts">
           <div>
-            <span className="kicker">Price alerts</span>
-            <h2>Get notified when the price drops</h2>
-            <p>Save a route and we&apos;ll email you when the fare is worth booking.</p>
+            <span className="kicker">התראות מחיר</span>
+            <h2>קבל התראה כשהמחיר יורד</h2>
+            <p>שמור מסלול ונשלח לך מייל כשהמחיר שווה הזמנה.</p>
           </div>
           <AlertForm destinations={destinations} />
         </section>

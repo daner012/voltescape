@@ -85,11 +85,11 @@ function scoreDeal(destination: Destination, candidate: PriceCandidate | null) {
     else if (candidate.livePrice <= ceiling) score += 4;
     else score -= 5;
 
-    if (candidate.livePrice <= 80) score += 6;
+    if (candidate.livePrice <= 320) score += 6;
     if (candidate.direct ?? destination.direct) score += 4;
     if (isWeekendTrip(candidate.departDate, candidate.returnDate)) score += 5;
   } else {
-    if (floor <= 70) score += 5;
+    if (floor <= 280) score += 5;
     if (destination.direct) score += 3;
   }
 
@@ -97,26 +97,26 @@ function scoreDeal(destination: Destination, candidate: PriceCandidate | null) {
 }
 
 function savingsSignal(destination: Destination, candidate: PriceCandidate | null) {
-  if (!candidate) return `Target €${destination.targetRange[0]}-${destination.targetRange[1]}`;
-  if (candidate.livePrice <= destination.targetRange[0]) return "Below target range";
-  if (candidate.livePrice <= destination.targetRange[1]) return "Inside target range";
-  return "Live price above target";
+  if (!candidate) return `טווח ₪${destination.targetRange[0]}-${destination.targetRange[1]}`;
+  if (candidate.livePrice <= destination.targetRange[0]) return "מתחת לטווח";
+  if (candidate.livePrice <= destination.targetRange[1]) return "בתוך הטווח";
+  return "מעל הטווח";
 }
 
 function dealTag(destination: Destination, candidate: PriceCandidate | null) {
   const lowSignal = candidate?.livePrice ?? destination.targetRange[0];
-  if (lowSignal <= 80) return "Best under €80";
-  if (candidate && isWeekendTrip(candidate.departDate, candidate.returnDate)) return "Weekend steal";
-  if (candidate?.direct ?? destination.direct) return "Direct from TLV";
-  if (destination.tags.some((tag) => ["Luxury", "Fashion", "Premium", "Design"].includes(tag))) return "Luxury value";
-  return candidate ? "Just checked" : "Smart target";
+  if (lowSignal <= 320) return "מתחת ל-₪320";
+  if (candidate && isWeekendTrip(candidate.departDate, candidate.returnDate)) return "מציאת סופ״ש";
+  if (candidate?.direct ?? destination.direct) return "ישיר מתל אביב";
+  if (destination.tags.some((tag) => ["יוקרה", "אופנה", "פרימיום", "עיצוב"].includes(tag))) return "יוקרה משתלמת";
+  return candidate ? "נבדק עכשיו" : "יעד חכם";
 }
 
 function urgencyLabel(destination: Destination, candidate: PriceCandidate | null) {
-  if (!candidate) return "Verify live fare";
-  if (candidate.livePrice <= destination.targetRange[0]) return "Rare low signal";
-  if (isWeekendTrip(candidate.departDate, candidate.returnDate)) return "Weekend window";
-  return "Just checked";
+  if (!candidate) return "מחיר עדכני";
+  if (candidate.livePrice <= destination.targetRange[0]) return "מחיר נמוך נדיר";
+  if (isWeekendTrip(candidate.departDate, candidate.returnDate)) return "חלון סופ״ש";
+  return "נבדק עכשיו";
 }
 
 function candidateFromRecord(record: Record<string, unknown>): PriceCandidate | null {
