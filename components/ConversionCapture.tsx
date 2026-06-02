@@ -64,8 +64,8 @@ export function ConversionCapture({
             <span className="kicker">Before you go</span>
             <h2 id="capture-title">Let Voltescape watch the fare.</h2>
             <p>
-              Save a route, budget and email. When you return, the site keeps pushing you back into tracked flight deals
-              instead of losing the click.
+              Save a route, budget and email. When you come back, your trip is ready to check again with the latest
+              partner prices.
             </p>
             <AlertForm destinations={destinations} defaultDestination={defaultDestination} source="exit-capture" compact />
           </section>

@@ -18,6 +18,7 @@ type AlertFormProps = {
     placeholder?: string;
     saving?: string;
     success?: string;
+    fallback?: string;
   };
 };
 
@@ -29,25 +30,62 @@ export function AlertForm({ destinations, defaultDestination, source = "voltesca
   const [returnDate, setReturnDate] = useState("");
   const [status, setStatus] = useState("");
 
+  function saveLocalAlert() {
+    const alert = {
+      email,
+      origin: "TLV",
+      destination,
+      budgetEur: budgetEur ? Number(budgetEur) : null,
+      departDate: departDate || null,
+      returnDate: returnDate || null,
+      source,
+      createdAt: new Date().toISOString(),
+    };
+    let existing: unknown[] = [];
+    try {
+      const parsed = JSON.parse(localStorage.getItem("voltescape_price_alerts") || "[]") as unknown;
+      existing = Array.isArray(parsed) ? parsed : [];
+    } catch {
+      existing = [];
+    }
+    localStorage.setItem("voltescape_price_alerts", JSON.stringify([alert, ...existing].slice(0, 20)));
+  }
+
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus(labels.saving || "Saving alert...");
-    const response = await fetch("/api/alerts", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-        origin: "TLV",
-        destination,
-        budgetEur: budgetEur ? Number(budgetEur) : undefined,
-        departDate: departDate || undefined,
-        returnDate: returnDate || undefined,
-        preferences: { source, currency: "EUR", consent: "marketing-price-alert" },
-      }),
-    });
-    const data = (await response.json()) as { ok: boolean; error?: string };
-    setStatus(data.ok ? labels.success || "Alert saved. We will route you back when the fare moves." : data.error || "Could not save alert");
-    if (data.ok) {
+    try {
+      const response = await fetch("/api/alerts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          origin: "TLV",
+          destination,
+          budgetEur: budgetEur ? Number(budgetEur) : undefined,
+          departDate: departDate || undefined,
+          returnDate: returnDate || undefined,
+          preferences: { source, currency: "EUR", consent: "marketing-price-alert" },
+        }),
+      });
+      const data = (await response.json()) as { ok: boolean; error?: string; fallback?: "local"; mode?: "cloud" };
+      if (data.ok) {
+        setStatus(labels.success || "Alert saved. We will route you back when the fare moves.");
+        setEmail("");
+        setBudgetEur("");
+        return;
+      }
+      if (data.fallback === "local") {
+        saveLocalAlert();
+        setStatus(labels.fallback || "Saved on this device. Email alerts will activate soon.");
+        setEmail("");
+        setBudgetEur("");
+        return;
+      }
+      setStatus(data.error || "Could not save this alert right now. Please try again soon.");
+    } catch {
+      saveLocalAlert();
+      setStatus(labels.fallback || "Saved on this device. Please check live prices before booking.");
       setEmail("");
       setBudgetEur("");
     }

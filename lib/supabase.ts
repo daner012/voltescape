@@ -1,4 +1,4 @@
-type InsertResult = { ok: boolean; status?: number; error?: string };
+type InsertResult = { ok: boolean; status?: number; error?: string; missingConfig?: boolean };
 
 function supabaseConfig() {
   return {
@@ -10,7 +10,7 @@ function supabaseConfig() {
 export async function insertSupabase(table: string, payload: Record<string, unknown>): Promise<InsertResult> {
   const { url, serviceKey } = supabaseConfig();
   if (!url || !serviceKey) {
-    return { ok: false, error: "Supabase is not configured" };
+    return { ok: false, error: "Storage is not configured", missingConfig: true };
   }
 
   const response = await fetch(`${url.replace(/\/$/, "")}/rest/v1/${table}`, {

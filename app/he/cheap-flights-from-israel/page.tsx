@@ -109,6 +109,7 @@ export default async function HebrewCheapFlightsPage() {
               placeholder: "you@example.com",
               saving: "שומר התראה...",
               success: "ההתראה נשמרה. נחזיר אותך לדיל כשהמחיר יזוז.",
+              fallback: "נשמר במכשיר הזה. התראות אימייל יופעלו בקרוב.",
             }}
           />
         </section>

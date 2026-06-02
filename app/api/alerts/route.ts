@@ -39,8 +39,18 @@ export async function POST(request: Request) {
   });
 
   if (!result.ok) {
-    return NextResponse.json({ ok: false, error: result.error || "Supabase insert failed" }, { status: 503 });
+    if (result.missingConfig) {
+      return NextResponse.json(
+        {
+          ok: false,
+          fallback: "local",
+          error: "Email alerts are almost ready. For now, this route can be saved on your device.",
+        },
+        { status: 202 },
+      );
+    }
+    return NextResponse.json({ ok: false, error: "Could not save this alert right now. Please try again soon." }, { status: 503 });
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, mode: "cloud" });
 }
