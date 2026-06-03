@@ -1,6 +1,17 @@
 import Link from "next/link";
 import type { DealCard } from "@/lib/travelpayouts";
 
+const DOW = ["א", "ב", "ג", "ד", "ה", "ו", "ש"];
+
+function fmtDate(iso: string) {
+  const date = new Date(`${iso}T12:00:00Z`);
+  if (Number.isNaN(date.getTime())) return iso;
+  const day = DOW[date.getUTCDay()];
+  const dd = String(date.getUTCDate()).padStart(2, "0");
+  const mm = String(date.getUTCMonth() + 1).padStart(2, "0");
+  return `${day}׳ ${dd}.${mm}`;
+}
+
 function priceLabel(deal: DealCard) {
   if (deal.livePrice) return `החל מ-₪${deal.livePrice}`;
   return `בסביבות ₪${deal.targetRange[0]}-${deal.targetRange[1]}`;
@@ -11,8 +22,8 @@ function sourceLabel(deal: DealCard) {
 }
 
 function dateLabel(deal: DealCard) {
-  if (deal.departDate && deal.returnDate) return `${deal.departDate} → ${deal.returnDate}`;
-  if (deal.departDate) return `יציאה ${deal.departDate}`;
+  if (deal.departDate && deal.returnDate) return `${fmtDate(deal.departDate)} → ${fmtDate(deal.returnDate)}`;
+  if (deal.departDate) return `יציאה ${fmtDate(deal.departDate)}`;
   return "תאריכים גמישים";
 }
 
@@ -32,7 +43,9 @@ export function DealCards({ deals }: { deals: DealCard[] }) {
           <div>
             <h3>{deal.destination}</h3>
             <div className="price">{priceLabel(deal)}</div>
-            <p className="deal-meta">{dateLabel(deal)}</p>
+            <p className="deal-meta">
+              <bdi dir="ltr">{dateLabel(deal)}</bdi>
+            </p>
           </div>
           <div>
             <div className="row">
