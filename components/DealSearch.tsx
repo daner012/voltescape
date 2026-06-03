@@ -14,6 +14,7 @@ export function DealSearch({ destinations }: { destinations: Destination[] }) {
   const [destination, setDestination] = useState(destinations[0]?.iata || "ATH");
   const [departDate, setDepartDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
+  const [passengers, setPassengers] = useState("1");
   const [status, setStatus] = useState("הלוך-ושוב כברירת מחדל · קודם הזול ביותר");
 
   useEffect(() => {
@@ -34,6 +35,7 @@ export function DealSearch({ destinations }: { destinations: Destination[] }) {
       destination,
       departDate,
       returnDate,
+      passengers,
     });
     const response = await fetch(`/api/search?${params.toString()}`);
     const data = (await response.json()) as { bookingUrl?: string; error?: string };
@@ -43,6 +45,7 @@ export function DealSearch({ destinations }: { destinations: Destination[] }) {
         destination,
         departDate,
         returnDate,
+        passengers: Number(passengers),
         source: "deal-search",
       });
       let recent: unknown[] = [];
@@ -54,7 +57,7 @@ export function DealSearch({ destinations }: { destinations: Destination[] }) {
       }
       localStorage.setItem(
         "voltescape_recent",
-        JSON.stringify([{ destination, departDate, returnDate, at: new Date().toISOString() }, ...recent].slice(0, 10)),
+        JSON.stringify([{ destination, departDate, returnDate, passengers, at: new Date().toISOString() }, ...recent].slice(0, 10)),
       );
       window.open(data.bookingUrl, "_blank", "noopener,noreferrer");
       setStatus(`${selected.name} נפתח ב-Aviasales`);
@@ -75,6 +78,16 @@ export function DealSearch({ destinations }: { destinations: Destination[] }) {
           {destinations.map((city) => (
             <option key={city.iata} value={city.iata}>
               {city.name} ({city.iata})
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
+        <span>נוסעים</span>
+        <select value={passengers} onChange={(event) => setPassengers(event.target.value)}>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((count) => (
+            <option key={count} value={count}>
+              {count} {count === 1 ? "נוסע" : "נוסעים"}
             </option>
           ))}
         </select>
