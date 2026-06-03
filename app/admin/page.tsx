@@ -14,9 +14,9 @@ const C = {
 };
 
 function supa() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://ihmyqhbujomjxitzkcdo.supabase.co";
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  return url && key ? { url: url.replace(/\/$/, ""), key } : null;
+  return key ? { url: url.replace(/\/$/, ""), key } : null;
 }
 
 async function fetchRows<T>(table: string): Promise<T[]> {
