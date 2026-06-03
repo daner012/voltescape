@@ -29,10 +29,33 @@ function roundTripDates(departDateParam: string | null, returnDateParam: string 
   return { departDate, returnDate };
 }
 
+function passengerCount(value: string | null) {
+  const n = Math.floor(Number(value));
+  if (!Number.isFinite(n)) return 1;
+  return Math.min(9, Math.max(1, n));
+}
+
+function withPassengers(bookingUrl: string, passengers: number) {
+  if (passengers <= 1) return bookingUrl;
+  try {
+    const url = new URL(bookingUrl);
+    // Aviasales path encodes the trip as ORIGIN + DDMM + DEST + DDMM + passengers.
+    const updated = url.pathname.replace(/^(\/search\/.*[A-Za-z]{3}\d{4})\d+$/, `$1${passengers}`);
+    if (updated !== url.pathname) {
+      url.pathname = updated;
+      return url.toString();
+    }
+  } catch {
+    // fall through to the original url
+  }
+  return bookingUrl;
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const origin = searchParams.get("origin") || ORIGIN;
   const destinationCode = searchParams.get("destination");
+  const passengers = passengerCount(searchParams.get("passengers"));
   const { departDate, returnDate } = roundTripDates(searchParams.get("departDate"), searchParams.get("returnDate"));
 
   if (!destinationCode) {
@@ -53,12 +76,13 @@ export async function GET(request: Request) {
     ...deal,
     departDate,
     returnDate,
+    passengers,
     bookingUrl: trackedUrl({
       partner: "aviasales",
       destination,
       ctaId: "search-submit",
       pagePath: "/",
-      outboundUrl: deal.bookingUrl,
+      outboundUrl: withPassengers(deal.bookingUrl, passengers),
       origin,
     }),
   });
