@@ -7,6 +7,8 @@ export function Footer() {
         <strong>Voltescape</strong>
         <p>גילוי טיסות וחופשות חכמות מתל אביב לאירופה.</p>
         <p style={{ marginTop: 8 }}>
+          <Link href="/blog">בלוג</Link>
+          {" · "}
           <Link href="/privacy">מדיניות פרטיות</Link>
           {" · "}
           <Link href="/terms">תנאי שימוש</Link>
