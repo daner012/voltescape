@@ -50,8 +50,8 @@ export default async function HomePage() {
                 מתל אביב
               </h1>
               <p className="lead">
-                סורקים מאות מסלולים ומראים לך את התאריכים הזולים ביותר לאירופה — טיסות, מלונות, פעילויות, eSIM
-                והסעות, הכל בזרימה אחת פשוטה.
+                קפריסין, יוון ועוד — מוצאים לכם את הטיסה הזולה ביותר מתל אביב. המחירים העדכניים ביותר. טיסות,
+                מלונות, פעילויות, eSIM והסעות, הכל בזרימה אחת פשוטה.
               </p>
               <div className="actions">
                 <Link className="button primary" href="#cheapest-flights">
