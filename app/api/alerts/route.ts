@@ -20,11 +20,11 @@ export async function POST(request: Request) {
     | null;
 
   if (!body?.email || !validEmail(body.email)) {
-    return NextResponse.json({ ok: false, error: "Valid email is required" }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "נדרשת כתובת אימייל תקינה" }, { status: 400 });
   }
 
   if (!body.destination || !getDestination(body.destination)) {
-    return NextResponse.json({ ok: false, error: "Supported destination is required" }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "צריך לבחור יעד נתמך" }, { status: 400 });
   }
 
   const result = await insertSupabase("price_alerts", {
@@ -39,17 +39,17 @@ export async function POST(request: Request) {
   });
 
   if (!result.ok) {
-    if (result.missingConfig) {
-      return NextResponse.json(
-        {
-          ok: false,
-          fallback: "local",
-          error: "Email alerts are almost ready. For now, this route can be saved on your device.",
-        },
-        { status: 202 },
-      );
-    }
-    return NextResponse.json({ ok: false, error: "Could not save this alert right now. Please try again soon." }, { status: 503 });
+    // Cloud storage not ready yet (missing config or RLS not permitting inserts).
+    // Degrade gracefully: let the client save the alert on-device and show a friendly Hebrew message,
+    // instead of surfacing a hard error to the visitor.
+    return NextResponse.json(
+      {
+        ok: false,
+        fallback: "local",
+        error: "שמרנו את ההתראה במכשיר שלך. התראות המייל יופעלו בקרוב.",
+      },
+      { status: 202 },
+    );
   }
 
   return NextResponse.json({ ok: true, mode: "cloud" });
