@@ -67,6 +67,9 @@ export default async function AdminDashboard({ searchParams }: Props) {
         <p style={{ color: C.muted, marginTop: 16, lineHeight: 1.7 }}>
           אחרי Redeploy, היכנס לכתובת <b>voltescape.com/admin?key=הטוקן-שלך</b>.
         </p>
+        <p style={{ color: C.muted, marginTop: 8, fontFamily: "monospace", fontSize: 13 }}>
+          debug · service_role: {String(!!process.env.SUPABASE_SERVICE_ROLE_KEY)} · admin_token: {String(!!process.env.ADMIN_TOKEN)}
+        </p>
       </div></main>
     );
   }
