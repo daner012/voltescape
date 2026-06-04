@@ -152,7 +152,20 @@ async function fetchLiveCandidates(destination: Destination, origin: string, cur
 
   if (!response.ok) return [];
   const data = await response.json();
-  return records(data)
+  const recs = records(data);
+  const maxAgeMs = 5 * 24 * 60 * 60 * 1000;
+  const isFresh = (r: Record<string, unknown>) => {
+    if (r.actual === false) return false;
+    const f = r.found_at;
+    if (typeof f === "string") {
+      const ts = new Date(f).getTime();
+      if (!Number.isNaN(ts) && Date.now() - ts > maxAgeMs) return false;
+    }
+    return true;
+  };
+  const fresh = recs.filter(isFresh);
+  const pool = fresh.length ? fresh : recs;
+  return pool
     .map(candidateFromRecord)
     .filter((candidate): candidate is PriceCandidate => Boolean(candidate))
     .sort((a, b) => a.livePrice - b.livePrice)
