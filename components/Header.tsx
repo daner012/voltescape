@@ -10,6 +10,7 @@ const NAV = [
   { href: "/#quiz", label: "קוויז" },
   { href: "/#destinations", label: "יעדים" },
   { href: "/#alerts", label: "התראות" },
+  { href: "/en", label: "English 🌐" },
 ];
 
 export function Header() {
