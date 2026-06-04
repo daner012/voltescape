@@ -5,7 +5,7 @@ import { Header } from "@/components/Header";
 import { destinations } from "@/lib/destinations";
 
 export const metadata: Metadata = {
-  title: "קוויז יעדים — מצאו את הטיסה הזולה הבאה שלכם | Voltescape",
+  title: "קוויז יעדים — מצאו את הטיסה הזולה הבאה שלכם",
   description:
     "ענו על שלוש שאלות קצרות וקבלו המלצת יעד אחד מנצח לטיסה זולה מתל אביב, עם המחיר העדכני וקישור ישיר להזמנה.",
   alternates: { canonical: "https://www.voltescape.com/quiz" },
