@@ -8,7 +8,13 @@ export const metadata: Metadata = {
   title: "Voltescape | Cheap flights from Tel Aviv to Europe",
   description:
     "Live, hand-checked cheap flight deals from Tel Aviv to Europe, updated all day. Plus eSIM, airport transfers and attractions for your trip.",
-  alternates: { canonical: "https://www.voltescape.com/en" },
+  alternates: {
+    canonical: "https://www.voltescape.com/en",
+    languages: {
+      "he-IL": "https://www.voltescape.com/",
+      en: "https://www.voltescape.com/en",
+    },
+  },
 };
 
 const AIRALO = "https://airalo.tpo.lu/ptAvFjEM";
