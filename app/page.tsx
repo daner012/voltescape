@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { AlertForm } from "@/components/AlertForm";
 import { ConversionCapture } from "@/components/ConversionCapture";
@@ -36,7 +37,7 @@ export default async function HomePage() {
       <main id="top">
         <section className="hero">
           <div className="hero-media" aria-hidden="true">
-            <img src="/voltescape-hero.png" alt="" />
+            <Image src="/voltescape-hero.png" alt="" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
           </div>
           <div className="shell hero-grid">
             <div>
