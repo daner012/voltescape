@@ -226,7 +226,7 @@ export default async function EnglishHome() {
             <p>Tell us your destination and budget — we&apos;ll email you when a matching deal appears.</p>
           </div>
           <AlertForm
-            destinations={destinations}
+            destinations={destinations.map((d) => ({ ...d, name: titleCase(d.slug) }))}
             source="voltescape-en-alert"
             labels={{
               email: "Email",
