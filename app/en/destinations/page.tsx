@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { aviasalesUrl } from "@/lib/affiliate";
 import { destinations } from "@/lib/destinations";
 
 export const revalidate = 1800;
@@ -46,12 +45,10 @@ export default function EnglishDestinations() {
         <section className="shell">
           <div className="city-grid">
             {sorted.map((destination) => (
-              <a
+              <Link
                 className="city-card"
                 key={destination.iata}
-                href={aviasalesUrl(destination, { origin: "TLV" })}
-                target="_blank"
-                rel="nofollow sponsored noopener"
+                href={`/en/destinations/${destination.slug}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 <div className="row">
@@ -61,8 +58,8 @@ export default function EnglishDestinations() {
                   </span>
                 </div>
                 <h3>{titleCase(destination.slug)}</h3>
-                <p style={{ fontSize: "0.85rem", opacity: 0.8 }}>Search live flights →</p>
-              </a>
+                <p style={{ fontSize: "0.85rem", opacity: 0.8 }}>View flights &amp; guide →</p>
+              </Link>
             ))}
           </div>
         </section>
