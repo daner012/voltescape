@@ -57,6 +57,7 @@ export default async function SeoLandingPage({ params }: Props) {
   if (!page) notFound();
 
   const relevantDestinations = destinations.filter((destination) => page.routes.includes(destination.name));
+  const primaryDest = relevantDestinations.find((destination) => destination.name === page.routes[0]) ?? relevantDestinations[0];
   const deals = (await getDeals()).filter((deal) => page.routes.includes(deal.destination));
   const trackedDeals = deals.map((deal) => {
     const destination = destinations.find((item) => item.iata === deal.iata)!;
@@ -106,9 +107,9 @@ export default async function SeoLandingPage({ params }: Props) {
               <h2>השלימו את הטיול</h2>
             </div>
             <div className="affiliate-grid">
-              <a className="affiliate-card" target="_blank" rel="nofollow sponsored noopener" style={{ textDecoration: "none", color: "inherit" }} href={airaloEsimUrl(relevantDestinations[0].iata)}>
+              <a className="affiliate-card" target="_blank" rel="nofollow sponsored noopener" style={{ textDecoration: "none", color: "inherit" }} href={airaloEsimUrl(primaryDest.iata)}>
                 <span className="icon">📶</span>
-                <h3>eSIM ל{relevantDestinations[0].name}</h3>
+                <h3>eSIM ל{primaryDest.name}</h3>
                 <p>אינטרנט מהרגע שנוחתים — בלי לחפש כרטיס SIM מקומי.</p>
               </a>
               <a className="affiliate-card" target="_blank" rel="nofollow sponsored noopener" style={{ textDecoration: "none", color: "inherit" }} href={trackedUrl({ partner: "kiwitaxi", destination: relevantDestinations[0], ctaId: `seo-${page.slug}-transfer`, pagePath: `/${page.slug}`, outboundUrl: partnerUrl("kiwitaxi", relevantDestinations[0]) })}>
