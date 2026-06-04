@@ -27,6 +27,16 @@ function dateLabel(deal: DealCard) {
   return "תאריכים גמישים";
 }
 
+
+function shareLinks(deal: DealCard) {
+  const url = `https://www.voltescape.com/destinations/${deal.slug}`;
+  const text = `✈️ טיסה זולה מתל אביב ל${deal.destination} ${priceLabel(deal)} 👇`;
+  return {
+    wa: `https://wa.me/?text=${encodeURIComponent(`${text} ${url}`)}`,
+    tg: `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`,
+  };
+}
+
 export function DealCards({ deals }: { deals: DealCard[] }) {
   return (
     <div className="deal-grid">
@@ -80,6 +90,14 @@ export function DealCards({ deals }: { deals: DealCard[] }) {
           <Link className="small-link" href={`/destinations/${deal.slug}`}>
             למדריך העיר
           </Link>
+          <div className="share-row" style={{ display: "flex", gap: 8, marginTop: 10 }}>
+            <a href={shareLinks(deal).wa} target="_blank" rel="noopener" aria-label={`שיתוף ${deal.destination} בוואטסאפ`} style={{ flex: 1, textAlign: "center", fontSize: "0.78rem", fontWeight: 700, padding: "7px 8px", borderRadius: 10, background: "#25D366", color: "#fff", textDecoration: "none" }}>
+              שיתוף בוואטסאפ
+            </a>
+            <a href={shareLinks(deal).tg} target="_blank" rel="noopener" aria-label={`שיתוף ${deal.destination} בטלגרם`} style={{ flex: 1, textAlign: "center", fontSize: "0.78rem", fontWeight: 700, padding: "7px 8px", borderRadius: 10, background: "#229ED9", color: "#fff", textDecoration: "none" }}>
+              שיתוף בטלגרם
+            </a>
+          </div>
         </article>
       ))}
     </div>
