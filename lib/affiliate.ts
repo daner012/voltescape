@@ -41,13 +41,17 @@ export function aviasalesUrl(destination: Pick<Destination, "iata">, options: { 
   return `https://www.aviasales.com/search/${route}?${params.toString()}`;
 }
 
-export function partnerUrl(partner: Exclude<Partner, "aviasales">, _destination: Destination) {
+export function partnerUrl(partner: Exclude<Partner, "aviasales">, destination: Destination) {
   // Monetized Travelpayouts affiliate deep links (marker 734712 via tp.media short links).
   const urls = {
     klook: "https://klook.tpo.lu/D9kaX1Le",
     yesim: "https://yesim.tpo.lu/AU9x5GjB",
     kiwitaxi: "https://kiwitaxi.tpo.lu/wnzjfyjy",
   };
+  if (partner === "klook" && destination) {
+    const query = destination.slug.replace(/-/g, " ");
+    return `${urls.klook}?u=${encodeURIComponent(`https://www.klook.com/en-US/search/result/?query=${encodeURIComponent(query)}`)}`;
+  }
   return urls[partner];
 }
 
