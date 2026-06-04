@@ -1,6 +1,6 @@
 import { DEFAULT_CURRENCY, ORIGIN, type Destination } from "./destinations";
 
-export type Partner = "aviasales" | "klook" | "yesim" | "kiwitaxi";
+export type Partner = "aviasales" | "klook" | "yesim" | "kiwitaxi" | "hotellook";
 
 export function affiliateMarker() {
   return process.env.TRAVELPAYOUTS_MARKER || "734712";
@@ -47,10 +47,21 @@ export function partnerUrl(partner: Exclude<Partner, "aviasales">, destination: 
     klook: "https://klook.tpo.lu/D9kaX1Le",
     yesim: "https://yesim.tpo.lu/AU9x5GjB",
     kiwitaxi: "https://kiwitaxi.tpo.lu/wnzjfyjy",
+    hotellook: "https://search.hotellook.com/",
   };
   if (partner === "klook" && destination) {
     const query = destination.slug.replace(/-/g, " ");
     return `${urls.klook}?u=${encodeURIComponent(`https://www.klook.com/en-US/search/result/?query=${encodeURIComponent(query)}`)}`;
+  }
+  if (partner === "hotellook" && destination) {
+    const query = destination.slug.replace(/-/g, " ");
+    const params = new URLSearchParams({
+      marker: affiliateMarker(),
+      destination: query,
+      currency: "ils",
+      language: "en",
+    });
+    return `https://search.hotellook.com/?${params.toString()}`;
   }
   return urls[partner];
 }
