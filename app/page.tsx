@@ -3,7 +3,6 @@ import Link from "next/link";
 import { AlertForm } from "@/components/AlertForm";
 import { ConversionCapture } from "@/components/ConversionCapture";
 import { DealCards } from "@/components/DealCards";
-import { DealQuiz } from "@/components/DealQuiz";
 import { DealSearch } from "@/components/DealSearch";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -154,9 +153,6 @@ export default async function HomePage() {
           <DealSearch destinations={destinations} />
         </section>
 
-        <section className="shell" id="quiz" aria-labelledby="quiz-title">
-          <DealQuiz destinations={destinations} />
-        </section>
 
         <section className="shell" id="cheapest-flights" aria-labelledby="cheapest-title">
           <div className="section-head">
