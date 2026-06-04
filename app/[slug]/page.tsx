@@ -5,10 +5,17 @@ import { AlertForm } from "@/components/AlertForm";
 import { DealCards } from "@/components/DealCards";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { trackedUrl } from "@/lib/affiliate";
+import { partnerUrl, trackedUrl } from "@/lib/affiliate";
 import { destinations } from "@/lib/destinations";
 import { getSeoPage, seoPages } from "@/lib/seo-pages";
 import { getDeals } from "@/lib/travelpayouts";
+
+const faqs = [
+  { q: "איך אתם מוצאים את הטיסות הזולות?", a: "אנחנו סורקים מחירים חיים ממנוע החיפוש של Aviasales ומציגים את התאריכים הזולים ביותר לכל יעד, מתעדכן לאורך כל היום." },
+  { q: "המחיר כולל מזוודה?", a: "המחיר המוצג הוא מחיר הבסיס של הכרטיס. מזוודות ותוספות נבחרות ומתומחרות בעמוד ההזמנה לפי חברת התעופה." },
+  { q: "כמה זמן המחיר תקף?", a: "מחירי טיסות משתנים כל הזמן. אנחנו מסננים מחירים שאינם עדכניים, אבל המחיר הסופי תמיד מאומת בעמוד החיפוש לפני ההזמנה." },
+  { q: "אפשר לקבל התראה כשהמחיר יורד?", a: "כן — הירשמו להתראות המחיר ונודיע לכם כשנמצא דיל חדש ליעד שלכם." },
+];
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -73,6 +80,61 @@ export default async function SeoLandingPage({ params }: Props) {
             <p>כל דיל פותח חיפוש טיסה מתל אביב עם היעד שלך כבר ממולא.</p>
           </div>
           <DealCards deals={trackedDeals} />
+        </section>
+
+        {relevantDestinations[0] && (
+          <section className="shell">
+            <div className="section-head">
+              <span className="kicker">לפני שטסים</span>
+              <h2>השלימו את הטיול</h2>
+            </div>
+            <div className="affiliate-grid">
+              <a className="affiliate-card" target="_blank" rel="nofollow sponsored noopener" style={{ textDecoration: "none", color: "inherit" }} href={trackedUrl({ partner: "yesim", destination: relevantDestinations[0], ctaId: `seo-${page.slug}-esim`, pagePath: `/${page.slug}`, outboundUrl: partnerUrl("yesim", relevantDestinations[0]) })}>
+                <span className="icon">📶</span>
+                <h3>eSIM לחו״ל</h3>
+                <p>אינטרנט מהרגע שנוחתים — בלי לחפש כרטיס SIM מקומי.</p>
+              </a>
+              <a className="affiliate-card" target="_blank" rel="nofollow sponsored noopener" style={{ textDecoration: "none", color: "inherit" }} href={trackedUrl({ partner: "kiwitaxi", destination: relevantDestinations[0], ctaId: `seo-${page.slug}-transfer`, pagePath: `/${page.slug}`, outboundUrl: partnerUrl("kiwitaxi", relevantDestinations[0]) })}>
+                <span className="icon">🚕</span>
+                <h3>הסעה מהשדה</h3>
+                <p>נהג שמחכה לכם בנחיתה — מחיר קבוע מראש, בלי הפתעות.</p>
+              </a>
+              <a className="affiliate-card" target="_blank" rel="nofollow sponsored noopener" style={{ textDecoration: "none", color: "inherit" }} href={trackedUrl({ partner: "klook", destination: relevantDestinations[0], ctaId: `seo-${page.slug}-activities`, pagePath: `/${page.slug}`, outboundUrl: partnerUrl("klook", relevantDestinations[0]) })}>
+                <span className="icon">🎟️</span>
+                <h3>אטרקציות וסיורים</h3>
+                <p>כרטיסים לאטרקציות וסיורים מודרכים — להזמין מראש ולחסוך בתור.</p>
+              </a>
+            </div>
+          </section>
+        )}
+
+        <section className="shell">
+          <div className="section-head">
+            <span className="kicker">שאלות נפוצות</span>
+            <h2>שאלות ותשובות</h2>
+          </div>
+          <div className="faq-list">
+            {faqs.map((f) => (
+              <details key={f.q} className="faq-item" style={{ borderTop: "1px solid rgba(0,0,0,0.08)", padding: "12px 0" }}>
+                <summary style={{ cursor: "pointer", fontWeight: 600 }}>{f.q}</summary>
+                <p style={{ marginTop: 8 }}>{f.a}</p>
+              </details>
+            ))}
+          </div>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: faqs.map((f) => ({
+                  "@type": "Question",
+                  name: f.q,
+                  acceptedAnswer: { "@type": "Answer", text: f.a },
+                })),
+              }),
+            }}
+          />
         </section>
 
         <section className="shell">
