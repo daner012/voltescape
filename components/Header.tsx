@@ -41,6 +41,16 @@ export function Header() {
       <Link className="nav-cta" href="/#cheapest-flights">
         הזולות מתל אביב
       </Link>
+      <a
+        className="nav-telegram"
+        href="https://t.me/voltescape_deals"
+        target="_blank"
+        rel="noopener"
+        aria-label="ערוץ הטלגרם של Voltescape"
+        style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "9px 16px", borderRadius: 999, background: "#229ED9", color: "#fff", fontWeight: 700, fontSize: "0.85rem", textDecoration: "none", whiteSpace: "nowrap" }}
+      >
+        ✈️ ערוץ טלגרם
+      </a>
 
       <button
         type="button"
@@ -64,6 +74,9 @@ export function Header() {
           <Link className="mobile-cta" href="/#cheapest-flights" onClick={close}>
             הזולות מתל אביב
           </Link>
+          <a className="mobile-cta" href="https://t.me/voltescape_deals" target="_blank" rel="noopener" onClick={close} style={{ background: "#229ED9", marginTop: 6 }}>
+            ✈️ ערוץ הטלגרם שלנו
+          </a>
         </div>
       )}
 
@@ -77,7 +90,7 @@ export function Header() {
             justify-content: space-between;
           }
           .brand span:last-child { display: inline !important; }
-          .nav-cta { display: none !important; }
+          .nav-cta, .nav-telegram { display: none !important; }
           .nav-toggle {
             display: inline-flex;
             flex-direction: column;
