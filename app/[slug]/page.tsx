@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: page.title,
     description: page.description,
-    alternates: { canonical: `/${page.slug}` },
+    alternates: { canonical: `/${page.slug}`, languages: { "he-IL": `https://www.voltescape.com/${page.slug}`, en: `https://www.voltescape.com/en/${page.slug}` } },
   };
 }
 
