@@ -17,6 +17,23 @@ const faqs = [
   { q: "אפשר לקבל התראה כשהמחיר יורד?", a: "כן — הירשמו להתראות המחיר ונודיע לכם כשנמצא דיל חדש ליעד שלכם." },
 ];
 
+const AIRALO_COUNTRY: Record<string, string> = {
+  ATH: "greece", SKG: "greece",
+  ROM: "italy", MIL: "italy", NAP: "italy",
+  BER: "germany", BUD: "hungary", OTP: "romania",
+  WAW: "poland", KRK: "poland", PRG: "czech-republic",
+  SOF: "bulgaria", PAR: "france", LCA: "cyprus",
+  VIE: "austria", BEG: "serbia", TIA: "albania",
+  BCN: "spain", MAD: "spain", IST: "turkey",
+  TBS: "georgia", BUS: "georgia", EVN: "armenia",
+};
+
+function airaloEsimUrl(iata: string) {
+  const base = "https://airalo.tpo.lu/ptAvFjEM";
+  const country = AIRALO_COUNTRY[iata];
+  return country ? `${base}?u=${encodeURIComponent(`https://www.airalo.com/${country}-esim`)}` : base;
+}
+
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
@@ -89,9 +106,9 @@ export default async function SeoLandingPage({ params }: Props) {
               <h2>השלימו את הטיול</h2>
             </div>
             <div className="affiliate-grid">
-              <a className="affiliate-card" target="_blank" rel="nofollow sponsored noopener" style={{ textDecoration: "none", color: "inherit" }} href={trackedUrl({ partner: "yesim", destination: relevantDestinations[0], ctaId: `seo-${page.slug}-esim`, pagePath: `/${page.slug}`, outboundUrl: partnerUrl("yesim", relevantDestinations[0]) })}>
+              <a className="affiliate-card" target="_blank" rel="nofollow sponsored noopener" style={{ textDecoration: "none", color: "inherit" }} href={airaloEsimUrl(relevantDestinations[0].iata)}>
                 <span className="icon">📶</span>
-                <h3>eSIM לחו״ל</h3>
+                <h3>eSIM ל{relevantDestinations[0].name}</h3>
                 <p>אינטרנט מהרגע שנוחתים — בלי לחפש כרטיס SIM מקומי.</p>
               </a>
               <a className="affiliate-card" target="_blank" rel="nofollow sponsored noopener" style={{ textDecoration: "none", color: "inherit" }} href={trackedUrl({ partner: "kiwitaxi", destination: relevantDestinations[0], ctaId: `seo-${page.slug}-transfer`, pagePath: `/${page.slug}`, outboundUrl: partnerUrl("kiwitaxi", relevantDestinations[0]) })}>
