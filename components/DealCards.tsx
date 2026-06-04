@@ -57,6 +57,23 @@ export function DealCards({ deals }: { deals: DealCard[] }) {
               <span style={{ width: `${deal.score}%` }} />
             </div>
           </div>
+          {deal.dateOptions && deal.dateOptions.length > 1 && (
+            <details className="date-options" style={{ marginTop: 10 }}>
+              <summary style={{ cursor: "pointer", fontSize: "0.8rem", fontWeight: 600, color: "#1d4ed8" }}>
+                {deal.dateOptions.length} תאריכים זמינים
+              </summary>
+              <ul style={{ listStyle: "none", margin: "8px 0 0", padding: 0, display: "grid", gap: 4 }}>
+                {deal.dateOptions.map((opt, i) => (
+                  <li key={i}>
+                    <a href={opt.url} target="_blank" rel="nofollow sponsored noopener" style={{ display: "flex", justifyContent: "space-between", gap: 8, fontSize: "0.8rem", padding: "6px 8px", borderRadius: 8, background: "rgba(0,0,0,0.05)", color: "inherit", textDecoration: "none" }}>
+                      <bdi dir="ltr">{opt.departDate ? fmtDate(opt.departDate) : ""}{opt.returnDate ? ` → ${fmtDate(opt.returnDate)}` : ""}</bdi>
+                      <span>{opt.price ? `₪${opt.price}` : ""}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
           <a className="button primary" href={deal.affiliateUrl} target="_blank" rel="nofollow sponsored noopener">
             {deal.livePrice ? "לדיל" : "בדוק את הדיל"}
           </a>
