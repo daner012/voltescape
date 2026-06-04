@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getDeals } from "@/lib/travelpayouts";
+import { AlertForm } from "@/components/AlertForm";
+import { destinations } from "@/lib/destinations";
 
 export const revalidate = 1800;
 
@@ -213,6 +215,30 @@ export default async function EnglishHome() {
                   acceptedAnswer: { "@type": "Answer", text: f.a },
                 })),
               }),
+            }}
+          />
+        </section>
+
+        <section className="shell" id="alerts">
+          <div className="section-head">
+            <span className="kicker">Price alerts</span>
+            <h2>Get notified when prices drop</h2>
+            <p>Tell us your destination and budget — we&apos;ll email you when a matching deal appears.</p>
+          </div>
+          <AlertForm
+            destinations={destinations}
+            source="voltescape-en-alert"
+            labels={{
+              email: "Email",
+              placeholder: "you@example.com",
+              route: "Destination",
+              budget: "Max budget",
+              depart: "Departure",
+              return: "Return",
+              button: "Notify me of deals",
+              saving: "Saving…",
+              success: "You\u2019re in! We\u2019ll email you when prices drop.",
+              fallback: "Something went wrong — please try again.",
             }}
           />
         </section>
