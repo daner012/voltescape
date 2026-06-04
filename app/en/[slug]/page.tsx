@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { destinations } from "@/lib/destinations";
+import { partnerUrl } from "@/lib/affiliate";
 import { getSeoPage, seoPages } from "@/lib/seo-pages";
 import { getSeoCopyEn, seoCopyEn } from "@/lib/seo-en";
 import { getDeals } from "@/lib/travelpayouts";
@@ -199,7 +200,7 @@ export default async function EnglishSeoPage({ params }: Props) {
                 <h3>Airport transfer</h3>
                 <p>A driver waiting at arrivals — a fixed price agreed in advance, no surprises.</p>
               </a>
-              <a className="affiliate-card" target="_blank" rel="nofollow sponsored noopener" style={{ textDecoration: "none", color: "inherit" }} href={KLOOK}>
+              <a className="affiliate-card" target="_blank" rel="nofollow sponsored noopener" style={{ textDecoration: "none", color: "inherit" }} href={partnerUrl("klook", primaryDest)}>
                 <span className="icon">🎟️</span>
                 <h3>Attractions &amp; tours</h3>
                 <p>Tickets for attractions and guided tours — book ahead and skip the line.</p>
