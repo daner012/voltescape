@@ -18,6 +18,7 @@ export type DealCard = {
   updatedAt: string;
   source: "travelpayouts" | "target-range";
   affiliateUrl: string;
+  dateOptions: { departDate?: string; returnDate?: string; price: number | null; url: string }[];
 };
 
 type CacheEntry = { expiresAt: number; value: DealCard[] };
@@ -158,8 +159,9 @@ async function fetchLiveCandidates(destination: Destination, origin: string, cur
     .slice(0, limit);
 }
 
-function buildDeal(destination: Destination, origin: string, currency: string, candidate: PriceCandidate | null): DealCard {
+function buildDeal(destination: Destination, origin: string, currency: string, candidate: PriceCandidate | null, candidates: PriceCandidate[] = []): DealCard {
   const score = scoreDeal(destination, candidate);
+  const optionPool = candidates.length ? candidates : candidate ? [candidate] : [];
   return {
     destination: destination.name,
     slug: destination.slug,
@@ -181,6 +183,12 @@ function buildDeal(destination: Destination, origin: string, currency: string, c
       departDate: candidate?.departDate,
       returnDate: candidate?.returnDate,
     }),
+    dateOptions: optionPool.map((c) => ({
+      departDate: c.departDate,
+      returnDate: c.returnDate,
+      price: c.livePrice ?? null,
+      url: aviasalesUrl(destination, { origin, currency, departDate: c.departDate, returnDate: c.returnDate }),
+    })),
   };
 }
 
@@ -201,7 +209,7 @@ export async function getDeals(origin = ORIGIN, currency = DEFAULT_CURRENCY, lim
   const value = await Promise.all(
     destinations.map(async (destination) => {
       const candidates = await fetchLiveCandidates(destination, origin, currency, 5).catch(() => []);
-      return buildDeal(destination, origin, currency, candidates[0] ?? null);
+      return buildDeal(destination, origin, currency, candidates[0] ?? null, candidates);
     }),
   );
 
@@ -242,7 +250,7 @@ export async function getRouteDeal(input: { origin?: string; destination: string
   const origin = input.origin || ORIGIN;
   const currency = input.currency || DEFAULT_CURRENCY;
   const candidates = await fetchLiveCandidates(destination, origin, currency, 8).catch(() => []);
-  const deal = buildDeal(destination, origin, currency, candidates[0] ?? null);
+  const deal = buildDeal(destination, origin, currency, candidates[0] ?? null, candidates);
   const bookingUrl = aviasalesUrl(destination, {
     origin,
     currency,
