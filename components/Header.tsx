@@ -7,7 +7,7 @@ const NAV = [
   { href: "/#deals", label: "דילים" },
   { href: "/today-best-deals", label: "היום" },
   { href: "/#search", label: "חיפוש" },
-  { href: "/#quiz", label: "קוויז" },
+  { href: "/quiz", label: "קוויז" },
   { href: "/#destinations", label: "יעדים" },
   { href: "/#alerts", label: "התראות" },
   { href: "/en", label: "English 🌐" },
@@ -31,7 +31,7 @@ export function Header() {
       </Link>
 
       <nav className="links" aria-label="Main menu">
-        {NAV.filter((item) => item.href !== "/en").map((item) => (
+        {NAV.map((item) => (
           <Link key={item.href} href={item.href}>
             {item.label}
           </Link>
