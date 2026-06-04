@@ -13,6 +13,16 @@ import { getDeals } from "@/lib/travelpayouts";
 
 export const revalidate = 1800;
 
+export const metadata = {
+  alternates: {
+    canonical: "https://www.voltescape.com/",
+    languages: {
+      "he-IL": "https://www.voltescape.com/",
+      en: "https://www.voltescape.com/en",
+    },
+  },
+};
+
 export default async function HomePage() {
   const rawDeals = await getDeals();
   const deals = rawDeals.map((deal) => {
