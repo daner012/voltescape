@@ -31,7 +31,7 @@ export function Header() {
       </Link>
 
       <nav className="links" aria-label="Main menu">
-        {NAV.map((item) => (
+        {NAV.filter((item) => item.href !== "/en").map((item) => (
           <Link key={item.href} href={item.href}>
             {item.label}
           </Link>
