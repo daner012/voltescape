@@ -1112,3 +1112,5 @@ select:focus {
     overflow: auto;
   }
 }
+
+.disclosure { display: block; background: #f0f6ff; border: 1px solid #d6e4f8; border-radius: 12px; padding: 12px 16px; font-size: 14px; color: #2c4368; max-width: 760px; margin: 0 0 22px; }
