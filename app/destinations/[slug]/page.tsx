@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `טיסות זולות מתל אביב ל${destination.name}`,
     description: `${destination.description} בדוק מחירים חיים ב-Aviasales ותוספות טיול של Voltescape.`,
-    alternates: { canonical: `/destinations/${destination.slug}` },
+    alternates: { canonical: `/destinations/${destination.slug}`, languages: { "he-IL": `/destinations/${destination.slug}`, en: `/en/destinations/${destination.slug}`, "x-default": `/destinations/${destination.slug}` } },
   };
 }
 
@@ -44,6 +44,7 @@ export default async function DestinationPage({ params }: Props) {
       <main>
         <section className="shell page-hero">
           <img className="dest-art" src={`/${destination.slug}.webp`} alt="" />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "בית", item: "https://www.voltescape.com/" }, { "@type": "ListItem", position: 2, name: destination.name, item: `https://www.voltescape.com/destinations/${destination.slug}` }] }) }} />
           <span className="kicker">TLV → {destination.iata}</span>
           <h1>טיסות זולות מתל אביב ל{destination.name}</h1>
           <p className="lead">{destination.description}</p>
@@ -66,6 +67,7 @@ export default async function DestinationPage({ params }: Props) {
               מלונות ופעילויות
             </a>
           </div>
+          <p className="cta-note">ההזמנה מתבצעת ב-Aviasales · קישור שותפים — ללא תוספת מחיר עבורך</p>
         </section>
 
         <section className="shell">
