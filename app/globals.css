@@ -1135,3 +1135,7 @@ select:focus {
 /* A11y: contrast for search toggles and submit button */
 .toggle, .toggle span { color: #3e4e66; }
 .search-submit { background: #d22d44; }
+
+/* A11y: darker teal kickers + sticky CTA contrast (WCAG AA) */
+.kicker { color: #0b7d71; }
+.sticky-mobile-cta .button { background: #d23752; border-color: #d23752; color: #fff; }
