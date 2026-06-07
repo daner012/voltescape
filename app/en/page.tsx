@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     canonical: "https://www.voltescape.com/en",
     languages: {
       "he-IL": "https://www.voltescape.com/",
-      en: "https://www.voltescape.com/en",
+      en: "https://www.voltescape.com/en", "x-default": "https://www.voltescape.com/",
     },
   },
 };
