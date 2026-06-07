@@ -63,7 +63,7 @@ export function DealCards({ deals }: { deals: DealCard[] }) {
               <span className="chip">{deal.direct ? "עדיף ישיר" : "מסלול גמיש"}</span>
               <span className="chip">{deal.savingsSignal}</span>
             </div>
-            <div className="meter" aria-label={`ציון דיל ${deal.score} מתוך 100`}>
+            <div className="meter" role="img" aria-label={`ציון דיל ${deal.score} מתוך 100`}>
               <span style={{ width: `${deal.score}%` }} />
             </div>
           </div>
