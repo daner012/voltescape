@@ -1126,3 +1126,8 @@ select:focus {
 .hero .button:not(.primary):hover { background: rgba(255, 255, 255, 0.2); }
 .hero-panel { color: var(--ink); }
 .top-strip { display: none; }
+
+/* A11y: contrast fixes for deal board numbers and prices */
+.board-row > span:first-child { color: #155bb5; }
+.board-row em { color: #c92a3f; }
+.board-row small { color: #4c5b73; }
