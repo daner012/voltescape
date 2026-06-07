@@ -62,7 +62,7 @@ export default async function EnglishHome() {
   const deals = await getDeals();
 
   return (
-    <div dir="ltr" lang="en" style={{ textAlign: "left" }}>
+    <div dir="ltr" lang="en" style={{ textAlign: "left" }}><script dangerouslySetInnerHTML={{ __html: "document.documentElement.lang='en';document.documentElement.dir='ltr';" }} />
       <header className="topbar" aria-label="Primary navigation">
         <Link className="brand" href="/en">
           <span className="brand-name">VOLTESCAPE</span>
@@ -75,7 +75,7 @@ export default async function EnglishHome() {
       <main>
         <section className="hero">
           <div className="hero-media" aria-hidden="true">
-            <img src="/voltescape-hero.webp" alt="" fetchPriority="high" />
+            <img src="/_next/image?url=%2Fvoltescape-hero.png&w=1920&q=75" alt="" fetchPriority="high" />
           </div>
           <div className="shell hero-grid">
             <div>
