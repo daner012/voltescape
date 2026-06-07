@@ -43,6 +43,7 @@ export default async function DestinationPage({ params }: Props) {
       <Header />
       <main>
         <section className="shell page-hero">
+          <img className="dest-art" src={`/${destination.slug}.webp`} alt="" />
           <span className="kicker">TLV → {destination.iata}</span>
           <h1>טיסות זולות מתל אביב ל{destination.name}</h1>
           <p className="lead">{destination.description}</p>
