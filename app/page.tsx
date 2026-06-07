@@ -87,7 +87,7 @@ export default async function HomePage() {
                 {top.livePrice ? `החל מ-₪${top.livePrice}` : `בסביבות ₪${top.targetRange[0]}-${top.targetRange[1]}`}
               </div>
               <p className="deal-meta">{top.dealTag} · {top.urgencyLabel}</p>
-              <div className="meter" aria-label={`ציון דיל ${top.score} מתוך 100`}>
+              <div className="meter" role="img" aria-label={`ציון דיל ${top.score} מתוך 100`}>
                 <span style={{ width: `${top.score}%` }} />
               </div>
               <a className="small-link" href={top.affiliateUrl} target="_blank" rel="nofollow sponsored noopener">
