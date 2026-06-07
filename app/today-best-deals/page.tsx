@@ -11,7 +11,7 @@ import { getDeals } from "@/lib/travelpayouts";
 export const revalidate = 900;
 
 export const metadata: Metadata = {
-  title: "הדילים הכי שווים היום מתל אביב | Voltescape",
+    title: "הדילים הכי שווים היום מתל אביב",
   description: "לוח הדילים היומי של Voltescape: טיסות הלוך-ושוב מתל אביב, מחירים חיים כשהם זמינים, וקישורי Aviasales במעקב.",
   alternates: { canonical: "/today-best-deals" },
 };
