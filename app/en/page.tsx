@@ -7,7 +7,7 @@ import { destinations } from "@/lib/destinations";
 export const revalidate = 1800;
 
 export const metadata: Metadata = {
-  title: "Voltescape | Cheap flights from Tel Aviv to Europe",
+    title: { absolute: "Voltescape | Cheap flights from Tel Aviv to Europe" },
   description:
     "Live, hand-checked cheap flight deals from Tel Aviv to Europe, updated all day. Plus eSIM, airport transfers and attractions for your trip.",
   alternates: {
