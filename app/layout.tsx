@@ -10,7 +10,7 @@ const heebo = Heebo({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://voltescape.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.voltescape.com"),
   title: {
     default: "Voltescape | טיסות זולות מתל אביב לאירופה",
     template: "%s | Voltescape",
