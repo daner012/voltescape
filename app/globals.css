@@ -1131,3 +1131,7 @@ select:focus {
 .board-row > span:first-child { color: #155bb5; }
 .board-row em { color: #c92a3f; }
 .board-row small { color: #4c5b73; }
+
+/* A11y: contrast for search toggles and submit button */
+.toggle, .toggle span { color: #3e4e66; }
+.search-submit { background: #d22d44; }
