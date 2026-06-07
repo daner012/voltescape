@@ -173,7 +173,7 @@ export default async function HomePage() {
             <h2 id="destinations-title">ערים מושלמות לחופשה קצרה</h2>
           </div>
           <div className="city-grid">
-            {destinations.map((city) => (
+            {destinations.filter((city) => !city.longHaul).map((city) => (
               <article className="city-card" key={city.slug}>
                 <div className="row">
                   <span className="chip">{city.iata}</span>
@@ -222,6 +222,8 @@ export default async function HomePage() {
               </article>
             ))}
           </div>
+
+          <section className="shell" id="long-haul" aria-labelledby="longhaul-title"><div className="section-head"><span className="kicker">טיסות ארוכות</span><h2 id="longhaul-title">רחוק יותר: המזרח ואמריקה</h2><p>חופשה גדולה אחת בשנה — בנגקוק, טוקיו, ניו יורק ומיאמי. כאן עוקבים אחרי הטווח, וכשהמחיר נשבר — תדעו.</p></div><div className="city-grid">{destinations.filter((city) => city.longHaul).map((city) => (<article className="city-card" key={city.slug}><div className="row"><span className="chip">{city.iata}</span><span className="chip">בסביבות ₪{city.targetRange[0]}–{city.targetRange[1]}</span><span className="chip">{city.flightTime}</span></div><h3>{city.name}</h3><p>{city.mood}</p><div className="tags">{city.tags.map((tag) => (<span className="tag" key={tag}>{tag}</span>))}</div><div className="city-actions"><Link href={`/destinations/${city.slug}`}>מדריך</Link><a href={trackedUrl({ partner: "aviasales", destination: city, ctaId: `longhaul-flight-${city.slug}`, pagePath: "/", outboundUrl: aviasalesUrl(city) })} target="_blank" rel="nofollow sponsored noopener">טיסות</a></div></article>))}</div></section>
         </section>
 
         <section className="shell" id="deals" aria-labelledby="affiliate-title">
