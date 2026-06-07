@@ -124,6 +124,7 @@ export default async function HomePage() {
               עמוד אחד ממוקד עם המסלול החזק של היום: היעד המוביל, מחיר היעד, ציון הדיל וקישור ישיר להזמנה.
             </p>
           </div>
+          <p className="disclosure">🤝 שקיפות מלאה: קישורי הדילים מובילים ל-Aviasales ואנחנו מקבלים עמלה אם תזמינו דרכם — זה לא משפיע על המחיר שלכם.</p>
           <div className="deal-board">
             {deals.slice(0, 4).map((deal, index) => (
               <a className="board-row" href={deal.affiliateUrl} target="_blank" rel="nofollow sponsored noopener" key={deal.iata}>
