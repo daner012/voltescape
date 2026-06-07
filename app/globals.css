@@ -1114,3 +1114,15 @@ select:focus {
 }
 
 .disclosure { display: block; background: #f0f6ff; border: 1px solid #d6e4f8; border-radius: 12px; padding: 12px 16px; font-size: 14px; color: #2c4368; max-width: 760px; margin: 0 0 22px; }
+
+/* Redesign stage 1: dark hero (approved demo v3) */
+.hero { color: #fff; background: linear-gradient(115deg, #0d1c36 0%, #16304f 45%, #2a5277 75%, #7fa8c9 100%); }
+.hero-media { display: none; }
+.hero h1 { color: #fff; }
+.hero .lead { color: #e2edf9; }
+.hero .eyebrow, .hero .kicker { color: #8fe3d4; }
+.hero .trust { color: #c5d6ec; }
+.hero .button:not(.primary) { background: rgba(255, 255, 255, 0.12); color: #fff; border-color: rgba(255, 255, 255, 0.25); }
+.hero .button:not(.primary):hover { background: rgba(255, 255, 255, 0.2); }
+.hero-panel { color: var(--ink); }
+.top-strip { display: none; }
