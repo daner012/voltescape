@@ -1139,3 +1139,6 @@ select:focus {
 /* A11y: darker teal kickers + sticky CTA contrast (WCAG AA) */
 .kicker { color: #0b7d71; }
 .sticky-mobile-cta .button { background: #d23752; border-color: #d23752; color: #fff; }
+
+/* Destination art banner */
+.dest-art { display: block; width: 100%; max-height: 320px; object-fit: cover; border-radius: 18px; margin: 8px 0 26px; box-shadow: var(--shadow); }
