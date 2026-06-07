@@ -6,6 +6,7 @@ export type Destination = {
   targetRange: [number, number];
   score: number;
   direct: boolean;
+  longHaul?: boolean;
   flightTime: string;
   mood: string;
   description: string;
@@ -594,6 +595,10 @@ export const destinations: Destination[] = [
     ],
   },
 ];
+{ name: "בנגקוק", slug: "bangkok", iata: "BKK", airportHint: "Suvarnabhumi", targetRange: [1790, 2890], score: 86, direct: true, flightTime: "10h 45m", mood: "אקזוטי", description: "שווקים צפים, מקדשים מוזהבים ואוכל רחוב שאין כמוהו — שער המזרח במחיר שנשבר כל כמה שבועות.", tags: ["אקזוטי", "אוכל", "טיסה ארוכה"], tips: ["הזמינו 2–4 חודשים מראש — זה החלון הזול", "נובמבר–פברואר זו העונה הנוחה", "חגי תשרי מקפיצים מחירים — הימנעו"], faq: [{ question: "כמה זמן טסים לבנגקוק מתל אביב?", answer: "טיסה ישירה אורכת כ-10:45 שעות." }, { question: "מה מחיר טוב לבנגקוק?", answer: "מתחת ל-2,000 שקלים הלוך-ושוב זה דיל חזק; הטווח הרגיל 1,790–2,890." }], longHaul: true },
+{ name: "טוקיו", slug: "tokyo", iata: "NRT", airportHint: "Narita / Haneda", targetRange: [2590, 3990], score: 84, direct: true, flightTime: "11h 30m", mood: "עתידני", description: "ניאון, סושי ושקט של מקדשים — העיר שהיא עולם אחר, ושווה כל שקל.", tags: ["תרבות", "אוכל", "טיסה ארוכה"], tips: ["הזמינו 3–6 חודשים מראש", "אפריל (פריחה) ואוקטובר הם השיא — וגם הכי יקרים", "רכבת מהשדה העירה זולה ממונית פי עשרה"], faq: [{ question: "כמה זמן טסים לטוקיו מתל אביב?", answer: "טיסה ישירה אורכת כ-11:30 שעות." }, { question: "מה מחיר טוב לטוקיו?", answer: "מתחת ל-2,800 שקלים הלוך-ושוב זה דיל מצוין; הטווח הרגיל 2,590–3,990." }], longHaul: true },
+{ name: "ניו יורק", slug: "new-york", iata: "JFK", airportHint: "JFK / Newark", targetRange: [2290, 3590], score: 85, direct: true, flightTime: "11h 50m", mood: "אנרגטי", description: "העיר שממציאה את הקצב — מנהטן, ברוקלין, וכל מה שביניהם. כשהמחיר נשבר — זה הזמן.", tags: ["עיר גדולה", "שופינג", "טיסה ארוכה"], tips: ["ינואר–מרץ הוא החלון הזול בשנה", "השוו גם מול Newark — לעתים זול משמעותית", "ESTA או ויזה — לסדר לפני ההזמנה"], faq: [{ question: "כמה זמן טסים לניו יורק מתל אביב?", answer: "טיסה ישירה אורכת כ-11:50 שעות." }, { question: "מה מחיר טוב לניו יורק?", answer: "מתחת ל-2,500 שקלים הלוך-ושוב זה דיל חזק; הטווח הרגיל 2,290–3,590." }], longHaul: true },
+{ name: "מיאמי", slug: "miami", iata: "MIA", airportHint: "Miami International", targetRange: [2790, 4290], score: 82, direct: true, flightTime: "13h 30m", mood: "טרופי", description: "חופים, ארט-דקו ואנרגיה לטינית — הקיץ האמריקאי שעובד כל השנה.", tags: ["חוף", "חיי לילה", "טיסה ארוכה"], tips: ["ספטמבר–נובמבר זול משמעותית מהחורף", "שכרת רכב כמעט חובה — העיר פרושה", "ESTA או ויזה — לסדר לפני ההזמנה"], faq: [{ question: "כמה זמן טסים למיאמי מתל אביב?", answer: "טיסה ישירה אורכת כ-13:30 שעות." }, { question: "מה מחיר טוב למיאמי?", answer: "מתחת ל-3,000 שקלים הלוך-ושוב זה דיל חזק; הטווח הרגיל 2,790–4,290." }], longHaul: true },
 
 export function getDestination(slugOrIata: string) {
   const key = slugOrIata.toLowerCase();
