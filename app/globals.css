@@ -135,7 +135,7 @@ button {
 
 .hero {
   position: relative;
-  min-height: 84svh;
+  min-height: 84svh; overflow-x: clip;
   display: grid;
   align-items: end;
   padding: 88px 0 34px;
