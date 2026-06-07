@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "מוצאים לך את הטיסות הכי זולות מתל אביב לאירופה, יחד עם מלונות, פעילויות ו-eSIM.",
     url: "/",
     siteName: "Voltescape",
-    images: [{ url: "/voltescape-hero.png", width: 1672, height: 941 }],
+    images: [{ url: "/_next/image?url=%2Fvoltescape-hero.png&w=1200&q=75", width: 1200, height: 675 }],
     type: "website",
     locale: "he_IL",
   },
