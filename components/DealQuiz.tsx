@@ -68,7 +68,7 @@ export function DealQuiz({ destinations }: { destinations: Destination[] }) {
       <div className="quiz-panel">
         <div className="section-head compact">
           <span className="kicker">מצא את הטיול הבא</span>
-          <h2>ענה על שלוש שאלות. קבל יעד אחד מנצח.</h2>
+          <h1 id="quiz-title">ענה על שלוש שאלות. קבל יעד אחד מנצח.</h1>
           <p>בנוי למהירות: בלי טופס כבד, רק התאמת יעד חזקה וקישור טיסה ישיר.</p>
         </div>
         <fieldset className="choice-group">
