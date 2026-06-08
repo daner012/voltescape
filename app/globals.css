@@ -1210,3 +1210,9 @@ h1, h2.sec-title, .sec-title { letter-spacing: -.02em; }
 @media (prefers-reduced-motion: reduce) {
     .deal-card, .city-card, .strip-card, .board-row, .stat-card, .button, .nav-cta, .dest-art, .visual, .chip, .tag, .search-box { transition: none !important; transform: none !important; }
 }
+
+/* Pro Max v2 — council note: restrain, add weight (less wiggle, more luxe) */
+.city-card:hover .dest-art, .city-card:hover .visual { transform: scale(1.025); filter: saturate(1.05); }
+.deal-card:hover, .city-card:hover, .stat-card:hover { transform: translateY(-4px); }
+.deal-card, .city-card, .stat-card { backface-visibility: hidden; }
+.lead, .sec-sub, p.deal-meta { letter-spacing: -.005em; }
