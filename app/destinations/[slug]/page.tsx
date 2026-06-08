@@ -47,7 +47,7 @@ export default async function DestinationPage({ params }: Props) {
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "בית", item: "https://www.voltescape.com/" }, { "@type": "ListItem", position: 2, name: destination.name, item: `https://www.voltescape.com/destinations/${destination.slug}` }] }) }} />
           <span className="kicker">TLV → {destination.iata}</span>
           <h1>טיסות זולות מתל אביב ל{destination.name}</h1>
-          <p className="lead">{destination.description}</p>
+          <p className="answer-first">טיסה מתל אביב ל{destination.name} ({destination.iata}) מתחילה מ-₪{routeDeal?.livePrice ?? destination.targetRange[0]}, ב{destination.direct ? "טיסה ישירה" : "מסלול עם עצירה"} של {destination.flightTime}.</p><p className="lead">{destination.description}</p>
           <div className="actions">
             <a className="button primary" href={flightUrl} target="_blank" rel="nofollow sponsored noopener">
               {routeDeal?.livePrice ? `מחיר חי החל מ-₪${routeDeal.livePrice}` : "בדוק את הדיל"}
