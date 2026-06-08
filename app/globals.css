@@ -1148,3 +1148,8 @@ select:focus {
 html, body { overflow-x: clip; }
 .page-hero { padding-top: 0; }
 .page-hero .dest-art { width: 100vw; max-height: 380px; margin: 0 calc(50% - 50vw) 30px; border-radius: 0; }
+
+/* Fix long-haul card layout: align content to top, push actions to bottom */
+.city-card { align-content: start; }
+.city-card p { min-height: 2.8em; }
+.city-card .city-actions { margin-top: auto; }
