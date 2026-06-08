@@ -1215,4 +1215,4 @@ h1, h2.sec-title, .sec-title { letter-spacing: -.02em; }
 .city-card:hover .dest-art, .city-card:hover .visual { transform: scale(1.025); filter: saturate(1.05); }
 .deal-card:hover, .city-card:hover, .stat-card:hover { transform: translateY(-4px); }
 .deal-card, .city-card, .stat-card { backface-visibility: hidden; }
-.lead, .sec-sub, p.deal-meta { letter-spacing: -.005em; }
+.lead, .sec-sub, p.deal-meta { letter-spacing: -.005em; } .page-hero .answer-first { max-width:720px; margin:14px 0 4px; font-size:clamp(18px,2.3vw,24px); font-weight:800; line-height:1.45; color:var(--ink); letter-spacing:-.01em; }
