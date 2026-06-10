@@ -401,6 +401,17 @@ section {
   display: none;
 }
 
+.top-strip .disclosure {
+  grid-column: 1 / -1;
+  padding: 0;
+  border-top: none;
+}
+
+.top-strip .section-actions {
+  grid-column: 1 / -1;
+  margin-top: 0;
+}
+
 .strip-card {
   display: grid;
   flex: 0 0 214px;
