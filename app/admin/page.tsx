@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "לוח בקרה | Voltescape", robots: { index: false, follow: false } };
+export const metadata: Metadata = { title: "לוח בקרה", robots: { index: false, follow: false } };
 
 type Props = { searchParams: Promise<{ key?: string }> };
 
