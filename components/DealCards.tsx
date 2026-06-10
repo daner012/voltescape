@@ -59,7 +59,7 @@ export function DealCards({ deals }: { deals: DealCard[] }) {
           </div>
           <div>
             <div className="row">
-              <span className="chip">ציון {deal.score}/100</span>
+              <span className="chip" title="הציון משקלל את המחיר החי מול הטווח ההיסטורי של המסלול, טיסה ישירה והתאמה לסופ״ש">ציון {deal.score}/100</span>
               <span className="chip">{deal.direct ? "עדיף ישיר" : "מסלול גמיש"}</span>
               <span className="chip">{deal.savingsSignal}</span>
             </div>
@@ -100,6 +100,9 @@ export function DealCards({ deals }: { deals: DealCard[] }) {
           </div>
         </article>
       ))}
+      <p className="scoring-note" style={{ gridColumn: "1 / -1", margin: 0, fontSize: "0.78rem", color: "rgba(15, 23, 42, 0.55)" }}>
+        איך מחושב הציון? המחיר החי מול הטווח ההיסטורי של המסלול (המרכיב המרכזי), עם תוספת קטנה לטיסה ישירה ולחלון סופ״ש.
+      </p>
     </div>
   );
 }
