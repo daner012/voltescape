@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "מדיניות פרטיות | Voltescape",
+  title: "מדיניות פרטיות",
   description: "כיצד Voltescape אוספת, משתמשת ושומרת על המידע שלך.",
   alternates: { canonical: "/privacy" },
 };
