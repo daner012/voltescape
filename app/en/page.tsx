@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { getDeals } from "@/lib/travelpayouts";
 import { AlertForm } from "@/components/AlertForm";
@@ -16,6 +17,15 @@ export const metadata: Metadata = {
       "he-IL": "https://www.voltescape.com/",
       en: "https://www.voltescape.com/en", "x-default": "https://www.voltescape.com/",
     },
+  },
+  openGraph: {
+    title: "Voltescape | Cheap flights from Tel Aviv to Europe",
+    description: "Live cheap flight deals from Tel Aviv to Europe, plus hotels, eSIM and transfers.",
+    url: "/en",
+    siteName: "Voltescape",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 675 }],
+    type: "website",
+    locale: "en_US",
   },
 };
 
@@ -75,7 +85,7 @@ export default async function EnglishHome() {
       <main>
         <section className="hero">
           <div className="hero-media" aria-hidden="true">
-            <img src="/_next/image?url=%2Fvoltescape-hero.png&w=1920&q=75" alt="" fetchPriority="high" />
+            <Image src="/voltescape-hero.webp" alt="" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
           </div>
           <div className="shell hero-grid">
             <div>

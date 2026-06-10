@@ -4,7 +4,7 @@ import { seoPages } from "@/lib/seo-pages";
 import { seoCopyEn } from "@/lib/seo-en";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.voltescape.com";
+  const siteUrl = "https://www.voltescape.com";
   const now = new Date();
   const enSlugs = Object.keys(seoCopyEn);
   return [

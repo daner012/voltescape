@@ -11,7 +11,7 @@ import { getDeals } from "@/lib/travelpayouts";
 export const revalidate = 1800;
 
 export const metadata: Metadata = {
-  title: "טיסות זולות מישראל לאירופה | Voltescape",
+  title: "טיסות זולות מישראל לאירופה",
   description: "דילים חכמים לטיסות הלוך-חזור מ-TLV לאירופה, עם בדיקת מחיר באנגלית וקישורים ממוקדי יעד.",
   alternates: { canonical: "/he/cheap-flights-from-israel" },
 };

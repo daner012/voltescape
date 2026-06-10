@@ -76,22 +76,30 @@ function clampScore(value: number) {
 }
 
 function scoreDeal(destination: Destination, candidate: PriceCandidate | null) {
-  let score = destination.score;
+  // Base score leaves headroom so only genuinely exceptional prices reach 97-99.
+  let score = destination.score - 6;
   const floor = destination.targetRange[0];
   const ceiling = destination.targetRange[1];
 
   if (candidate) {
-    if (candidate.livePrice <= floor) score += 12;
-    else if (candidate.livePrice <= Math.round(floor * 1.15)) score += 8;
-    else if (candidate.livePrice <= ceiling) score += 4;
-    else score -= 5;
+    if (candidate.livePrice <= floor) {
+      score += 10;
+    } else if (candidate.livePrice <= ceiling) {
+      // Graded 0-7 by where the price sits inside the target range (lower = better).
+      const position = (ceiling - candidate.livePrice) / Math.max(1, ceiling - floor);
+      score += Math.round(7 * position);
+    } else {
+      // Above range: penalty grows with the overshoot.
+      const overshoot = (candidate.livePrice - ceiling) / ceiling;
+      score -= Math.min(12, 4 + Math.round(10 * overshoot));
+    }
 
-    if (candidate.livePrice <= 320) score += 6;
-    if (candidate.direct ?? destination.direct) score += 4;
-    if (isWeekendTrip(candidate.departDate, candidate.returnDate)) score += 5;
+    if (candidate.livePrice <= 320) score += 2;
+    if (candidate.direct ?? destination.direct) score += 2;
+    if (isWeekendTrip(candidate.departDate, candidate.returnDate)) score += 2;
   } else {
-    if (floor <= 280) score += 5;
-    if (destination.direct) score += 3;
+    if (floor <= 280) score += 2;
+    if (destination.direct) score += 1;
   }
 
   return clampScore(score);

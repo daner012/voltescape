@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { AlertForm } from "@/components/AlertForm";
 import { Footer } from "@/components/Footer";
@@ -43,8 +44,9 @@ export default async function DestinationPage({ params }: Props) {
       <Header />
       <main>
         <section className="shell page-hero">
-          <img className="dest-art" src={`/${destination.slug}.webp`} alt="" />
+          <Image className="dest-art" src={`/${destination.slug}.webp`} alt={`איור של ${destination.name}`} width={1600} height={900} priority sizes="(max-width: 760px) 100vw, 1180px" />
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "בית", item: "https://www.voltescape.com/" }, { "@type": "ListItem", position: 2, name: destination.name, item: `https://www.voltescape.com/destinations/${destination.slug}` }] }) }} />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: destination.faq.map((item) => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })) }) }} />
           <span className="kicker">TLV → {destination.iata}</span>
           <h1>טיסות זולות מתל אביב ל{destination.name}</h1>
           <p className="answer-first">טיסה מתל אביב ל{destination.name} ({destination.iata}) מתחילה מ-₪{routeDeal?.livePrice ?? destination.targetRange[0]}, ב{destination.direct ? "טיסה ישירה" : "מסלול עם עצירה"} של {destination.flightTime}.</p><p className="lead">{destination.description}</p>

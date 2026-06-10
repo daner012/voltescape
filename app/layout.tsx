@@ -10,7 +10,7 @@ const heebo = Heebo({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.voltescape.com"),
+  metadataBase: new URL("https://www.voltescape.com"),
   title: {
     default: "Voltescape | טיסות זולות מתל אביב לאירופה",
     template: "%s | Voltescape",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "מוצאים לך את הטיסות הכי זולות מתל אביב לאירופה, יחד עם מלונות, פעילויות ו-eSIM.",
     url: "/",
     siteName: "Voltescape",
-    images: [{ url: "/_next/image?url=%2Fvoltescape-hero.png&w=1200&q=75", width: 1200, height: 675 }],
+    images: [{ url: "/og-image.jpg", width: 1200, height: 675 }],
     type: "website",
     locale: "he_IL",
   },
@@ -39,3 +39,5 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "Organization", "@id": "https://www.voltescape.com/#org", name: "Voltescape", url: "https://www.voltescape.com", logo: "https://www.voltescape.com/icon.svg", sameAs: ["https://t.me/voltescape_deals"] }, { "@type": "WebSite", "@id": "https://www.voltescape.com/#website", url: "https://www.voltescape.com", name: "Voltescape", publisher: { "@id": "https://www.voltescape.com/#org" } }] }) }} /><MetaPixel />
       </body>
     </html>
+  );
+}

@@ -46,7 +46,7 @@ export default async function HomePage() {
       <main id="top">
         <section className="hero">
           <div className="hero-media" aria-hidden="true">
-            <Image src="/voltescape-hero.png" alt="" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+            <Image src="/voltescape-hero.webp" alt="" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
           </div>
           <div className="shell hero-grid">
             <div>
@@ -113,32 +113,12 @@ export default async function HomePage() {
                 </a>
               ))}
             </div>
-          </div>
-        </section>
-
-        <section className="shell" id="today-best-deals" aria-labelledby="today-title">
-          <div className="section-head">
-            <span className="kicker">הדילים הכי שווים היום</span>
-            <h2 id="today-title">הדילים הכי שווים שמצאנו היום.</h2>
-            <p>
-              עמוד אחד ממוקד עם המסלול החזק של היום: היעד המוביל, מחיר היעד, ציון הדיל וקישור ישיר להזמנה.
-            </p>
-          </div>
-          <p className="disclosure">🤝 שקיפות מלאה: קישורי הדילים מובילים ל-Aviasales ואנחנו מקבלים עמלה אם תזמינו דרכם — זה לא משפיע על המחיר שלכם.</p>
-          <div className="deal-board">
-            {deals.slice(0, 4).map((deal, index) => (
-              <a className="board-row" href={deal.affiliateUrl} target="_blank" rel="nofollow sponsored noopener" key={deal.iata}>
-                <span>#{index + 1}</span>
-                <strong>TLV → {deal.destination}</strong>
-                <em>{deal.livePrice ? `החל מ-₪${deal.livePrice}` : `בסביבות ₪${deal.targetRange[0]}-${deal.targetRange[1]}`}</em>
-                <small>{deal.dealTag} · ציון {deal.score}</small>
-              </a>
-            ))}
-          </div>
-          <div className="section-actions">
-            <Link className="button secondary" href="/today-best-deals">
-              לכל הדילים
-            </Link>
+            <p className="disclosure">🤝 שקיפות מלאה: קישורי הדילים מובילים ל-Aviasales ואנחנו מקבלים עמלה אם תזמינו דרכם — זה לא משפיע על המחיר שלכם.</p>
+            <div className="section-actions">
+              <Link className="button secondary" href="/today-best-deals">
+                לכל הדילים של היום
+              </Link>
+            </div>
           </div>
         </section>
 

@@ -50,7 +50,7 @@ const missingIatas = requiredIatas.filter((iata) => !iatas.includes(iata));
 
 const assertions = [
   [missingIatas.length === 0, `Missing destinations (by IATA): ${missingIatas.join(", ")}`],
-  [new Set(iatas).size === requiredIatas.length, `Expected ${requiredIatas.length} unique destination IATA codes`],
+  [new Set(iatas).size === iatas.length, "Destination IATA codes must be unique (duplicate found)"],
   [affiliate.includes("https://www.aviasales.com/search/"), "Aviasales URL must use the international www.aviasales.com English deep link"],
   [affiliate.includes("destination.iata"), "Aviasales route must include the destination IATA"],
   [affiliate.includes("departDate"), "Aviasales route must include a departure date"],

@@ -401,6 +401,17 @@ section {
   display: none;
 }
 
+.top-strip .disclosure {
+  grid-column: 1 / -1;
+  padding: 0;
+  border-top: none;
+}
+
+.top-strip .section-actions {
+  grid-column: 1 / -1;
+  margin-top: 0;
+}
+
 .strip-card {
   display: grid;
   flex: 0 0 214px;
@@ -1125,7 +1136,6 @@ select:focus {
 .hero .button:not(.primary) { background: rgba(255, 255, 255, 0.12); color: #fff; border-color: rgba(255, 255, 255, 0.25); }
 .hero .button:not(.primary):hover { background: rgba(255, 255, 255, 0.2); }
 .hero-panel { color: var(--ink); }
-.top-strip { display: none; }
 
 /* A11y: contrast fixes for deal board numbers and prices */
 .board-row > span:first-child { color: #155bb5; }

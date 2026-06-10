@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!destination) return {};
   const city = titleCase(destination.slug);
   return {
-    title: `Cheap Flights from Tel Aviv to ${city} | Voltescape`,
+    title: `Cheap Flights from Tel Aviv to ${city}`,
     description: `Cheap flights from Tel Aviv to ${city}, with live prices and the cheapest travel dates. Plus eSIM, transfers and attractions for your trip.`,
     alternates: {
       canonical: `https://www.voltescape.com/en/destinations/${slug}`,
