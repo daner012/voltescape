@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voltescape — הטיסות הכי זולות מתל אביב</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07090f;
+    --bg-2: #0b0f1a;
+    --surface: rgba(255,255,255,.04);
+    --surface-2: rgba(255,255,255,.07);
+    --border: rgba(255,255,255,.09);
+    --border-hi: rgba(255,255,255,.18);
+    --text: #eef1f8;
+    --text-2: #9aa3b5;
+    --text-3: #5d6679;
+    --volt: #7c5cff;
+    --volt-2: #4f8cff;
+    --cyan: #2dd4bf;
+    --gold: #fbbf24;
+    --rose: #fb7185;
+    --grad-volt: linear-gradient(135deg, #7c5cff 0%, #4f8cff 55%, #2dd4bf 100%);
+    --radius: 20px;
+    --ease: cubic-bezier(.22,1,.36,1);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family:'Heebo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x:hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: rgba(124,92,255,.4); }
+
+  /* ---------- Aurora background ---------- */
+  .aurora {
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    overflow:hidden;
+  }
+  .aurora::before, .aurora::after {
+    content:''; position:absolute; width:60vw; height:60vw;
+    border-radius:50%; filter:blur(120px); opacity:.16;
+  }
+  .aurora::before {
+    background:#7c5cff; top:-20vw; left:-10vw;
+    animation: drift1 26s var(--ease) infinite alternate;
+  }
+  .aurora::after {
+    background:#2dd4bf; bottom:-25vw; right:-15vw;
+    animation: drift2 32s var(--ease) infinite alternate;
+  }
+  @keyframes drift1 { to { transform: translate(12vw, 8vh) scale(1.15); } }
+  @keyframes drift2 { to { transform: translate(-10vw, -6vh) scale(.9); } }
+  .stars { position:fixed; inset:0; z-index:0; pointer-events:none; }
+
+  .noise {
+    position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  }
+
+  main, header.nav, footer { position:relative; z-index:2; }
+
+  /* ---------- Nav ---------- */
+  header.nav {
+    position:fixed; top:16px; right:50%; transform:translateX(50%);
+    width:min(1180px, calc(100% - 32px));
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 18px;
+    background:rgba(10,13,22,.55);
+    border:1px solid var(--border);
+    border-radius:999px;
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    z-index:50;
+    transition: box-shadow .4s, background .4s;
+  }
+  header.nav.scrolled { box-shadow:0 12px 40px rgba(0,0,0,.5); background:rgba(10,13,22,.8); }
+  .logo { display:flex; align-items:center; gap:10px; font-weight:900; font-size:1.15rem; letter-spacing:.5px; text-decoration:none; color:var(--text); }
+  .logo-mark {
+    width:34px; height:34px; border-radius:11px;
+    background:var(--grad-volt);
+    display:grid; place-items:center; font-size:1rem;
+    box-shadow:0 0 22px rgba(124,92,255,.55);
+  }
+  .logo span em { font-style:normal; background:var(--grad-volt); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  nav.links { display:flex; gap:4px; }
+  nav.links a {
+    color:var(--text-2); text-decoration:none; font-size:.92rem; font-weight:500;
+    padding:8px 14px; border-radius:999px; transition:.25s;
+  }
+  nav.links a:hover { color:var(--text); background:var(--surface-2); }
+  .nav-cta {
+    display:flex; align-items:center; gap:8px;
+    background:var(--grad-volt); color:#fff; text-decoration:none;
+    font-weight:700; font-size:.9rem; padding:9px 18px; border-radius:999px;
+    box-shadow:0 4px 18px rgba(124,92,255,.4);
+    transition: transform .25s var(--ease), box-shadow .25s;
+  }
+  .nav-cta:hover { transform:translateY(-2px); box-shadow:0 8px 26px rgba(124,92,255,.55); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    max-width:1180px; margin:0 auto; padding:140px 24px 80px;
+  }
+  .hero-grid { display:grid; grid-template-columns:1.25fr .85fr; gap:48px; align-items:center; }
+  .pill {
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--border-hi); border-radius:999px;
+    padding:7px 16px; font-size:.85rem; color:var(--text-2);
+    background:var(--surface); width:fit-content;
+    backdrop-filter:blur(8px);
+  }
+  .pill .dot { width:8px; height:8px; border-radius:50%; background:var(--cyan); box-shadow:0 0 10px var(--cyan); animation:pulse 2s infinite; }
+  @keyframes pulse { 50% { opacity:.35; } }
+  h1 {
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    font-weight:900; line-height:1.08; margin:24px 0 20px;
+    letter-spacing:-1px;
+  }
+  h1 .grad {
+    background:var(--grad-volt);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.sub { font-size:1.15rem; color:var(--text-2); line-height:1.8; max-width:520px; font-weight:300; }
+  .hero p.sub b { color:var(--text); font-weight:600; }
+  .hero-ctas { display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+  .btn {
+    position:relative; overflow:hidden;
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 30px; border-radius:16px;
+    font-family:inherit; font-size:1rem; font-weight:700; cursor:pointer;
+    text-decoration:none; transition:transform .25s var(--ease), box-shadow .25s;
+    border:none;
+  }
+  .btn-primary { background:var(--grad-volt); color:#fff; box-shadow:0 8px 30px rgba(124,92,255,.45); }
+  .btn-primary:hover { transform:translateY(-3px); box-shadow:0 14px 40px rgba(124,92,255,.6); }
+  .btn-primary::after {
+    content:''; position:absolute; top:0; left:-80%; width:50%; height:100%;
+    background:linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent);
+    transform:skewX(-20deg); animation:sheen 4s infinite;
+  }
+  @keyframes sheen { 0%,60% { left:-80%; } 100% { left:180%; } }
+  .btn-ghost {
+    background:var(--surface); color:var(--text);
+    border:1px solid var(--border-hi); backdrop-filter:blur(8px);
+  }
+  .btn-ghost:hover { background:var(--surface-2); transform:translateY(-3px); }
+
+  .hero-stats { display:flex; gap:38px; margin-top:48px; }
+  .stat .num { font-size:1.7rem; font-weight:800; background:var(--grad-volt); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .stat .lbl { font-size:.83rem; color:var(--text-3); margin-top:2px; }
+
+  /* Hot deal hero card */
+  .deal-hero {
+    position:relative;
+    background:linear-gradient(160deg, rgba(124,92,255,.14), rgba(45,212,191,.07) 60%, rgba(255,255,255,.03));
+    border:1px solid var(--border-hi);
+    border-radius:28px; padding:30px;
+    backdrop-filter:blur(20px);
+    box-shadow:0 30px 80px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.12);
+    transform-style:preserve-3d; will-change:transform;
+    transition:transform .15s linear;
+  }
+  .deal-hero .tag {
+    position:absolute; top:-14px; right:24px;
+    background:linear-gradient(135deg, #fbbf24, #f97316);
+    color:#1a1205; font-weight:800; font-size:.8rem;
+    padding:6px 16px; border-radius:999px;
+    box-shadow:0 6px 18px rgba(249,115,22,.45);
+  }
+  .route { display:flex; align-items:center; gap:14px; margin-bottom:6px; }
+  .route .code { font-size:1.5rem; font-weight:800; letter-spacing:1px; }
+  .route .path { flex:1; position:relative; height:2px; background:linear-gradient(90deg, var(--volt), var(--cyan)); border-radius:2px; min-width:60px; }
+  .route .path::after {
+    content:'✈'; position:absolute; top:50%; right:0;
+    transform:translateY(-58%) scaleX(-1); font-size:1rem; color:#fff;
+    animation:fly 3s var(--ease) infinite;
+  }
+  @keyframes fly { 0% { right:0; opacity:0; } 15% { opacity:1; } 85% { opacity:1; } 100% { right:calc(100% - 14px); opacity:0; } }
+  .deal-hero .city { color:var(--text-2); font-size:1rem; margin-bottom:18px; }
+  .price-row { display:flex; align-items:baseline; gap:10px; }
+  .price-row .from { color:var(--text-3); font-size:.95rem; }
+  .price-row .price {
+    font-size:3.4rem; font-weight:900; line-height:1;
+    background:linear-gradient(135deg, #fff, #b9c5ff);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .deal-hero .meta { color:var(--text-2); font-size:.9rem; margin-top:10px; display:flex; align-items:center; gap:8px; }
+  .deal-hero .meta .live { width:7px; height:7px; border-radius:50%; background:#34d399; box-shadow:0 0 8px #34d399; animation:pulse 1.6s infinite; }
+  .score-bar { margin-top:20px; }
+  .score-bar .lbl { display:flex; justify-content:space-between; font-size:.82rem; color:var(--text-2); margin-bottom:8px; }
+  .score-bar .lbl b { color:var(--cyan); }
+  .score-track { height:8px; background:rgba(255,255,255,.08); border-radius:99px; overflow:hidden; }
+  .score-fill {
+    height:100%; width:0; border-radius:99px;
+    background:linear-gradient(90deg, var(--volt), var(--cyan));
+    box-shadow:0 0 12px rgba(45,212,191,.6);
+    transition:width 1.4s var(--ease) .3s;
+  }
+  .deal-hero .btn { width:100%; justify-content:center; margin-top:24px; }
+
+  /* ---------- Sections ---------- */
+  section { max-width:1180px; margin:0 auto; padding:90px 24px; }
+  .sec-head { text-align:center; margin-bottom:54px; }
+  .sec-head .kicker {
+    display:inline-block; font-size:.85rem; font-weight:700; letter-spacing:2px;
+    color:var(--volt); text-transform:uppercase; margin-bottom:14px;
+  }
+  .sec-head h2 { font-size:clamp(1.9rem, 4vw, 2.8rem); font-weight:800; letter-spacing:-.5px; }
+  .sec-head p { color:var(--text-2); margin-top:12px; font-weight:300; }
+
+  /* Deals grid */
+  .deals-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
+  .deal-card {
+    position:relative;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:24px;
+    backdrop-filter:blur(12px);
+    transition:transform .35s var(--ease), border-color .35s, box-shadow .35s;
+    overflow:hidden; cursor:pointer;
+  }
+  .deal-card::before {
+    content:''; position:absolute; inset:0; opacity:0; transition:opacity .35s;
+    background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(124,92,255,.13), transparent 65%);
+    pointer-events:none;
+  }
+  .deal-card:hover { transform:translateY(-6px); border-color:var(--border-hi); box-shadow:0 22px 50px rgba(0,0,0,.45); }
+  .deal-card:hover::before { opacity:1; }
+  .deal-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+  .deal-route { font-weight:800; font-size:1.05rem; letter-spacing:.5px; direction:ltr; }
+  .badge {
+    font-size:.74rem; font-weight:700; padding:4px 11px; border-radius:999px;
+  }
+  .badge.score-hi { background:rgba(45,212,191,.14); color:var(--cyan); border:1px solid rgba(45,212,191,.3); }
+  .badge.score-mid { background:rgba(124,92,255,.14); color:#a78bfa; border:1px solid rgba(124,92,255,.3); }
+  .deal-city { font-size:1.25rem; font-weight:700; margin-bottom:4px; }
+  .deal-note { color:var(--text-2); font-size:.88rem; margin-bottom:16px; }
+  .deal-bottom { display:flex; justify-content:space-between; align-items:flex-end; }
+  .deal-price { font-size:1.7rem; font-weight:900; }
+  .deal-price small { font-size:.85rem; color:var(--text-3); font-weight:400; }
+  .deal-link {
+    color:var(--volt-2); font-size:.88rem; font-weight:600; text-decoration:none;
+    display:flex; align-items:center; gap:5px; transition:gap .25s;
+  }
+  .deal-card:hover .deal-link { gap:9px; }
+
+  .transparency {
+    margin-top:34px; text-align:center; color:var(--text-3); font-size:.84rem;
+    border:1px dashed var(--border); border-radius:14px; padding:14px 20px;
+    background:rgba(255,255,255,.02);
+  }
+
+  /* Features */
+  .features { display:grid; grid-template-columns:repeat(4, 1fr); gap:18px; }
+  .feature {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius); padding:28px 22px;
+    transition:transform .35s var(--ease), border-color .35s;
+  }
+  .feature:hover { transform:translateY(-5px); border-color:var(--border-hi); }
+  .feature .ico {
+    width:48px; height:48px; border-radius:14px; display:grid; place-items:center;
+    font-size:1.3rem; margin-bottom:18px;
+    background:linear-gradient(135deg, rgba(124,92,255,.22), rgba(45,212,191,.12));
+    border:1px solid rgba(124,92,255,.3);
+  }
+  .feature h3 { font-size:1.05rem; font-weight:700; margin-bottom:8px; }
+  .feature p { color:var(--text-2); font-size:.88rem; line-height:1.7; font-weight:300; }
+
+  /* Telegram band */
+  .tg-band {
+    position:relative;
+    background:linear-gradient(135deg, rgba(124,92,255,.16), rgba(79,140,255,.1));
+    border:1px solid var(--border-hi);
+    border-radius:32px; padding:60px 48px;
+    display:flex; align-items:center; justify-content:space-between; gap:32px;
+    overflow:hidden;
+  }
+  .tg-band::before {
+    content:''; position:absolute; width:340px; height:340px; border-radius:50%;
+    background:var(--volt); filter:blur(130px); opacity:.25; top:-120px; left:-60px;
+  }
+  .tg-band h2 { font-size:clamp(1.6rem, 3vw, 2.3rem); font-weight:800; margin-bottom:10px; position:relative; }
+  .tg-band p { color:var(--text-2); position:relative; font-weight:300; }
+  .tg-band .btn { flex-shrink:0; position:relative; }
+
+  /* Footer */
+  footer {
+    border-top:1px solid var(--border);
+    margin-top:60px; padding:44px 24px 36px;
+    text-align:center; color:var(--text-3); font-size:.86rem;
+  }
+  footer .flinks { display:flex; gap:22px; justify-content:center; margin-bottom:18px; flex-wrap:wrap; }
+  footer .flinks a { color:var(--text-2); text-decoration:none; transition:color .25s; }
+  footer .flinks a:hover { color:var(--text); }
+
+  /* Reveal on scroll */
+  .reveal { opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.in { opacity:1; transform:none; }
+  .reveal[data-d="1"] { transition-delay:.08s; } .reveal[data-d="2"] { transition-delay:.16s; }
+  .reveal[data-d="3"] { transition-delay:.24s; } .reveal[data-d="4"] { transition-delay:.32s; }
+  .reveal[data-d="5"] { transition-delay:.4s; }  .reveal[data-d="6"] { transition-delay:.48s; }
+
+  /* Ticker */
+  .ticker-wrap {
+    border-block:1px solid var(--border);
+    background:rgba(255,255,255,.02);
+    overflow:hidden; padding:13px 0; white-space:nowrap;
+  }
+  .ticker { display:inline-block; animation:tick 36s linear infinite; }
+  .ticker span { margin:0 26px; color:var(--text-2); font-size:.9rem; }
+  .ticker b { color:var(--cyan); font-weight:700; }
+  @keyframes tick { to { transform:translateX(50%); } }
+
+  @media (max-width: 960px) {
+    nav.links { display:none; }
+    .hero-grid { grid-template-columns:1fr; }
+    .deals-grid { grid-template-columns:1fr 1fr; }
+    .features { grid-template-columns:1fr 1fr; }
+    .tg-band { flex-direction:column; text-align:center; padding:44px 26px; }
+    .hero-stats { flex-wrap:wrap; gap:24px; }
+  }
+  @media (max-width: 600px) {
+    .deals-grid { grid-template-columns:1fr; }
+    .features { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="aurora"></div>
+<canvas class="stars" id="stars"></canvas>
+<div class="noise"></div>
+
+<header class="nav" id="nav">
+  <a class="logo" href="#">
+    <span class="logo-mark">⚡</span>
+    <span>VOLT<em>ESCAPE</em></span>
+  </a>
+  <nav class="links">
+    <a href="#deals">דילים</a>
+    <a href="#">היום</a>
+    <a href="#">חיפוש</a>
+    <a href="#">קוויז</a>
+    <a href="#">יעדים</a>
+    <a href="#">התראות</a>
+  </nav>
+  <a class="nav-cta" href="#">✈️ ערוץ טלגרם</a>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="pill reveal"><span class="dot"></span> דילים לאירופה מתל אביב · מתעדכנים כל הזמן</div>
+        <h1 class="reveal" data-d="1">הטיסות הכי<br><span class="grad">זולות</span> מתל אביב</h1>
+        <p class="sub reveal" data-d="2">
+          קפריסין, יוון ועוד — מוצאים לכם את הטיסה הזולה ביותר מתל אביב.
+          <b>טיסות, מלונות, פעילויות, eSIM והסעות</b> — הכל בזרימה אחת פשוטה,
+          עם המחירים העדכניים ביותר.
+        </p>
+        <div class="hero-ctas reveal" data-d="3">
+          <a class="btn btn-primary" href="#deals">לדילים החמים 🔥</a>
+          <a class="btn btn-ghost" href="#">בנה טיול</a>
+        </div>
+        <div class="hero-stats reveal" data-d="4">
+          <div class="stat"><div class="num" data-count="253" data-prefix="₪">₪0</div><div class="lbl">הדיל הזול היום</div></div>
+          <div class="stat"><div class="num" data-count="99">0</div><div class="lbl">ציון הדיל המוביל</div></div>
+          <div class="stat"><div class="num" data-count="24" data-suffix="/7">0</div><div class="lbl">סריקת מחירים</div></div>
+        </div>
+      </div>
+
+      <div class="deal-hero reveal" data-d="2" id="tilt">
+        <div class="tag">🔥 הדיל החם</div>
+        <div class="route">
+          <span class="code">TLV</span>
+          <span class="path"></span>
+          <span class="code">LCA</span>
+        </div>
+        <div class="city">תל אביב ← לרנקה, קפריסין</div>
+        <div class="price-row">
+          <span class="from">החל מ־</span>
+          <span class="price">₪253</span>
+        </div>
+        <div class="meta"><span class="live"></span> מתחת ל-₪320 · נבדק עכשיו</div>
+        <div class="score-bar">
+          <div class="lbl"><span>ציון הדיל</span><b>99/100</b></div>
+          <div class="score-track"><div class="score-fill" data-w="99%"></div></div>
+        </div>
+        <a class="btn btn-primary" href="#">לדיל הטיסה ←</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap reveal">
+    <div class="ticker">
+      <span>TLV → LCA לרנקה <b>₪253</b></span><span>TLV → ATH אתונה <b>₪355</b></span><span>TLV → ROM רומא <b>₪368</b></span><span>TLV → KRK קרקוב <b>₪375</b></span><span>TLV → BUD בודפשט <b>₪422</b></span><span>TLV → JFK ניו יורק <b>₪1,984</b></span>
+      <span>TLV → LCA לרנקה <b>₪253</b></span><span>TLV → ATH אתונה <b>₪355</b></span><span>TLV → ROM רומא <b>₪368</b></span><span>TLV → KRK קרקוב <b>₪375</b></span><span>TLV → BUD בודפשט <b>₪422</b></span><span>TLV → JFK ניו יורק <b>₪1,984</b></span>
+    </div>
+  </div>
+
+  <!-- DEALS -->
+  <section id="deals">
+    <div class="sec-head reveal">
+      <span class="kicker">חם עכשיו</span>
+      <h2>הדילים החמים השבוע</h2>
+      <p>מחירים מתעדכנים · יוצא מתל אביב · קודם הזול ביותר</p>
+    </div>
+    <div class="deals-grid">
+      <div class="deal-card reveal" data-d="1">
+        <div class="deal-top"><span class="deal-route">TLV → LCA</span><span class="badge score-hi">ציון 99</span></div>
+        <div class="deal-city">לרנקה</div>
+        <div class="deal-note">מתחת ל-₪320 · קפריסין הקרובה</div>
+        <div class="deal-bottom">
+          <div class="deal-price"><small>מ־</small>₪253</div>
+          <a class="deal-link" href="#">לדיל ←</a>
+        </div>
+      </div>
+      <div class="deal-card reveal" data-d="2">
+        <div class="deal-top"><span class="deal-route">TLV → ATH</span><span class="badge score-hi">ציון 96</span></div>
+        <div class="deal-city">אתונה</div>
+        <div class="deal-note">ישיר מתל אביב</div>
+        <div class="deal-bottom">
+          <div class="deal-price"><small>מ־</small>₪355</div>
+          <a class="deal-link" href="#">לדיל ←</a>
+        </div>
+      </div>
+      <div class="deal-card reveal" data-d="3">
+        <div class="deal-top"><span class="deal-route">TLV → BUD</span><span class="badge score-mid">ציון 93</span></div>
+        <div class="deal-city">בודפשט</div>
+        <div class="deal-note">ישיר מתל אביב</div>
+        <div class="deal-bottom">
+          <div class="deal-price"><small>מ־</small>₪422</div>
+          <a class="deal-link" href="#">לדיל ←</a>
+        </div>
+      </div>
+      <div class="deal-card reveal" data-d="4">
+        <div class="deal-top"><span class="deal-route">TLV → JFK</span><span class="badge score-mid">ציון 93</span></div>
+        <div class="deal-city">ניו יורק</div>
+        <div class="deal-note">מציאת סופ״ש · מחיר נמוך נדיר</div>
+        <div class="deal-bottom">
+          <div class="deal-price"><small>מ־</small>₪1,984</div>
+          <a class="deal-link" href="#">לדיל ←</a>
+        </div>
+      </div>
+      <div class="deal-card reveal" data-d="5">
+        <div class="deal-top"><span class="deal-route">TLV → KRK</span><span class="badge score-mid">ציון 92</span></div>
+        <div class="deal-city">קרקוב</div>
+        <div class="deal-note">ישיר מתל אביב</div>
+        <div class="deal-bottom">
+          <div class="deal-price"><small>מ־</small>₪375</div>
+          <a class="deal-link" href="#">לדיל ←</a>
+        </div>
+      </div>
+      <div class="deal-card reveal" data-d="6">
+        <div class="deal-top"><span class="deal-route">TLV → ROM</span><span class="badge score-mid">ציון 90</span></div>
+        <div class="deal-city">רומא</div>
+        <div class="deal-note">ישיר מתל אביב</div>
+        <div class="deal-bottom">
+          <div class="deal-price"><small>מ־</small>₪368</div>
+          <a class="deal-link" href="#">לדיל ←</a>
+        </div>
+      </div>
+    </div>
+    <div class="transparency reveal">
+      🤝 שקיפות מלאה: קישורי הדילים מובילים ל-Aviasales ואנחנו מקבלים עמלה אם תזמינו דרכם — זה לא משפיע על המחיר שלכם.
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="kicker">למה Voltescape</span>
+      <h2>הכל בזרימה אחת פשוטה</h2>
+    </div>
+    <div class="features">
+      <div class="feature reveal" data-d="1">
+        <div class="ico">📡</div>
+        <h3>מחירים חיים</h3>
+        <p>סורקים מחירים סביב השעון ומציגים רק דילים שנבדקו עכשיו — בלי הפתעות בקופה.</p>
+      </div>
+      <div class="feature reveal" data-d="2">
+        <div class="ico">🧮</div>
+        <h3>ציון לכל דיל</h3>
+        <p>אלגוריתם שמדרג כל דיל מ-0 עד 100 לפי מחיר היסטורי, עונה, ישירות ועוד.</p>
+      </div>
+      <div class="feature reveal" data-d="3">
+        <div class="ico">🧳</div>
+        <h3>בנה טיול שלם</h3>
+        <p>טיסות, מלונות, פעילויות, eSIM והסעות — מרכיבים את כל הטיול במקום אחד.</p>
+      </div>
+      <div class="feature reveal" data-d="4">
+        <div class="ico">🔔</div>
+        <h3>התראות בזמן אמת</h3>
+        <p>מחיר צנח? אתם הראשונים לדעת — בערוץ הטלגרם או בהתראה אישית ליעד שבחרתם.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TELEGRAM -->
+  <section>
+    <div class="tg-band reveal">
+      <div>
+        <h2>אל תפספסו את הדיל הבא ✈️</h2>
+        <p>הצטרפו לערוץ הטלגרם — כל מציאה נדירה אצלכם בנייד, שניות אחרי שהיא מתפרסמת.</p>
+      </div>
+      <a class="btn btn-primary" href="#">הצטרפות לערוץ הטלגרם</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="flinks">
+    <a href="#">דילים</a><a href="#">יעדים</a><a href="#">קוויז</a><a href="#">התראות</a><a href="#">English</a><a href="#">תנאי שימוש</a><a href="#">פרטיות</a>
+  </div>
+  © 2026 Voltescape · הטיסות הכי זולות מתל אביב
+</footer>
+
+<script>
+  // Nav shadow on scroll
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 30), {passive:true});
+
+  // Reveal on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        if (e.target.querySelector('.score-fill')) {
+          const f = e.target.querySelector('.score-fill');
+          f.style.width = f.dataset.w;
+        }
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Animated counters
+  const cio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = +el.dataset.count;
+      const prefix = el.dataset.prefix || '', suffix = el.dataset.suffix || '';
+      const t0 = performance.now(), dur = 1400;
+      (function tick(t){
+        const p = Math.min((t - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = prefix + Math.round(target * eased).toLocaleString() + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+      cio.unobserve(el);
+    });
+  }, {threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+  // Card spotlight follows cursor
+  document.querySelectorAll('.deal-card').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  // 3D tilt on hero card
+  const tilt = document.getElementById('tilt');
+  if (matchMedia('(pointer:fine)').matches) {
+    tilt.addEventListener('pointermove', e => {
+      const r = tilt.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5;
+      const y = (e.clientY - r.top) / r.height - .5;
+      tilt.style.transform = `perspective(900px) rotateY(${x * -7}deg) rotateX(${y * 7}deg)`;
+    });
+    tilt.addEventListener('pointerleave', () => tilt.style.transform = '');
+  }
+
+  // Starfield
+  const cv = document.getElementById('stars'), ctx = cv.getContext('2d');
+  let stars = [];
+  function resize() {
+    cv.width = innerWidth * devicePixelRatio;
+    cv.height = innerHeight * devicePixelRatio;
+    stars = Array.from({length: Math.min(innerWidth / 7, 180)}, () => ({
+      x: Math.random() * cv.width,
+      y: Math.random() * cv.height,
+      r: (Math.random() * 1.1 + .3) * devicePixelRatio,
+      s: Math.random() * .25 + .05,
+      tw: Math.random() * Math.PI * 2
+    }));
+  }
+  resize(); addEventListener('resize', resize);
+  (function draw(t) {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    for (const st of stars) {
+      st.y -= st.s; if (st.y < 0) st.y = cv.height;
+      const a = .25 + Math.sin(t / 900 + st.tw) * .2;
+      ctx.beginPath();
+      ctx.arc(st.x, st.y, st.r, 0, 7);
+      ctx.fillStyle = `rgba(190,200,255,${a})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  })(0);
+</script>
+</body>
+</html>
