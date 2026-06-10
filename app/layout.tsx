@@ -39,3 +39,5 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "Organization", "@id": "https://www.voltescape.com/#org", name: "Voltescape", url: "https://www.voltescape.com", logo: "https://www.voltescape.com/icon.svg", sameAs: ["https://t.me/voltescape_deals"] }, { "@type": "WebSite", "@id": "https://www.voltescape.com/#website", url: "https://www.voltescape.com", name: "Voltescape", publisher: { "@id": "https://www.voltescape.com/#org" } }] }) }} /><MetaPixel />
       </body>
     </html>
+  );
+}
