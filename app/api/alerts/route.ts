@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { addBrevoContact } from "@/lib/brevo";
 import { getDestination, ORIGIN } from "@/lib/destinations";
 import { insertSupabase } from "@/lib/supabase";
 
@@ -36,6 +37,15 @@ export async function POST(request: Request) {
     return_date: body.returnDate || null,
     preferences: body.preferences || {},
     consent_at: new Date().toISOString(),
+  });
+
+  // Mirror the contact to Brevo (email service) so the welcome automation fires.
+  // Runs regardless of Supabase result: even if cloud storage is briefly down,
+  // the contact is captured. Never blocks or fails the signup (no-op without config).
+  await addBrevoContact({
+    email: body.email,
+    destination: body.destination,
+    origin: body.origin || ORIGIN,
   });
 
   if (!result.ok) {
